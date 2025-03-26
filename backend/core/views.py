@@ -1,3 +1,5 @@
-from django.shortcuts import render
+# backend/core/views.py
+from django.http import JsonResponse
 
-# Create your views here.
+def hello_world(request):
+    return JsonResponse({"message": "Hello from Django!"})
