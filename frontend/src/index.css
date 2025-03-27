@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes marquee1 {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee1 {
+  animation: marquee1 20s linear infinite;
+}
+
+@keyframes marquee2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee2 {
+  animation: marquee2 35s linear infinite;
+}

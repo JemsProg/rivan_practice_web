@@ -3,7 +3,7 @@ import React from 'react'
 const CourseCard = ({ image, title, subtitle, description, link }) => {
   return (
     <div
-      className="relative bg-white rounded-xl shadow p-6 hover:shadow-md transition-shadow"
+      className="relative bg-white rounded-4xl shadow p-6 hover:shadow-md transition-shadow"
       style={{ minHeight: '260px' }} // Adjust as needed
     >
       {/* Top Image */}
