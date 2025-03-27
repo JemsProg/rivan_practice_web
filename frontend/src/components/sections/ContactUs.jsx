@@ -25,12 +25,10 @@ const ContactUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#F9FAFF] py-12 px-4"
+      className="bg-[#F9FAFF] pt-16 pb-32 px-4"
     >
-      {/* Horizontal line / breakline above the contact content */}
-      <hr className="mb-8 border-gray-300" />
-
       <div className="container mx-auto max-w-6xl">
+
         {/* Grid Layout: Map on Left, Form on Right */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left: Map */}
@@ -57,14 +55,14 @@ const ContactUs = () => {
             style={{ opacity: 0, transform: 'translateY(30px)' }}
             className="flex flex-col justify-center"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0D2153] mb-2">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#0D2153] mb-2">
               Get in touch with us
             </h2>
             <p className="text-gray-700 mb-6">
               Empowering Connections for Tomorrow's Tech Leaders.
             </p>
 
-            <form className="space-y-4">
+            <form className="space-y-6">
               {/* Name Field */}
               <input
                 type="text"
@@ -93,6 +91,7 @@ const ContactUs = () => {
             </form>
           </div>
         </div>
+
       </div>
     </section>
   )
