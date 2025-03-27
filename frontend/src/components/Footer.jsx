@@ -5,41 +5,44 @@ import {
   FaMapMarkerAlt,
   FaEnvelope,
   FaPhoneAlt,
-  FaClock
+  FaClock,
+  FaChevronUp
 } from 'react-icons/fa'
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <footer className="bg-[#0D2153] text-white pt-8 pb-4 px-4">
+    <footer className="bg-[#0D2153] text-white pt-16 pb-6 px-4 relative">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-start">
           {/* Left side: Institute Info + Social Icons */}
           <div className="md:w-1/2 mb-6 md:mb-0">
-            <h2 className="text-xl font-bold mb-2">
+            <h2 className="text-xl font-semibold mb-2">
               RivanCyber Training Institute
             </h2>
             <p className="text-gray-200 mb-4">
-              Rivan Cyber Institute is a Network Engineering Bootcamp that caters
-              not just to people around the IT industry but also career shifters.
+              Rivan Cyber Institute is a Network Engineering Bootcamp that caters not just to people around the IT industry but also career shifters.
             </p>
-
             {/* Social Icons */}
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/RivanInstitute"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white hover:text-blue-400 transition"
+                className="bg-white rounded-full p-2 transition hover:shadow-lg"
               >
-                <FaFacebookF size={20} />
+                <FaFacebookF size={20} className="text-[#0D2153]" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/rivancyberinstitute"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white hover:text-blue-400 transition"
+                className="bg-white rounded-full p-2 transition hover:shadow-lg"
               >
-                <FaInstagram size={20} />
+                <FaInstagram size={20} className="text-[#0D2153]" />
               </a>
             </div>
           </div>
@@ -47,7 +50,6 @@ const Footer = () => {
           {/* Right side: Contact Info */}
           <div className="md:w-1/2 flex flex-col items-start md:items-end text-gray-200">
             <h2 className="text-lg font-semibold mb-2">Contact us</h2>
-
             <p className="flex items-center mb-1">
               <FaMapMarkerAlt className="mr-2" />
               Rivan Building, 18d Mola, Makati, 1200 Metro Manila
@@ -82,6 +84,14 @@ const Footer = () => {
           © 2025 All Rights Reserved. Design by Leigh.
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      <button 
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 bg-white rounded-full p-3 shadow-lg transition hover:bg-gray-200 cursor-pointer"
+      >
+        <FaChevronUp size={20} className="text-[#0D2153]" />
+      </button>
     </footer>
   )
 }
