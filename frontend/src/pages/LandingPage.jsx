@@ -5,6 +5,7 @@ import Services from '../components/sections/Services'
 import Courses from '../components/sections/Courses'
 import Partners from '../components/sections/Partners'
 import Reviews from '../components/sections/Reviews'
+import ContactUs from '../components/sections/ContactUs'
 
 const LandingPage = () => {
   return (
@@ -15,6 +16,7 @@ const LandingPage = () => {
       <Courses />
       <Partners />
       <Reviews />
+      <ContactUs />
     </>
   )
 }
