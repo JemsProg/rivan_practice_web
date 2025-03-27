@@ -16,11 +16,11 @@ const Services = () => {
     // Select all elements that need animation
     const elements = sectionRef.current.querySelectorAll('[data-animate]')
     elements.forEach((el, index) => {
-      // Use inView to trigger animation when each element enters the viewport
+      // Trigger animation when each element enters the viewport
       inView(el, () => {
         animate(
           el,
-          { opacity: 1, y: 0 }, // final state
+          { opacity: 1, y: 0 },
           {
             duration: 0.6,
             delay: index * 0.1, // stagger effect
@@ -72,16 +72,13 @@ const Services = () => {
   ]
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-white py-12 px-4"
-    >
+    <section ref={sectionRef} className="bg-white py-24 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Right-aligned heading and paragraph */}
-        <div className="md:text-right mb-10">
+        <div className="md:text-right mb-12">
           <h2
             data-animate
-            className="text-3xl md:text-4xl font-bold text-[#0D2153]"
+            className="text-3xl md:text-4xl font-semibold text-[#0D2153]"
             style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
             What services we offer
@@ -103,18 +100,18 @@ const Services = () => {
             <div
               key={index}
               data-animate
-              className="border border-gray-200 rounded-xl p-6 flex items-start space-x-4 bg-white"
+              className="border border-gray-300 rounded-4xl p-6 flex items-start space-x-4 bg-white transition-colors duration-300 hover:border-blue-300"
               style={{ opacity: 0, transform: 'translateY(30px)' }}
             >
               {/* Service Image */}
               <img
                 src={service.img}
                 alt={service.title}
-                className="w-16 h-16 object-cover flex-shrink-0 rounded"
+                className="w-20 h-20 object-cover flex-shrink-0 rounded"
               />
               {/* Title & Description */}
               <div>
-                <h3 className="text-lg font-bold text-[#0D2153] mb-1">
+                <h3 className="text-lg font-semibold text-[#0D2153] mb-1">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 text-sm">

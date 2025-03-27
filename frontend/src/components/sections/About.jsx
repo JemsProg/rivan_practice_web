@@ -61,7 +61,7 @@ const About = () => {
             <div
               key={index}
               data-animate
-              className="overflow-hidden rounded-lg"
+              className="overflow-hidden rounded-2xl"
               style={{ opacity: 0, transform: 'translateY(50px)' }}
             >
               <img
