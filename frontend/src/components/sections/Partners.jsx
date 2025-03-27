@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { animate, inView } from 'motion'
 
-// Example logos. Replace with your actual images
+// Example logos. Replace with your actual images.
 import compTIA from '../../assets/comptia.png'
 import accenture from '../../assets/accenture.png'
 import aws from '../../assets/aws.png'
@@ -56,14 +56,14 @@ const Partners = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0D2153] py-12 px-4"
+      className="bg-[#0D2153] py-32 px-4 mb-24"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Right-Aligned Heading + Subheading */}
         <div className="md:text-right">
           <h2
             data-animate
-            className="text-2xl md:text-4xl font-bold text-white"
+            className="text-2xl md:text-4xl font-semibold text-white"
             style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
             Who joins us on this tech-driven journey
