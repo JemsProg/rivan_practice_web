@@ -26,22 +26,41 @@ const Reviews = () => {
     })
   }, [])
 
-  // Sample reviews data
+  // Sample reviews data with highlighted phrases
   const reviewsData = [
     {
-      quote: `“RivanCyber's training modules were engaging, up-to-date, and tailored to our specific needs! Our IT department feels more prepared than ever to tackle emerging threats.”`,
+      quote: (
+        <>
+          RivanCyber's training modules were{' '}
+          <span className="text-[#0D2153] font-bold">engaging, up-to-date</span>, and tailored to our specific needs! Our IT department feels more{' '}
+          <span className="text-[#0D2153] font-bold">prepared</span> than ever to tackle emerging threats.
+        </>
+      ),
       name: 'Leigh Jamolin',
       position: 'CTO, Google Philippines',
       rating: 5
     },
     {
-      quote: `Working with RivanCyber has been seamless from start to finish. Their proactive communication and skill development programs have already made a huge impact on our bottom line.`,
+      quote: (
+        <>
+          Working with RivanCyber has been{' '}
+          <span className="text-[#0D2153] font-bold">seamless</span> from start to finish. Their{' '}
+          <span className="text-[#0D2153] font-bold">proactive communication</span> and skill development programs have already made a{' '}
+          <span className="text-[#0D2153] font-bold">huge impact</span> on our bottom line.
+        </>
+      ),
       name: 'Leigh Jamolin',
       position: 'Network Engineer, Accenture',
       rating: 5
     },
     {
-      quote: `The insights and hands-on expertise provided by RivanCyber have revolutionized our approach to training. Their tailored and innovative methodology sets them apart in the industry.`,
+      quote: (
+        <>
+          The insights and hands-on expertise provided by RivanCyber have{' '}
+          <span className="text-[#0D2153] font-bold">revolutionized</span> our approach to training. Their{' '}
+          <span className="text-[#0D2153] font-bold">tailored and innovative methodology</span> sets them apart in the industry.
+        </>
+      ),
       name: 'Leigh Jamolin',
       position: 'Cybersecurity Engineer, BDO',
       rating: 5
@@ -51,16 +70,16 @@ const Reviews = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#F9FAFF] py-12 px-4"
+      className="bg-[#F9FAFF] py-32 px-4"
     >
       <div className="container mx-auto max-w-6xl text-center">
         {/* Heading */}
         <h2
           data-animate
           style={{ opacity: 0, transform: 'translateY(30px)' }}
-          className="text-3xl md:text-4xl font-bold text-[#0D2153]"
+          className="text-3xl md:text-4xl font-semibold text-[#0D2153]"
         >
-          What our students say
+          What our students' feedback
         </h2>
 
         {/* Subheading */}
@@ -85,8 +104,8 @@ const Reviews = () => {
                   : 'min-h-[280px]'
               }`}
             >
-              {/* Quote */}
-              <p className="text-gray-700 italic">
+              {/* Quote (left-aligned, non-italic) */}
+              <p className="text-gray-700 text-left">
                 {review.quote}
               </p>
 

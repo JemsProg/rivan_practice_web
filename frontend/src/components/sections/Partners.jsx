@@ -56,7 +56,7 @@ const Partners = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0D2153] py-32 px-4 mb-24"
+      className="bg-[#0D2153] py-32 px-4"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Right-Aligned Heading + Subheading */}
