@@ -1,11 +1,12 @@
 import React from 'react'
 import Hero from '../components/sections/Hero'
+import About from '../components/sections/About'
 
 const LandingPage = () => {
   return (
     <>
       <Hero />
-      {/* Other sections, e.g. Features, Testimonials, etc. */}
+      <About />
     </>
   )
 }
