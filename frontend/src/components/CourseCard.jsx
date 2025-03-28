@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CourseCard = ({ image, title, subtitle, description, link }) => {
+const CourseCard = ({ image, title, subtitle, description }) => {
   return (
     <div
       className="relative bg-white border border-black rounded-4xl shadow p-6 flex flex-col transition-transform duration-300 hover:scale-105"
@@ -16,15 +16,6 @@ const CourseCard = ({ image, title, subtitle, description, link }) => {
       <h3 className="text-xl font-semibold text-[#0D2153] mb-1">{title}</h3>
       <p className="text-gray-600 mb-2">{subtitle}</p>
       <p className="text-gray-500 text-sm mb-6">{description}</p>
-      {/* "Learn More" Link at Bottom Right */}
-      <div className="mt-auto flex justify-end">
-        <a
-          href={link}
-          className="text-[#0D2153] font-medium hover:underline"
-        >
-          Learn More &rarr;
-        </a>
-      </div>
     </div>
   )
 }
