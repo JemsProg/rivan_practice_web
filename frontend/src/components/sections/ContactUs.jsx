@@ -24,6 +24,7 @@ const ContactUs = () => {
 
   return (
     <section
+      id='contact'
       ref={sectionRef}
       className="bg-[#F9FAFF] pt-16 pb-32 px-4"
     >

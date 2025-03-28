@@ -72,7 +72,7 @@ const Services = () => {
   ]
 
   return (
-    <section ref={sectionRef} className="bg-white py-24 px-4">
+    <section id='services' ref={sectionRef} className="bg-white py-24 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Right-aligned heading and paragraph */}
         <div className="md:text-right mb-12">

@@ -69,6 +69,7 @@ const Reviews = () => {
 
   return (
     <section
+      id='reviews'
       ref={sectionRef}
       className="bg-[#F9FAFF] py-32 px-4"
     >

@@ -101,7 +101,7 @@ const Courses = () => {
   }
 
   return (
-    <section ref={sectionRef} className="bg-[#F9FAFF] pt-12 pb-32 px-4">
+    <section id='courses' ref={sectionRef} className="bg-[#F9FAFF] pt-12 pb-32 px-4">
       <div className="container mx-auto max-w-6xl text-left">
         {/* Heading */}
         <h2

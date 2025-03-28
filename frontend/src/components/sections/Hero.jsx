@@ -30,7 +30,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-[#F9FAFF] py-16">
+    <section id="home" ref={sectionRef} className="bg-[#F9FAFF] py-16">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
         {/* Left: Big Logo */}
         <div
