@@ -68,6 +68,11 @@ const coursesData = [
 ]
 
 const Courses = () => {
+  // Force scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const sectionRef = useRef(null)
 
   useEffect(() => {
@@ -105,35 +110,24 @@ const Courses = () => {
           </p>
         </div>
 
-        {/* First Column: 3 stacked items (unchanged) */}
+        {/* First Column: 3 stacked items */}
         <div className="space-y-8 mb-12">
           {/* Network Training */}
           <div
             data-animate
             style={{ opacity: 0, transform: "translateY(30px)" }}
-            className="
-              bg-white shadow rounded-xl p-6
-              hover:bg-[#EAEFFB] transition-colors duration-300 group
-            "
+            className="bg-white shadow rounded-xl p-6 hover:bg-[#EAEFFB] transition-colors duration-300 group"
           >
             <div className="flex items-start space-x-4">
               <img
                 src={networkIcon}
                 alt="Network Icon"
-                className="
-                  w-16 h-16 object-contain flex-shrink-0
-                  transition-transform duration-300 ease-in-out
-                  group-hover:scale-110
-                "
+                className="w-16 h-16 object-contain flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <div>
-                <h3 className="text-xl font-bold text-[#0D2153] mb-2">
-                  Network Training
-                </h3>
+                <h3 className="text-xl font-bold text-[#0D2153] mb-2">Network Training</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  At RivanCyber Training Institute, we specialize in equipping
-                  you with the knowledge to deploy cutting-edge network
-                  solutions in real-world environments...
+                  At RivanCyber Training Institute, we specialize in equipping you with the knowledge to deploy cutting-edge network solutions...
                 </p>
               </div>
             </div>
@@ -143,28 +137,18 @@ const Courses = () => {
           <div
             data-animate
             style={{ opacity: 0, transform: "translateY(30px)" }}
-            className="
-              bg-white shadow rounded-xl p-6
-              hover:bg-[#EAEFFB] transition-colors duration-300 group
-            "
+            className="bg-white shadow rounded-xl p-6 hover:bg-[#EAEFFB] transition-colors duration-300 group"
           >
             <div className="flex items-start space-x-4">
               <img
                 src={securityIcon}
                 alt="Security Icon"
-                className="
-                  w-16 h-16 object-contain flex-shrink-0
-                  transition-transform duration-300 ease-in-out
-                  group-hover:scale-110
-                "
+                className="w-16 h-16 object-contain flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <div>
-                <h3 className="text-xl font-bold text-[#0D2153] mb-2">
-                  Security Training
-                </h3>
+                <h3 className="text-xl font-bold text-[#0D2153] mb-2">Security Training</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Does your current network align with industry best practices?
-                  Are you seeking an optimized design tailored...
+                  Does your current network align with industry best practices? Are you seeking an optimized design tailored...
                 </p>
               </div>
             </div>
@@ -174,28 +158,18 @@ const Courses = () => {
           <div
             data-animate
             style={{ opacity: 0, transform: "translateY(30px)" }}
-            className="
-              bg-white shadow rounded-xl p-6
-              hover:bg-[#EAEFFB] transition-colors duration-300 group
-            "
+            className="bg-white shadow rounded-xl p-6 hover:bg-[#EAEFFB] transition-colors duration-300 group"
           >
             <div className="flex items-start space-x-4">
               <img
                 src={automationIcon}
                 alt="Automation Icon"
-                className="
-                  w-16 h-16 object-contain flex-shrink-0
-                  transition-transform duration-300 ease-in-out
-                  group-hover:scale-110
-                "
+                className="w-16 h-16 object-contain flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <div>
-                <h3 className="text-xl font-bold text-[#0D2153] mb-2">
-                  Network Automation
-                </h3>
+                <h3 className="text-xl font-bold text-[#0D2153] mb-2">Network Automation</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Enhance your network operations with our Network Automation
-                  and NetDevOps Programming services...
+                  Enhance your network operations with our Network Automation and NetDevOps Programming services...
                 </p>
               </div>
             </div>

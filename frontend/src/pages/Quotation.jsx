@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
 const Quotation = () => {
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const [formData, setFormData] = useState({ name: '', course: '', message: '' })
 
   const handleChange = (e) => {

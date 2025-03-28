@@ -1,13 +1,29 @@
 import React, { useState } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
-import { Link as ScrollLink } from 'react-scroll'
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
+import { scroller } from 'react-scroll'
 import logo from '../assets/logo.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
+  }
+
+  const handleNavClick = (target) => {
+    setIsOpen(false)
+    if (location.pathname !== "/") {
+      // Navigate to home, passing target section in state (URL stays clean)
+      navigate("/", { state: { scrollTo: target } })
+    } else {
+      scroller.scrollTo(target, {
+        smooth: true,
+        duration: 500,
+        offset: -70,
+      })
+    }
   }
 
   return (
@@ -16,99 +32,42 @@ const Navbar = () => {
         {/* Left: Logo + Brand */}
         <div className="flex items-center">
           <img src={logo} alt="RivanCyber Logo" className="h-8 w-8 mr-2" />
-          <RouterLink
-            to="/"
-            className="text-2xl font-semibold text-[#0D2153] cursor-pointer"
-          >
+          <RouterLink to="/" className="text-2xl font-semibold text-[#0D2153] cursor-pointer">
             RivanCyber
           </RouterLink>
         </div>
 
         {/* Middle: Nav Links (hidden on mobile) */}
         <div className="hidden md:flex space-x-6">
-          <ScrollLink 
-            to="home" 
-            spy={true}
-            smooth={true} 
-            duration={500} 
-            offset={-70} 
-            activeClass="text-blue-600"
-            className="text-gray-600 hover:text-gray-900 cursor-pointer"
-          >
+          <span onClick={() => handleNavClick("home")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
             Home
-          </ScrollLink>
-          <ScrollLink 
-            to="about" 
-            spy={true}
-            smooth={true} 
-            duration={500} 
-            offset={-70} 
-            activeClass="text-blue-600"
-            className="text-gray-600 hover:text-gray-900 cursor-pointer"
-          >
+          </span>
+          <span onClick={() => handleNavClick("about")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
             About
-          </ScrollLink>
-          <ScrollLink 
-            to="services" 
-            spy={true}
-            smooth={true} 
-            duration={500} 
-            offset={-70} 
-            activeClass="text-blue-600"
-            className="text-gray-600 hover:text-gray-900 cursor-pointer"
-          >
+          </span>
+          <span onClick={() => handleNavClick("services")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
             Services
-          </ScrollLink>
-          <ScrollLink 
-            to="courses" 
-            spy={true}
-            smooth={true} 
-            duration={500} 
-            offset={-70} 
-            activeClass="text-blue-600"
-            className="text-gray-600 hover:text-gray-900 cursor-pointer"
-          >
+          </span>
+          <span onClick={() => handleNavClick("courses")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
             Courses
-          </ScrollLink>
-          <ScrollLink 
-            to="reviews" 
-            spy={true}
-            smooth={true} 
-            duration={500} 
-            offset={-70} 
-            activeClass="text-blue-600"
-            className="text-gray-600 hover:text-gray-900 cursor-pointer"
-          >
+          </span>
+          <span onClick={() => handleNavClick("reviews")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
             Reviews
-          </ScrollLink>
-          <ScrollLink 
-            to="contact" 
-            spy={true}
-            smooth={true} 
-            duration={500} 
-            offset={-70} 
-            activeClass="text-blue-600"
-            className="text-gray-600 hover:text-gray-900 cursor-pointer"
-          >
+          </span>
+          <span onClick={() => handleNavClick("contact")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
             Contact
-          </ScrollLink>
+          </span>
         </div>
 
         {/* Right: "Request a Quote" button (hidden on mobile) */}
         <div className="hidden md:block">
-          <RouterLink
-            to="/quotation"
-            className="px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
-          >
+          <RouterLink to="/quotation" className="px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer">
             Request a Quote
           </RouterLink>
         </div>
 
         {/* Mobile: Hamburger Icon */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
-        >
+        <button onClick={toggleMenu} className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer">
           {isOpen ? (
             <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
               <path d="M6 6L18 18M6 18L18 6" />
@@ -125,80 +84,25 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-[#F9FAFF] shadow-sm">
           <div className="px-4 pt-3 pb-4 space-y-2">
-            <ScrollLink 
-              onClick={() => setIsOpen(false)} 
-              to="home" 
-              spy={true}
-              smooth={true} 
-              duration={500} 
-              offset={-70} 
-              activeClass="text-blue-600"
-              className="block text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
+            <span onClick={() => handleNavClick("home")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
               Home
-            </ScrollLink>
-            <ScrollLink 
-              onClick={() => setIsOpen(false)} 
-              to="about" 
-              spy={true}
-              smooth={true} 
-              duration={500} 
-              offset={-70} 
-              activeClass="text-blue-600"
-              className="block text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
+            </span>
+            <span onClick={() => handleNavClick("about")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
               About
-            </ScrollLink>
-            <ScrollLink 
-              onClick={() => setIsOpen(false)} 
-              to="services" 
-              spy={true}
-              smooth={true} 
-              duration={500} 
-              offset={-70} 
-              activeClass="text-blue-600"
-              className="block text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
+            </span>
+            <span onClick={() => handleNavClick("services")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
               Services
-            </ScrollLink>
-            <ScrollLink 
-              onClick={() => setIsOpen(false)} 
-              to="courses" 
-              spy={true}
-              smooth={true} 
-              duration={500} 
-              offset={-70} 
-              activeClass="text-blue-600"
-              className="block text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
+            </span>
+            <span onClick={() => handleNavClick("courses")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
               Courses
-            </ScrollLink>
-            <ScrollLink 
-              onClick={() => setIsOpen(false)} 
-              to="reviews" 
-              spy={true}
-              smooth={true} 
-              duration={500} 
-              offset={-70} 
-              activeClass="text-blue-600"
-              className="block text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
+            </span>
+            <span onClick={() => handleNavClick("reviews")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
               Reviews
-            </ScrollLink>
-            <ScrollLink 
-              onClick={() => setIsOpen(false)} 
-              to="contact" 
-              spy={true}
-              smooth={true} 
-              duration={500} 
-              offset={-70} 
-              activeClass="text-blue-600"
-              className="block text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
+            </span>
+            <span onClick={() => handleNavClick("contact")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
               Contact
-            </ScrollLink>
-            {/* Mobile "Request a Quote" button */}
-            <RouterLink 
+            </span>
+            <RouterLink
               onClick={() => setIsOpen(false)}
               to="/quotation"
               className="block text-center mt-2 px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
