@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
-import { scroller } from 'react-scroll'
+import { Link as ScrollLink } from 'react-scroll'
 import logo from '../assets/logo.png'
 
 const Navbar = () => {
@@ -14,16 +14,20 @@ const Navbar = () => {
 
   const handleNavClick = (target) => {
     setIsOpen(false)
+    // If we're not on the landing page, navigate there and pass the target in state.
     if (location.pathname !== "/") {
-      // Navigate to home, passing target section in state (URL stays clean)
       navigate("/", { state: { scrollTo: target } })
-    } else {
-      scroller.scrollTo(target, {
-        smooth: true,
-        duration: 500,
-        offset: -70,
-      })
     }
+  }
+
+  // Common props for the ScrollLink elements.
+  const commonLinkProps = {
+    spy: true,
+    smooth: true,
+    duration: 500,
+    offset: -70,
+    activeClass: "text-gray-900", // This class will be added when the section is in view.
+    className: "cursor-pointer text-gray-500 hover:text-gray-700",
   }
 
   return (
@@ -39,35 +43,65 @@ const Navbar = () => {
 
         {/* Middle: Nav Links (hidden on mobile) */}
         <div className="hidden md:flex space-x-6">
-          <span onClick={() => handleNavClick("home")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
+          <ScrollLink 
+            to="home" 
+            onClick={() => handleNavClick("home")}
+            {...commonLinkProps}
+          >
             Home
-          </span>
-          <span onClick={() => handleNavClick("about")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
+          </ScrollLink>
+          <ScrollLink 
+            to="about" 
+            onClick={() => handleNavClick("about")}
+            {...commonLinkProps}
+          >
             About
-          </span>
-          <span onClick={() => handleNavClick("services")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
+          </ScrollLink>
+          <ScrollLink 
+            to="services" 
+            onClick={() => handleNavClick("services")}
+            {...commonLinkProps}
+          >
             Services
-          </span>
-          <span onClick={() => handleNavClick("courses")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
+          </ScrollLink>
+          <ScrollLink 
+            to="courses" 
+            onClick={() => handleNavClick("courses")}
+            {...commonLinkProps}
+          >
             Courses
-          </span>
-          <span onClick={() => handleNavClick("reviews")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
+          </ScrollLink>
+          <ScrollLink 
+            to="reviews" 
+            onClick={() => handleNavClick("reviews")}
+            {...commonLinkProps}
+          >
             Reviews
-          </span>
-          <span onClick={() => handleNavClick("contact")} className="text-gray-600 hover:text-gray-900 cursor-pointer">
+          </ScrollLink>
+          <ScrollLink 
+            to="contact" 
+            onClick={() => handleNavClick("contact")}
+            {...commonLinkProps}
+          >
             Contact
-          </span>
+          </ScrollLink>
         </div>
 
         {/* Right: "Request a Quote" button (hidden on mobile) */}
         <div className="hidden md:block">
-          <RouterLink to="/quotation" className="px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer">
+          <RouterLink
+            to="/quotation"
+            className="px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+          >
             Request a Quote
           </RouterLink>
         </div>
 
         {/* Mobile: Hamburger Icon */}
-        <button onClick={toggleMenu} className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer">
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
+        >
           {isOpen ? (
             <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
               <path d="M6 6L18 18M6 18L18 6" />
@@ -84,25 +118,55 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-[#F9FAFF] shadow-sm">
           <div className="px-4 pt-3 pb-4 space-y-2">
-            <span onClick={() => handleNavClick("home")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
+            <ScrollLink 
+              to="home" 
+              onClick={() => handleNavClick("home")}
+              {...commonLinkProps}
+              className="block"
+            >
               Home
-            </span>
-            <span onClick={() => handleNavClick("about")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
+            </ScrollLink>
+            <ScrollLink 
+              to="about" 
+              onClick={() => handleNavClick("about")}
+              {...commonLinkProps}
+              className="block"
+            >
               About
-            </span>
-            <span onClick={() => handleNavClick("services")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
+            </ScrollLink>
+            <ScrollLink 
+              to="services" 
+              onClick={() => handleNavClick("services")}
+              {...commonLinkProps}
+              className="block"
+            >
               Services
-            </span>
-            <span onClick={() => handleNavClick("courses")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
+            </ScrollLink>
+            <ScrollLink 
+              to="courses" 
+              onClick={() => handleNavClick("courses")}
+              {...commonLinkProps}
+              className="block"
+            >
               Courses
-            </span>
-            <span onClick={() => handleNavClick("reviews")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
+            </ScrollLink>
+            <ScrollLink 
+              to="reviews" 
+              onClick={() => handleNavClick("reviews")}
+              {...commonLinkProps}
+              className="block"
+            >
               Reviews
-            </span>
-            <span onClick={() => handleNavClick("contact")} className="block text-gray-600 hover:text-gray-900 cursor-pointer">
+            </ScrollLink>
+            <ScrollLink 
+              to="contact" 
+              onClick={() => handleNavClick("contact")}
+              {...commonLinkProps}
+              className="block"
+            >
               Contact
-            </span>
-            <RouterLink
+            </ScrollLink>
+            <RouterLink 
               onClick={() => setIsOpen(false)}
               to="/quotation"
               className="block text-center mt-2 px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
