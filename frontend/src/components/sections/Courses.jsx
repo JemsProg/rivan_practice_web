@@ -4,7 +4,6 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import CourseCard from '../CourseCard'
 
-// Replace these with your actual images
 import pcnsaImg from '../../assets/pcnsa.png'
 import ccnaImg from '../../assets/ccna.png'
 import ccnpImg from '../../assets/ccnp.png'

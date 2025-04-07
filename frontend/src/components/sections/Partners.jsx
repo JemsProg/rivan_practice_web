@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { animate, inView } from 'motion'
 
-// Example logos. Replace with your actual images.
 import compTIA from '../../assets/comptia.png'
 import accenture from '../../assets/accenture.png'
 import aws from '../../assets/aws.png'

@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react'
 import { animate, inView } from 'motion'
 import { Link } from 'react-router-dom'
 
-// Update these imports with the correct paths to your images
 import heroLogo from '../../assets/hero_logo.png'
 import developIcon from '../../assets/we_develop.png'
 import discoverIcon from '../../assets/we_discover.png'

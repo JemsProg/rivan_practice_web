@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react'
 import { animate, inView } from 'motion'
 import { FaStar } from 'react-icons/fa'
 
-// Example avatar (replace with your actual path)
 import avatar from '../../assets/student_1.png'
 
 const Reviews = () => {

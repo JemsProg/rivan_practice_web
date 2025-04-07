@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { animate, inView } from 'motion'
 
-// Replace these with actual image paths in your project
 import service1 from '../../assets/services_1.png'
 import service2 from '../../assets/services_2.png'
 import service3 from '../../assets/services_3.png'
