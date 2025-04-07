@@ -1,9 +1,14 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { animate, inView } from 'motion'
+import { FaCheck } from 'react-icons/fa'
 
 const ContactUs = () => {
   const sectionRef = useRef(null)
+  // State to track submission status and loading
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
+  // Animate elements on scroll into view
   useEffect(() => {
     const elements = sectionRef.current.querySelectorAll('[data-animate]')
     elements.forEach((el, index) => {
@@ -21,17 +26,39 @@ const ContactUs = () => {
     })
   }, [])
 
-  return (
-    <section
-      id='contact'
-      ref={sectionRef}
-      className="bg-[#F9FAFF] pt-16 pb-32 px-4"
-    >
-      <div className="container mx-auto max-w-6xl">
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value
+    }
 
-        {/* Grid Layout: Map on Left, Form on Right */}
+    try {
+      const response = await fetch('http://localhost:8000/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      
+      if (response.ok) {
+        setSubmitted(true)
+        console.log('Email sent successfully!')
+      } else {
+        console.error('Error sending email')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+    setLoading(false)
+  }
+
+  return (
+    <section id='contact' ref={sectionRef} className="bg-[#F9FAFF] pt-16 pb-32 px-4">
+      <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left: Map */}
+          {/* Left: Google Map */}
           <div
             data-animate
             style={{ opacity: 0, transform: 'translateY(30px)' }}
@@ -62,36 +89,44 @@ const ContactUs = () => {
               Empowering Connections for Tomorrow's Tech Leaders.
             </p>
 
-            <form className="space-y-6">
-              {/* Name Field */}
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <input
+                name="name"
                 type="text"
                 placeholder="Your Name"
                 className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-[#0D2153]"
+                required
               />
-              {/* Email Field */}
               <input
+                name="email"
                 type="email"
                 placeholder="email@company.com"
                 className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-[#0D2153]"
+                required
               />
-              {/* Message Field */}
               <textarea
+                name="message"
                 placeholder="Tell us more..."
                 className="w-full px-4 py-3 rounded-3xl border border-gray-300 focus:outline-none focus:border-[#0D2153] h-32 resize-none"
+                required
               />
-
-              {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-[#0D2153] text-white px-6 py-3 rounded-full hover:bg-[#0B1C47] transition-colors"
+                className="cursor-pointer bg-[#0D2153] text-white px-6 py-3 rounded-full hover:bg-[#0B1C47] transition-colors flex items-center justify-center"
               >
-                Let's get started
+                {loading
+                  ? "Sending..."
+                  : submitted
+                  ? (
+                    <>
+                      <FaCheck className="mr-2" /> Submitted
+                    </>
+                  )
+                  : "Let's get started"}
               </button>
             </form>
           </div>
         </div>
-
       </div>
     </section>
   )
