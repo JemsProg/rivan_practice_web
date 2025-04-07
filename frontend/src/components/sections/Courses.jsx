@@ -4,19 +4,72 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import CourseCard from '../CourseCard'
 
+// Course images
 import pcnsaImg from '../../assets/pcnsa.png'
 import ccnaImg from '../../assets/ccna.png'
 import ccnpImg from '../../assets/ccnp.png'
-import comptiaSecurityImg from '../../assets/ccna.png'
-import itilImg from '../../assets/ccna.png'
-import ccnpEncorImg from '../../assets/ccna.png'
+import comptiaSecurityImg from '../../assets/comptia_security.png'
+import itilImg from '../../assets/itil.png'
+import ccnpEncorImg from '../../assets/ccnp_security.png'
 
 const Courses = () => {
   const sectionRef = useRef(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  // Shortened course data reflecting updated descriptions
+  const coursesData = [
+    {
+      title: 'CCNA',
+      subtitle: '200-301 CCNA v1.1',
+      description:
+        'Learn networking fundamentals, routing, switching, and security in our hands-on CCNA course—ideal for beginners and IT pros.',
+      img: ccnaImg,
+      link: '#'
+    },
+    {
+      title: 'CompTIA Security+',
+      subtitle: 'CompTIA Security+',
+      description:
+        'Gain essential cybersecurity skills including threat detection and risk management in our hands-on Security+ training.',
+      img: comptiaSecurityImg,
+      link: '#'
+    },
+    {
+      title: 'CCNP',
+      subtitle: 'ENCOR x ENARSI',
+      description:
+        'Advance your career with CCNP ENCOR & ENARSI, focusing on enterprise routing, switching, security, and network automation.',
+      img: ccnpImg,
+      link: '#'
+    },
+    {
+      title: 'ITIL',
+      subtitle: 'ITIL Foundation',
+      description:
+        'Master IT service management best practices to improve IT operations and align services with business goals.',
+      img: itilImg,
+      link: '#'
+    },
+    {
+      title: 'CCNP ENCOR',
+      subtitle: 'Cisco CCNP ENCOR',
+      description:
+        'Gain in-depth knowledge of enterprise infrastructure and network automation through CCNP ENCOR training.',
+      img: ccnpEncorImg,
+      link: '#'
+    },
+    {
+      title: 'PCNSA',
+      subtitle: 'Palo Alto Networks',
+      description:
+        'Gain hands-on experience configuring and securing networks with Palo Alto Networks technologies.',
+      img: pcnsaImg,
+      link: '#'
+    }
+  ]
+
   useEffect(() => {
-    // Animate elements marked with data-animate on scroll
+    // Animate elements with data-animate on scroll
     const elements = sectionRef.current.querySelectorAll('[data-animate]')
     elements.forEach((el, index) => {
       inView(el, () => {
@@ -33,62 +86,11 @@ const Courses = () => {
     })
   }, [])
 
-  const coursesData = [
-    {
-      title: 'PCNSA',
-      subtitle: 'Palo Alto Networks',
-      description:
-        'Learn essential skills to manage and monitor Palo Alto firewalls for robust threat prevention.',
-      img: pcnsaImg,
-      link: '#'
-    },
-    {
-      title: 'CCNA',
-      subtitle: '200-301 CCNA v1.1',
-      description:
-        'A comprehensive introduction to networking fundamentals, routing, switching, and network security.',
-      img: ccnaImg,
-      link: '#'
-    },
-    {
-      title: 'CompTIA Security+',
-      subtitle: 'CompTIA Security+',
-      description:
-        'Validate your foundational security skills covering network security, compliance, threats, and vulnerabilities.',
-      img: comptiaSecurityImg,
-      link: '#'
-    },
-    {
-      title: 'CCNP',
-      subtitle: 'ENCOR x ENARSI',
-      description:
-        'Dive deeper into advanced routing, switching, and troubleshooting concepts for enterprise networks.',
-      img: ccnpImg,
-      link: '#'
-    },
-    {
-      title: 'ITIL',
-      subtitle: 'ITIL Foundation',
-      description:
-        'Master IT Service Management best practices to optimize service delivery and align IT with business goals.',
-      img: itilImg,
-      link: '#'
-    },
-    {
-      title: 'CCNP ENCOR',
-      subtitle: 'Cisco CCNP ENCOR',
-      description:
-        'Gain in-depth knowledge of enterprise infrastructure including dual-stack architecture, virtualization, and more.',
-      img: ccnpEncorImg,
-      link: '#'
-    }
-  ]
-
   const visibleCourses = coursesData.slice(currentIndex, currentIndex + 3)
 
   const handlePrev = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 3)
+      setCurrentIndex(Math.max(currentIndex - 3, 0))
     }
   }
 
@@ -120,13 +122,13 @@ const Courses = () => {
 
         {/* Navigation and Course Cards */}
         <div className="relative">
-          {/* Left Arrow: Only show if currentIndex > 0 */}
+          {/* Left Arrow */}
           {currentIndex > 0 && (
             <button
               onClick={handlePrev}
               data-animate
               style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
+              className="absolute -left-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
             >
               <FaChevronLeft className="w-5 h-5" />
             </button>
@@ -152,13 +154,13 @@ const Courses = () => {
             ))}
           </div>
 
-          {/* Right Arrow: Only show if there are more courses */}
+          {/* Right Arrow */}
           {currentIndex + 3 < coursesData.length && (
             <button
               onClick={handleNext}
               data-animate
               style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
+              className="absolute -right-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
             >
               <FaChevronRight className="w-5 h-5" />
             </button>
