@@ -11,33 +11,25 @@ import automationIcon from "../assets/network_automation.png"
 import pcnsaImg from "../assets/pcnsa.png"
 import ccnaImg from "../assets/ccna.png"
 import ccnpImg from "../assets/ccnp.png"
-import comptiaSecurityImg from "../assets/ccna.png"
-import itilImg from "../assets/ccna.png"
-import ccnpEncorImg from "../assets/ccna.png"
+import comptiaSecurityImg from "../assets/comptia_security.png"
+import itilImg from "../assets/itil.png"
+import ccnpEncorImg from "../assets/ccnp_security.png"
 
 const coursesData = [
-  {
-    image: pcnsaImg,
-    title: "PCNSA",
-    subtitle: "Palo Alto Networks Certified Network Security Administrator",
-    description:
-      "Learn the essential skills to configure, manage, and monitor Palo Alto firewalls for robust threat prevention.",
-    link: "#"
-  },
   {
     image: ccnaImg,
     title: "CCNA",
     subtitle: "200-301 CCNA v1.1",
     description:
-      "A comprehensive introduction to networking fundamentals, routing, switching, and network security—an ideal starting point for your IT career.",
+      "Learn networking fundamentals, routing, switching, and security in this hands-on CCNA course—ideal for beginners and IT pros.",
     link: "#"
   },
   {
     image: comptiaSecurityImg,
     title: "CompTIA Security+",
-    subtitle: "Foundational Security Skills",
+    subtitle: "SECURITY + SY0-701",
     description:
-      "Validate your foundational security skills, covering core topics like network security, compliance, threats, and vulnerabilities.",
+      "Gain essential cybersecurity skills including threat detection and risk management in our hands-on Security+ training.",
     link: "#"
   },
   {
@@ -45,23 +37,31 @@ const coursesData = [
     title: "CCNP",
     subtitle: "ENCOR x ENARSI",
     description:
-      "Dive deeper into advanced routing, switching, and troubleshooting concepts, equipping you with the expertise to manage complex enterprise networks.",
+      "Advance your career with CCNP ENCOR & ENARSI, focusing on enterprise routing, switching, security, and network automation.",
     link: "#"
   },
   {
     image: itilImg,
-    title: "ITIL",
-    subtitle: "IT Service Management Best Practices",
+    title: "ITIL v4/V3",
+    subtitle: "Foundation Training",
     description:
-      "Optimize service delivery, boost efficiency, and align IT with business goals using globally recognized ITIL frameworks.",
+      "Master IT service management best practices to improve IT operations and align services with business goals.",
     link: "#"
   },
   {
     image: ccnpEncorImg,
-    title: "CCNP ENCOR",
-    subtitle: "Implementing & Operating Cisco Enterprise Network Core",
+    title: "CCNP Security",
+    subtitle: "SECURITY 350-701",
     description:
-      "Gain in-depth knowledge of enterprise infrastructure including dual-stack architecture, virtualization, and more.",
+      "Learn to secure enterprise networks with firewalls, VPNs, and threat intelligence using Cisco security solutions.",
+    link: "#"
+  },
+  {
+    image: pcnsaImg,
+    title: "PCNSA",
+    subtitle: "Palo Alto Networks",
+    description:
+      "Gain hands-on experience configuring and securing networks with Palo Alto Networks technologies.",
     link: "#"
   }
 ]
@@ -126,7 +126,7 @@ const Courses = () => {
               <div>
                 <h3 className="text-xl font-bold text-[#0D2153] mb-2">Network Training</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  At RivanCyber Training Institute, we specialize in equipping you with the knowledge to deploy cutting-edge network solutions...
+                  We equip you with the skills to deploy cutting-edge network solutions.
                 </p>
               </div>
             </div>
@@ -147,7 +147,7 @@ const Courses = () => {
               <div>
                 <h3 className="text-xl font-bold text-[#0D2153] mb-2">Security Training</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Does your current network align with industry best practices? Are you seeking an optimized design tailored...
+                  Enhance your network security with our industry-focused training.
                 </p>
               </div>
             </div>
@@ -168,7 +168,7 @@ const Courses = () => {
               <div>
                 <h3 className="text-xl font-bold text-[#0D2153] mb-2">Network Automation</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Enhance your network operations with our Network Automation and NetDevOps Programming services...
+                  Improve network operations with our automation and NetDevOps solutions.
                 </p>
               </div>
             </div>
@@ -198,4 +198,4 @@ const Courses = () => {
   )
 }
 
-export default Courses
+export default Courses;
