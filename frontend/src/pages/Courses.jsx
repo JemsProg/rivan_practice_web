@@ -15,7 +15,6 @@ import comptiaSecurityImg from "../assets/ccna.png"
 import itilImg from "../assets/ccna.png"
 import ccnpEncorImg from "../assets/ccna.png"
 
-// Define your data array
 const coursesData = [
   {
     image: pcnsaImg,

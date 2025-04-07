@@ -84,7 +84,6 @@ const Courses = () => {
     }
   ]
 
-  // Only display 3 courses at a time.
   const visibleCourses = coursesData.slice(currentIndex, currentIndex + 3)
 
   const handlePrev = () => {

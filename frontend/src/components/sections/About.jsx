@@ -34,7 +34,6 @@ const About = () => {
       className="bg-[#F9FAFF] py-24 px-4"
     >
       <div className="container mx-auto max-w-6xl">
-        {/* Heading */}
         <h2
           data-animate
           className="text-center text-2xl md:text-4xl font-semibold text-[#0D2153]"
@@ -43,7 +42,6 @@ const About = () => {
           Looking to Become a Tech Professional?
         </h2>
 
-        {/* Subtitle / Paragraph */}
         <p
           data-animate
           className="mt-4 text-center text-gray-700 max-w-3xl mx-auto"
@@ -55,7 +53,6 @@ const About = () => {
           progress and shape a transformative future for IT.
         </p>
 
-        {/* Images Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {aboutImages.map((imgSrc, index) => (
             <div

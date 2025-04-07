@@ -5,7 +5,6 @@ const ContactUs = () => {
   const sectionRef = useRef(null)
 
   useEffect(() => {
-    // Animate elements with data-animate on scroll
     const elements = sectionRef.current.querySelectorAll('[data-animate]')
     elements.forEach((el, index) => {
       inView(el, () => {
