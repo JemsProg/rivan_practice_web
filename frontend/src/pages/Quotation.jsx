@@ -15,7 +15,7 @@ const Quotation = () => {
     trainingLocation: "Makati",
     deliveryMode: "Face-to-Face",
     numberOfAttendees: "",
-    attendeeNames: "",
+    attendeeNames: [],
     fundingType: "Personal/Individual",
     voucherNeeded: "Yes",
     jobTitle: "",
@@ -48,6 +48,44 @@ const Quotation = () => {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  // Handler for updating individual attendee names
+  const handleAttendeeInputChange = (index, value) => {
+    setFormData((prev) => {
+      const updatedNames = [...prev.attendeeNames];
+      updatedNames[index] = value;
+      return { ...prev, attendeeNames: updatedNames };
+    });
+  };
+
+  // Update attendeeNames array when numberOfAttendees changes
+  useEffect(() => {
+    const num = parseInt(formData.numberOfAttendees, 10);
+    if (!isNaN(num) && num > 0) {
+      let currentNames = Array.isArray(formData.attendeeNames)
+        ? formData.attendeeNames
+        : [];
+      if (currentNames.length < num) {
+        currentNames = [
+          ...currentNames,
+          ...Array(num - currentNames.length).fill(""),
+        ];
+      } else if (currentNames.length > num) {
+        currentNames = currentNames.slice(0, num);
+      }
+      if (currentNames.length !== formData.attendeeNames.length) {
+        setFormData((prev) => ({
+          ...prev,
+          attendeeNames: currentNames,
+        }));
+      }
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        attendeeNames: [],
+      }));
+    }
+  }, [formData.numberOfAttendees]);
+
   // Validate required fields for each step
   const validateStep = () => {
     const newErrors = {};
@@ -59,8 +97,11 @@ const Quotation = () => {
       if (!formData.numberOfAttendees) {
         newErrors.numberOfAttendees = "Number of Attendees is required.";
       }
-      if (!formData.attendeeNames.trim()) {
-        newErrors.attendeeNames = "Full Names of Attendees is required.";
+      if (
+        !Array.isArray(formData.attendeeNames) ||
+        formData.attendeeNames.some((name) => name.trim() === "")
+      ) {
+        newErrors.attendeeNames = "Full Names of Attendees are required.";
       }
       if (!formData.jobTitle.trim()) {
         newErrors.jobTitle = "Job Title is required.";
@@ -105,7 +146,7 @@ const Quotation = () => {
         trainingLocation: "Makati",
         deliveryMode: "Face-to-Face",
         numberOfAttendees: "",
-        attendeeNames: "",
+        attendeeNames: [],
         fundingType: "Personal/Individual",
         voucherNeeded: "Yes",
         jobTitle: "",
@@ -140,7 +181,9 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
               {errors.customerName && (
-                <span className="text-red-500 text-xs">{errors.customerName}</span>
+                <span className="text-red-500 text-xs">
+                  {errors.customerName}
+                </span>
               )}
             </div>
             <div className="mb-4">
@@ -206,23 +249,32 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
               {errors.numberOfAttendees && (
-                <span className="text-red-500 text-xs">{errors.numberOfAttendees}</span>
+                <span className="text-red-500 text-xs">
+                  {errors.numberOfAttendees}
+                </span>
               )}
             </div>
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">
                 Full Names of Attendees:
               </label>
-              <textarea
-                name="attendeeNames"
-                rows="2"
-                value={formData.attendeeNames}
-                onChange={handleChange}
-                placeholder="List of names"
-                className="w-full p-2 border border-gray-300 rounded-lg"
-              ></textarea>
+              {formData.attendeeNames.map((name, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  name={`attendee_${index}`}
+                  value={name}
+                  onChange={(e) =>
+                    handleAttendeeInputChange(index, e.target.value)
+                  }
+                  placeholder={`Attendee ${index + 1} name`}
+                  className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+                />
+              ))}
               {errors.attendeeNames && (
-                <span className="text-red-500 text-xs">{errors.attendeeNames}</span>
+                <span className="text-red-500 text-xs">
+                  {errors.attendeeNames}
+                </span>
               )}
             </div>
             <div className="mb-4">
@@ -257,9 +309,7 @@ const Quotation = () => {
               </select>
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Job Title:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Job Title:</label>
               <input
                 type="text"
                 name="jobTitle"
@@ -273,9 +323,7 @@ const Quotation = () => {
               )}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Email:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Email:</label>
               <input
                 type="email"
                 name="email"
@@ -302,7 +350,9 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
               {errors.contactNumber && (
-                <span className="text-red-500 text-xs">{errors.contactNumber}</span>
+                <span className="text-red-500 text-xs">
+                  {errors.contactNumber}
+                </span>
               )}
             </div>
           </div>
@@ -314,9 +364,7 @@ const Quotation = () => {
               Message & Confirmation
             </h2>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Message:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Message:</label>
               <textarea
                 name="message"
                 rows="4"
@@ -397,7 +445,9 @@ const StepCircle = ({ step, currentStep, label }) => {
   const bgColor = currentStep >= step ? "bg-[#0D2153]" : "bg-gray-300";
   return (
     <div className="flex flex-col items-center text-center w-20">
-      <div className={`${bgColor} rounded-full w-10 h-10 flex items-center justify-center text-white mb-2`}>
+      <div
+        className={`${bgColor} rounded-full w-10 h-10 flex items-center justify-center text-white mb-2`}
+      >
         {step}
       </div>
       <span className="text-xs font-medium">{label}</span>

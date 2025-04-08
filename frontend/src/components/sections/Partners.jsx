@@ -13,7 +13,7 @@ const Partners = () => {
   const sectionRef = useRef(null)
 
   useEffect(() => {
-    // Animate heading/subheading on scroll
+    // Animate elements with data-animate on scroll
     const elements = sectionRef.current.querySelectorAll('[data-animate]')
     elements.forEach((el, index) => {
       inView(el, () => {
@@ -72,9 +72,7 @@ const Partners = () => {
             className="mt-2 text-white max-w-2xl md:ml-auto"
             style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
-            Through strategic alliances and valued partnerships, we unite 
-            expertise and innovation to drive impactful outcomes and 
-            mutual success.
+            Through strategic alliances and valued partnerships, we unite expertise and innovation to drive impactful outcomes and mutual success.
           </p>
         </div>
       </div>
@@ -83,18 +81,17 @@ const Partners = () => {
       <div className="mt-10 space-y-8">
         {/* Row 1 (faster) */}
         <div className="overflow-hidden w-full">
-          <div className="animate-marquee1 flex items-center gap-8 w-[200%]">
+          <div className="animate-marquee1 flex items-center gap-4 md:gap-8 w-[200%]">
             {[...row1, ...row1].map((logo, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-3xl px-10 py-6 flex items-center justify-center 
-                           h-36 min-w-[280px]"
+                className="bg-white rounded-3xl px-5 md:px-10 py-4 flex items-center justify-center 
+                           h-28 md:h-36 min-w-[200px] md:min-w-[280px]"
               >
-                {/* Increased the logo size with h-28 */}
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-28 object-contain"
+                  className="h-20 md:h-28 object-contain"
                 />
               </div>
             ))}
@@ -103,18 +100,17 @@ const Partners = () => {
 
         {/* Row 2 (slower) */}
         <div className="overflow-hidden w-full">
-          <div className="animate-marquee2 flex items-center gap-8 w-[200%]">
+          <div className="animate-marquee2 flex items-center gap-4 md:gap-8 w-[200%]">
             {[...row2, ...row2].map((logo, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-3xl px-10 py-6 flex items-center justify-center 
-                           h-36 min-w-[280px]"
+                className="bg-white rounded-3xl px-5 md:px-10 py-4 flex items-center justify-center 
+                           h-28 md:h-36 min-w-[200px] md:min-w-[280px]"
               >
-                {/* Increased the logo size with h-28 */}
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-28 object-contain"
+                  className="h-20 md:h-28 object-contain"
                 />
               </div>
             ))}

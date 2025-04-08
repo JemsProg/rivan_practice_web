@@ -122,13 +122,13 @@ const Courses = () => {
 
         {/* Navigation and Course Cards */}
         <div className="relative">
-          {/* Left Arrow */}
+          {/* Left Arrow for md and up */}
           {currentIndex > 0 && (
             <button
               onClick={handlePrev}
               data-animate
               style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className="absolute -left-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
+              className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
             >
               <FaChevronLeft className="w-5 h-5" />
             </button>
@@ -141,7 +141,7 @@ const Courses = () => {
                 key={index}
                 data-animate
                 style={{ opacity: 0, transform: 'translateY(30px)' }}
-                className="max-w-[350px] mx-auto"
+                className="max-w-[300px] md:max-w-[350px] mx-auto"
               >
                 <CourseCard
                   image={course.img}
@@ -154,17 +154,37 @@ const Courses = () => {
             ))}
           </div>
 
-          {/* Right Arrow */}
+          {/* Right Arrow for md and up */}
           {currentIndex + 3 < coursesData.length && (
             <button
               onClick={handleNext}
               data-animate
               style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className="absolute -right-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
+              className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
             >
               <FaChevronRight className="w-5 h-5" />
             </button>
           )}
+
+          {/* Mobile Navigation Buttons */}
+          <div className="flex md:hidden justify-between mt-8">
+            <button
+              onClick={handlePrev}
+              className="px-4 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+              disabled={currentIndex === 0}
+            >
+              <FaChevronLeft className="inline-block mr-2 w-4 h-4" />
+              Prev
+            </button>
+            <button
+              onClick={handleNext}
+              className="px-4 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+              disabled={currentIndex + 3 >= coursesData.length}
+            >
+              Next
+              <FaChevronRight className="inline-block ml-2 w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Browse All Courses Button (Centered) */}
