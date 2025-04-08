@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   FaFacebookF,
+  FaFacebookMessenger,
   FaInstagram,
   FaMapMarkerAlt,
   FaEnvelope,
@@ -37,6 +38,14 @@ const Footer = () => {
                 <FaFacebookF size={20} className="text-[#0D2153]" />
               </a>
               <a
+                href="https://m.me/RivanInstitute"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white rounded-full p-2 transition hover:shadow-lg"
+              >
+                <FaFacebookMessenger size={20} className="text-[#0D2153]" />
+              </a>
+              <a
                 href="https://www.instagram.com/rivancyberinstitute"
                 target="_blank"
                 rel="noreferrer"
@@ -66,10 +75,19 @@ const Footer = () => {
             <p className="flex items-center mb-1">
               <FaPhoneAlt className="mr-2" />
               <a
-                href="tel:+639778474888"
+                href="tel:+639493760000"
                 className="hover:text-blue-400 transition"
               >
-                +63 977-847-4888
+                +63 949-376-0000
+              </a>
+            </p>
+            <p className="flex items-center mb-1">
+              <FaPhoneAlt className="mr-2" />
+              <a
+                href="tel:+63284252848"
+                className="hover:text-blue-400 transition"
+              >
+                +63 2-8425-2848 (Landline)
               </a>
             </p>
             <p className="flex items-center mb-1">
