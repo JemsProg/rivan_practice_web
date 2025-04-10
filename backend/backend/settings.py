@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'core',
+    'quotation',
 ]
 
 MIDDLEWARE = [
@@ -131,9 +132,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'           # Gmail SMTP server
-EMAIL_PORT = 587                        # Port for TLS
-EMAIL_USE_TLS = True                    # Use TLS for secure connection
-EMAIL_HOST_USER = 'leighest2021@gmail.com'  # Your Gmail address
+EMAIL_HOST = 'smtp.gmail.com'                       # Gmail SMTP server
+EMAIL_PORT = 587                                    # Port for TLS
+EMAIL_USE_TLS = True                                # Use TLS for secure connection
+EMAIL_HOST_USER = 'leighest2021@gmail.com'          # Your Gmail address
 EMAIL_HOST_PASSWORD = 'ryjn jnkw jeha diho'         # Your Gmail app password
 DEFAULT_FROM_EMAIL = 'leighter1998@gmail.com'

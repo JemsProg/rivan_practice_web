@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Quotation = () => {
+  const navigate = useNavigate();
+  
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -9,6 +12,7 @@ const Quotation = () => {
   // Multi-step form state
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState({
     customerName: "",
     course: "RivanIT CCNA Network Engineer Training 200-301",
@@ -136,26 +140,32 @@ const Quotation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (validateStep()) {
-      console.log("Form Data:", formData);
-      // Submission logic goes here
-      // Reset form data and step after successful submission
-      setFormData({
-        customerName: "",
-        course: "RivanIT CCNA Network Engineer Training 200-301",
-        trainingLocation: "Makati",
-        deliveryMode: "Face-to-Face",
-        numberOfAttendees: "",
-        attendeeNames: [],
-        fundingType: "Personal/Individual",
-        voucherNeeded: "Yes",
-        jobTitle: "",
-        email: "",
-        contactNumber: "",
-        message: "",
-      });
-      setCurrentStep(1);
-      setErrors({});
+      console.log("Sending data:", formData);
+
+      fetch("http://localhost:8000/quotation-request/api/quotation/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // On a successful submission, open the success modal.
+          // You can further check data.message or data.error to customize the UI.
+          if (data.message) {
+            setShowSuccessModal(true);
+          } else if (data.error) {
+            // Optionally, you can set an error state here to show it in the UI.
+            console.error("Error: ", data.error);
+          }
+        })
+        .catch((err) => {
+          console.error("Submission error:", err);
+          // Optionally, set an error state to display a message in the form.
+        });
     }
   };
 
@@ -384,6 +394,12 @@ const Quotation = () => {
     }
   };
 
+  // Handler for closing the modal and redirecting to home
+  const handleModalClose = () => {
+    setShowSuccessModal(false);
+    navigate("/");
+  };
+
   return (
     <section className="py-10 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4">
@@ -427,6 +443,9 @@ const Quotation = () => {
           </form>
         </div>
       </div>
+      {showSuccessModal && (
+        <SuccessModal onClose={handleModalClose} />
+      )}
     </section>
   );
 };
@@ -459,5 +478,28 @@ const Line = ({ step, currentStep }) => {
   const bgColor = currentStep > step ? "bg-[#0D2153]" : "bg-gray-300";
   return <div className={`flex-1 h-0.5 mx-2 ${bgColor}`}></div>;
 };
+
+const SuccessModal = ({ onClose }) => (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div
+      className="fixed inset-0 bg-black opacity-50"
+      onClick={onClose}
+    ></div>
+    <div className="bg-white rounded-lg shadow-lg p-8 relative z-10 max-w-sm mx-auto">
+      <h3 className="text-2xl font-semibold mb-4 text-[#09193E]">
+        Success!
+      </h3>
+      <p className="mb-4">
+        Your quotation request has been submitted successfully.
+      </p>
+      <button
+        onClick={onClose}
+        className="px-4 py-2 bg-[#0D2153] text-white rounded hover:bg-[#09193E]"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+);
 
 export default Quotation;
