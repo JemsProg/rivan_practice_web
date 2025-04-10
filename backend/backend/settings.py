@@ -29,9 +29,9 @@ DEBUG = False
 
 # IMPORTANT: Add your domain(s) and IP(s) here
 ALLOWED_HOSTS = [
-    'rivanacad.com',       # Your domain
-    'www.rivanacad.com',   # If you also use the 'www.' subdomain
-    '147.93.107.162',       # Replace with your server’s real IP if you want direct IP access
+    'rivanit.com',       # Your domain
+    'www.rivanit.com',   # If you also use the 'www.' subdomain
+    '62.72.57.245',       # Replace with your server’s real IP if you want direct IP access
     'localhost',          # Keep if you still need local access/testing
 ]
 
