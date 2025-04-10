@@ -136,29 +136,31 @@ const Quotation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
     if (validateStep()) {
-      console.log("Form Data:", formData);
-      // Submission logic goes here
-      // Reset form data and step after successful submission
-      setFormData({
-        customerName: "",
-        course: "RivanIT CCNA Network Engineer Training 200-301",
-        trainingLocation: "Makati",
-        deliveryMode: "Face-to-Face",
-        numberOfAttendees: "",
-        attendeeNames: [],
-        fundingType: "Personal/Individual",
-        voucherNeeded: "Yes",
-        jobTitle: "",
-        email: "",
-        contactNumber: "",
-        message: "",
-      });
-      setCurrentStep(1);
-      setErrors({});
+      console.log("Sending data:", formData);
+  
+      fetch("http://localhost:8000/quotation-request/api/quotation/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            alert(data.message);
+          } else if (data.error) {
+            alert("Error: " + data.error);
+          }
+        })
+        .catch((err) => {
+          console.error("Submission error:", err);
+          alert("An error occurred while submitting the form.");
+        });
     }
   };
-
   // Render content for each step
   const renderStepContent = () => {
     switch (currentStep) {
