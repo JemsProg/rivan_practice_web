@@ -3,7 +3,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/', include('contact.urls')),
-    path('quotation-request/', include('quotation.urls')),
+    path('', include('contact.urls')),
+    path('api/quotation/', include('quotation.urls')),
 
 ]

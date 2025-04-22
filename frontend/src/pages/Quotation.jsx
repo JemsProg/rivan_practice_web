@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";   // for redirect
 
 const Quotation = () => {
-  const navigate = useNavigate();
-  
-  // Scroll to top on mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  /* ---------------- basic state ---------------- */
+  useEffect(() => window.scrollTo(0, 0), []);
 
-  // Multi-step form state
-  const [currentStep, setCurrentStep] = useState(1);
-  const [errors, setErrors] = useState({});
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep]   = useState(1);
+  const [errors, setErrors]             = useState({});
+  const [modal, setModal]               = useState({ open: false, title: "", body: "" });
+
   const [formData, setFormData] = useState({
     customerName: "",
     course: "RivanIT CCNA Network Engineer Training 200-301",
@@ -28,160 +25,112 @@ const Quotation = () => {
     message: "",
   });
 
-  // Options for the course select
-  const courseOptions = [
+  /* ---------------- static options ---------------- */
+  const courseOptions   = [
     "RivanIT CCNA Network Engineer Training 200-301",
     "CCNP Enterprise: ENCORxENARSIxSDWAN",
     "COMPTIA SECURITY PLUS+",
     "COMPTIA SEC+ 701 (EXAM) Voucher",
     "RIVAN ITILV3/4",
   ];
+  const fundingOptions  = ["Personal/Individual", "Sponsor/Corporate"];
 
-  // Funding options
-  const fundingOptions = ["Personal/Individual", "Sponsor/Corporate"];
-
-  // Update form data on change
+  /* ---------------- handlers ---------------- */
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-
-    // Clear error for this field when user types
-    setErrors((prev) => ({ ...prev, [name]: "" }));
+    setFormData((p) => ({ ...p, [name]: type === "checkbox" ? checked : value }));
+    setErrors((p) => ({ ...p, [name]: "" }));
   };
 
-  // Handler for updating individual attendee names
   const handleAttendeeInputChange = (index, value) => {
-    setFormData((prev) => {
-      const updatedNames = [...prev.attendeeNames];
-      updatedNames[index] = value;
-      return { ...prev, attendeeNames: updatedNames };
+    setFormData((p) => {
+      const names = [...p.attendeeNames];
+      names[index] = value;
+      return { ...p, attendeeNames: names };
     });
   };
 
-  // Update attendeeNames array when numberOfAttendees changes
+  /* sync attendeeNames length with numberOfAttendees */
   useEffect(() => {
     const num = parseInt(formData.numberOfAttendees, 10);
     if (!isNaN(num) && num > 0) {
-      let currentNames = Array.isArray(formData.attendeeNames)
-        ? formData.attendeeNames
-        : [];
-      if (currentNames.length < num) {
-        currentNames = [
-          ...currentNames,
-          ...Array(num - currentNames.length).fill(""),
-        ];
-      } else if (currentNames.length > num) {
-        currentNames = currentNames.slice(0, num);
-      }
-      if (currentNames.length !== formData.attendeeNames.length) {
-        setFormData((prev) => ({
-          ...prev,
-          attendeeNames: currentNames,
-        }));
-      }
+      let names = Array.isArray(formData.attendeeNames) ? formData.attendeeNames : [];
+      if (names.length < num) names = [...names, ...Array(num - names.length).fill("")];
+      if (names.length > num) names = names.slice(0, num);
+      if (names.length !== formData.attendeeNames.length)
+        setFormData((p) => ({ ...p, attendeeNames: names }));
     } else {
-      setFormData((prev) => ({
-        ...prev,
-        attendeeNames: [],
-      }));
+      setFormData((p) => ({ ...p, attendeeNames: [] }));
     }
   }, [formData.numberOfAttendees]);
 
-  // Validate required fields for each step
+  /* ---------------- validation ---------------- */
   const validateStep = () => {
-    const newErrors = {};
+    const err = {};
     if (currentStep === 1) {
-      if (!formData.customerName.trim()) {
-        newErrors.customerName = "Customer/Company Name is required.";
-      }
+      if (!formData.customerName.trim()) err.customerName = "Customer/Company Name is required.";
     } else if (currentStep === 2) {
-      if (!formData.numberOfAttendees) {
-        newErrors.numberOfAttendees = "Number of Attendees is required.";
-      }
-      if (
-        !Array.isArray(formData.attendeeNames) ||
-        formData.attendeeNames.some((name) => name.trim() === "")
-      ) {
-        newErrors.attendeeNames = "Full Names of Attendees are required.";
-      }
-      if (!formData.jobTitle.trim()) {
-        newErrors.jobTitle = "Job Title is required.";
-      }
-      if (!formData.email.trim()) {
-        newErrors.email = "Email is required.";
-      }
-      if (!formData.contactNumber.trim()) {
-        newErrors.contactNumber = "Contact Number is required.";
-      }
+      if (!formData.numberOfAttendees)           err.numberOfAttendees = "Number of Attendees is required.";
+      if (!Array.isArray(formData.attendeeNames) ||
+          formData.attendeeNames.some((n) => n.trim() === ""))
+                                                 err.attendeeNames = "Full Names of Attendees are required.";
+      if (!formData.jobTitle.trim())             err.jobTitle = "Job Title is required.";
+      if (!formData.email.trim())                err.email = "Email is required.";
+      if (!formData.contactNumber.trim())        err.contactNumber = "Contact Number is required.";
     } else if (currentStep === 3) {
-      if (!formData.message.trim()) {
-        newErrors.message = "Message is required.";
-      }
+      if (!formData.message.trim())              err.message = "Message is required.";
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setErrors(err);
+    return Object.keys(err).length === 0;
   };
 
-  // Navigation functions
-  const goToNextStep = () => {
-    if (validateStep()) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
+  /* ---------------- navigation ---------------- */
+  const goToNextStep = () => { if (validateStep()) setCurrentStep((s) => s + 1); };
+  const goToPrevStep = () => { if (currentStep > 1) setCurrentStep((s) => s - 1); };
 
-  const goToPrevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
+  /* ---------------- submit ---------------- */
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateStep()) return;
 
-    if (validateStep()) {
-      console.log("Sending data:", formData);
-
-      fetch("http://localhost:8000/quotation-request/api/quotation/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+    fetch("https://rivanit.com/api/quotation/request-quotation/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.message) {
+          setModal({
+            open: true,
+            title: "Success!",
+            body: "Your quotation request has been sent successfully.",
+          });
+        } else {
+          setModal({ open: true, title: "Error", body: d.error || "Unknown error." });
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          // On a successful submission, open the success modal.
-          // You can further check data.message or data.error to customize the UI.
-          if (data.message) {
-            setShowSuccessModal(true);
-          } else if (data.error) {
-            // Optionally, you can set an error state here to show it in the UI.
-            console.error("Error: ", data.error);
-          }
-        })
-        .catch((err) => {
-          console.error("Submission error:", err);
-          // Optionally, set an error state to display a message in the form.
-        });
-    }
+      .catch(() =>
+        setModal({ open: true, title: "Error", body: "An error occurred while submitting the form." })
+      );
   };
 
-  // Render content for each step
+  /* close modal and redirect on success */
+  const closeModal = () => {
+    const wasSuccess = modal.title === "Success!";
+    setModal({ open: false, title: "", body: "" });
+    if (wasSuccess) navigate("/");
+  };
+
+  /* ---------------- step content (unchanged) ---------------- */
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
         return (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">
-              Course Details
-            </h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">Course Details</h2>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Customer/Company Name:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Customer/Company Name:</label>
               <input
                 type="text"
                 name="customerName"
@@ -190,33 +139,23 @@ const Quotation = () => {
                 placeholder="Enter customer or company name"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.customerName && (
-                <span className="text-red-500 text-xs">
-                  {errors.customerName}
-                </span>
-              )}
+              {errors.customerName && <span className="text-red-500 text-xs">{errors.customerName}</span>}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Course for Quotation:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Course for Quotation:</label>
               <select
                 name="course"
                 value={formData.course}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-lg"
               >
-                {courseOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
+                {courseOptions.map((o) => (
+                  <option key={o} value={o}>{o}</option>
                 ))}
               </select>
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Training Location:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Training Location:</label>
               <input
                 type="text"
                 name="trainingLocation"
@@ -226,9 +165,7 @@ const Quotation = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Delivery Mode:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Delivery Mode:</label>
               <input
                 type="text"
                 name="deliveryMode"
@@ -239,16 +176,13 @@ const Quotation = () => {
             </div>
           </div>
         );
+
       case 2:
         return (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">
-              Customer / Company Info
-            </h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">Customer / Company Info</h2>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Number of Attendees:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Number of Attendees:</label>
               <input
                 type="number"
                 name="numberOfAttendees"
@@ -258,64 +192,45 @@ const Quotation = () => {
                 placeholder="Number of Attendees"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.numberOfAttendees && (
-                <span className="text-red-500 text-xs">
-                  {errors.numberOfAttendees}
-                </span>
-              )}
+              {errors.numberOfAttendees && <span className="text-red-500 text-xs">{errors.numberOfAttendees}</span>}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Full Names of Attendees:
-              </label>
-              {formData.attendeeNames.map((name, index) => (
+              <label className="block mb-1 text-[#0D2153]">Full Names of Attendees:</label>
+              {formData.attendeeNames.map((n, i) => (
                 <input
-                  key={index}
+                  key={i}
                   type="text"
-                  name={`attendee_${index}`}
-                  value={name}
-                  onChange={(e) =>
-                    handleAttendeeInputChange(index, e.target.value)
-                  }
-                  placeholder={`Attendee ${index + 1} name`}
+                  name={`attendee_${i}`}
+                  value={n}
+                  onChange={(e) => handleAttendeeInputChange(i, e.target.value)}
+                  placeholder={`Attendee ${i + 1} name`}
                   className="w-full p-2 border border-gray-300 rounded-lg mb-2"
                 />
               ))}
-              {errors.attendeeNames && (
-                <span className="text-red-500 text-xs">
-                  {errors.attendeeNames}
-                </span>
-              )}
+              {errors.attendeeNames && <span className="text-red-500 text-xs">{errors.attendeeNames}</span>}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Choose Funding:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Choose Funding:</label>
               <select
                 name="fundingType"
                 value={formData.fundingType}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-lg"
               >
-                {fundingOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
+                {fundingOptions.map((o) => (
+                  <option key={o} value={o}>{o}</option>
                 ))}
               </select>
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Voucher for Exam:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Voucher for Exam:</label>
               <select
                 name="voucherNeeded"
                 value={formData.voucherNeeded}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-lg"
               >
-                <option>Yes</option>
-                <option>No</option>
+                <option>Yes</option><option>No</option>
               </select>
             </div>
             <div className="mb-4">
@@ -328,9 +243,7 @@ const Quotation = () => {
                 placeholder="Enter your job title"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.jobTitle && (
-                <span className="text-red-500 text-xs">{errors.jobTitle}</span>
-              )}
+              {errors.jobTitle && <span className="text-red-500 text-xs">{errors.jobTitle}</span>}
             </div>
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">Email:</label>
@@ -343,14 +256,10 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
                 required
               />
-              {errors.email && (
-                <span className="text-red-500 text-xs">{errors.email}</span>
-              )}
+              {errors.email && <span className="text-red-500 text-xs">{errors.email}</span>}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">
-                Contact Number:
-              </label>
+              <label className="block mb-1 text-[#0D2153]">Contact Number:</label>
               <input
                 type="text"
                 name="contactNumber"
@@ -359,20 +268,15 @@ const Quotation = () => {
                 placeholder="Enter your contact number"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.contactNumber && (
-                <span className="text-red-500 text-xs">
-                  {errors.contactNumber}
-                </span>
-              )}
+              {errors.contactNumber && <span className="text-red-500 text-xs">{errors.contactNumber}</span>}
             </div>
           </div>
         );
+
       case 3:
         return (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">
-              Message & Confirmation
-            </h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">Message & Confirmation</h2>
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">Message:</label>
               <textarea
@@ -382,24 +286,18 @@ const Quotation = () => {
                 onChange={handleChange}
                 placeholder="Enter your message (optional)"
                 className="w-full p-2 border border-gray-300 rounded-lg"
-              ></textarea>
-              {errors.message && (
-                <span className="text-red-500 text-xs">{errors.message}</span>
-              )}
+              />
+              {errors.message && <span className="text-red-500 text-xs">{errors.message}</span>}
             </div>
           </div>
         );
+
       default:
         return null;
     }
   };
 
-  // Handler for closing the modal and redirecting to home
-  const handleModalClose = () => {
-    setShowSuccessModal(false);
-    navigate("/");
-  };
-
+  /* ---------------- JSX ---------------- */
   return (
     <section className="py-10 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4">
@@ -408,7 +306,9 @@ const Quotation = () => {
             Request a Quotation
           </h2>
         </div>
+
         <StepIndicator currentStep={currentStep} />
+
         <div className="max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow">
           <form onSubmit={handleSubmit}>
             {renderStepContent()}
@@ -443,13 +343,13 @@ const Quotation = () => {
           </form>
         </div>
       </div>
-      {showSuccessModal && (
-        <SuccessModal onClose={handleModalClose} />
-      )}
+
+      {modal.open && <Modal title={modal.title} body={modal.body} onClose={closeModal} />}
     </section>
   );
 };
 
+/* ---------------- helper visuals (unchanged) ---------------- */
 const StepIndicator = ({ currentStep }) => (
   <div className="max-w-2xl mx-auto flex items-center justify-between mb-8">
     <StepCircle step={1} currentStep={currentStep} label="Course Details" />
@@ -460,43 +360,33 @@ const StepIndicator = ({ currentStep }) => (
   </div>
 );
 
-const StepCircle = ({ step, currentStep, label }) => {
-  const bgColor = currentStep >= step ? "bg-[#0D2153]" : "bg-gray-300";
-  return (
-    <div className="flex flex-col items-center text-center w-20">
-      <div
-        className={`${bgColor} rounded-full w-10 h-10 flex items-center justify-center text-white mb-2`}
-      >
-        {step}
-      </div>
-      <span className="text-xs font-medium">{label}</span>
-    </div>
-  );
-};
-
-const Line = ({ step, currentStep }) => {
-  const bgColor = currentStep > step ? "bg-[#0D2153]" : "bg-gray-300";
-  return <div className={`flex-1 h-0.5 mx-2 ${bgColor}`}></div>;
-};
-
-const SuccessModal = ({ onClose }) => (
-  <div className="fixed inset-0 flex items-center justify-center z-50">
+const StepCircle = ({ step, currentStep, label }) => (
+  <div className="flex flex-col items-center text-center w-20">
     <div
-      className="fixed inset-0 bg-black opacity-50"
-      onClick={onClose}
-    ></div>
+      className={`${currentStep >= step ? "bg-[#0D2153]" : "bg-gray-300"} rounded-full w-10 h-10 flex items-center justify-center text-white mb-2`}
+    >
+      {step}
+    </div>
+    <span className="text-xs font-medium">{label}</span>
+  </div>
+);
+
+const Line = ({ step, currentStep }) => (
+  <div className={`flex-1 h-0.5 mx-2 ${currentStep > step ? "bg-[#0D2153]" : "bg-gray-300"}`} />
+);
+
+/* ---------------- new modal component ---------------- */
+const Modal = ({ title, body, onClose }) => (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black opacity-50" onClick={onClose} />
     <div className="bg-white rounded-lg shadow-lg p-8 relative z-10 max-w-sm mx-auto">
-      <h3 className="text-2xl font-semibold mb-4 text-[#09193E]">
-        Success!
-      </h3>
-      <p className="mb-4">
-        Your quotation request has been submitted successfully.
-      </p>
+      <h3 className="text-2xl font-semibold mb-4 text-[#09193E]">{title}</h3>
+      <p className="mb-4">{body}</p>
       <button
         onClick={onClose}
         className="px-4 py-2 bg-[#0D2153] text-white rounded hover:bg-[#09193E]"
       >
-        Close
+        OK
       </button>
     </div>
   </div>
