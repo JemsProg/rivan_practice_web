@@ -106,3 +106,7 @@ def contact_view(request):
         # Print the full traceback to the console for debugging
         traceback.print_exc()
         return JsonResponse({'status': 'error', 'error': str(e)}, status=500)
+
+
+def my_basic_view(request):
+    return HttpResponse("Hello, this is a basic HTTP response!")

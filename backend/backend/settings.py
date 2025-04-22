@@ -128,7 +128,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Include your local dev address if needed
+    "http://localhost:5173",
+    "https://rivanit.com",
+    "https://www.rivanit.com"
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
