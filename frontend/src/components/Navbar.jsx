@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
+import { FaYoutube } from 'react-icons/fa'           // ← import the YouTube icon
 import logo from '../assets/logo.png'
 
 const Navbar = () => {
@@ -14,19 +15,17 @@ const Navbar = () => {
 
   const handleNavClick = (target) => {
     setIsOpen(false)
-    // If we're not on the landing page, navigate there and pass the target in state.
     if (location.pathname !== "/") {
       navigate("/", { state: { scrollTo: target } })
     }
   }
 
-  // Common props for the ScrollLink elements.
   const commonLinkProps = {
     spy: true,
     smooth: true,
     duration: 500,
     offset: -70,
-    activeClass: "text-gray-900", // This class will be added when the section is in view.
+    activeClass: "text-gray-900",
     className: "cursor-pointer text-gray-500 hover:text-gray-700",
   }
 
@@ -43,55 +42,43 @@ const Navbar = () => {
 
         {/* Middle: Nav Links (hidden on mobile) */}
         <div className="hidden md:flex space-x-6">
-          <ScrollLink 
-            to="home" 
-            onClick={() => handleNavClick("home")}
-            {...commonLinkProps}
-          >
-            Home
-          </ScrollLink>
-          <ScrollLink 
-            to="about" 
-            onClick={() => handleNavClick("about")}
-            {...commonLinkProps}
-          >
-            About
-          </ScrollLink>
-          <ScrollLink 
-            to="services" 
-            onClick={() => handleNavClick("services")}
-            {...commonLinkProps}
-          >
-            Services
-          </ScrollLink>
-          <ScrollLink 
-            to="courses" 
-            onClick={() => handleNavClick("courses")}
-            {...commonLinkProps}
-          >
-            Courses
-          </ScrollLink>
-          <ScrollLink 
-            to="reviews" 
-            onClick={() => handleNavClick("reviews")}
-            {...commonLinkProps}
-          >
-            Reviews
-          </ScrollLink>
-          <ScrollLink 
-            to="contact" 
-            onClick={() => handleNavClick("contact")}
-            {...commonLinkProps}
-          >
-            Contact
-          </ScrollLink>
+          <ScrollLink to="home"    onClick={() => handleNavClick("home")}    {...commonLinkProps}>Home</ScrollLink>
+          <ScrollLink to="about"   onClick={() => handleNavClick("about")}   {...commonLinkProps}>About</ScrollLink>
+          <ScrollLink to="services" onClick={() => handleNavClick("services")} {...commonLinkProps}>Services</ScrollLink>
+          <ScrollLink to="courses" onClick={() => handleNavClick("courses")} {...commonLinkProps}>Courses</ScrollLink>
+          <ScrollLink to="reviews" onClick={() => handleNavClick("reviews")} {...commonLinkProps}>Reviews</ScrollLink>
+          <ScrollLink to="contact" onClick={() => handleNavClick("contact")} {...commonLinkProps}>Contact</ScrollLink>
         </div>
 
-        {/* Right: "Request a Quote" button (hidden on mobile) */}
-        <div className="hidden md:block">
+        {/* Right: YouTube + "Request a Quote" buttons (hidden on mobile) */}
+        <div className="hidden md:flex items-center space-x-4">
+          <a
+            href="https://www.youtube.com/@teamrivanit?sub_confirmation=1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              flex items-center
+              px-5 py-2
+              border border-[#0D2153]
+              text-[#0D2153]
+              rounded-full
+              hover:bg-[#EAEFFB]
+              transition-colors
+            "
+          >
+            <FaYoutube className="mr-2 w-5 h-5" />
+            YouTube
+          </a>
           <RouterLink
             to="/quotation"
-            className="px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+            className="
+              px-5 py-2
+              bg-[#0D2153]
+              text-white
+              rounded-full
+              hover:bg-[#0B1C47]
+              cursor-pointer
+            "
           >
             Request a Quote
           </RouterLink>
@@ -118,58 +105,44 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-[#F9FAFF] shadow-sm">
           <div className="px-4 pt-3 pb-4 space-y-2">
-            <ScrollLink 
-              to="home" 
-              onClick={() => handleNavClick("home")}
-              {...commonLinkProps}
-              className="block"
+            <ScrollLink to="home"    onClick={() => handleNavClick("home")}    {...commonLinkProps} className="block">Home</ScrollLink>
+            <ScrollLink to="about"   onClick={() => handleNavClick("about")}   {...commonLinkProps} className="block">About</ScrollLink>
+            <ScrollLink to="services" onClick={() => handleNavClick("services")} {...commonLinkProps} className="block">Services</ScrollLink>
+            <ScrollLink to="courses" onClick={() => handleNavClick("courses")} {...commonLinkProps} className="block">Courses</ScrollLink>
+            <ScrollLink to="reviews" onClick={() => handleNavClick("reviews")} {...commonLinkProps} className="block">Reviews</ScrollLink>
+            <ScrollLink to="contact" onClick={() => handleNavClick("contact")} {...commonLinkProps} className="block">Contact</ScrollLink>
+
+            {/* Mobile YouTube Button */}
+            <a
+              href="https://www.youtube.com/@teamrivanit?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                block text-center
+                px-5 py-2
+                border border-[#0D2153]
+                text-[#0D2153]
+                rounded-full
+                hover:bg-[#EAEFFB]
+                transition-colors
+              "
             >
-              Home
-            </ScrollLink>
-            <ScrollLink 
-              to="about" 
-              onClick={() => handleNavClick("about")}
-              {...commonLinkProps}
-              className="block"
-            >
-              About
-            </ScrollLink>
-            <ScrollLink 
-              to="services" 
-              onClick={() => handleNavClick("services")}
-              {...commonLinkProps}
-              className="block"
-            >
-              Services
-            </ScrollLink>
-            <ScrollLink 
-              to="courses" 
-              onClick={() => handleNavClick("courses")}
-              {...commonLinkProps}
-              className="block"
-            >
-              Courses
-            </ScrollLink>
-            <ScrollLink 
-              to="reviews" 
-              onClick={() => handleNavClick("reviews")}
-              {...commonLinkProps}
-              className="block"
-            >
-              Reviews
-            </ScrollLink>
-            <ScrollLink 
-              to="contact" 
-              onClick={() => handleNavClick("contact")}
-              {...commonLinkProps}
-              className="block"
-            >
-              Contact
-            </ScrollLink>
-            <RouterLink 
-              onClick={() => setIsOpen(false)}
+              YouTube
+            </a>
+
+            {/* Mobile Request a Quote */}
+            <RouterLink
               to="/quotation"
-              className="block text-center mt-2 px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+              onClick={() => setIsOpen(false)}
+              className="
+                block text-center mt-2
+                px-5 py-2
+                bg-[#0D2153]
+                text-white
+                rounded-full
+                hover:bg-[#0B1C47]
+                cursor-pointer
+              "
             >
               Request a Quote
             </RouterLink>
