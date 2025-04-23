@@ -3,6 +3,7 @@ import {
   FaFacebookF,
   FaFacebookMessenger,
   FaInstagram,
+  FaYoutube,
   FaMapMarkerAlt,
   FaEnvelope,
   FaPhoneAlt,
@@ -25,7 +26,9 @@ const Footer = () => {
               RivanCyber Training Institute
             </h2>
             <p className="text-gray-200 mb-4">
-              Rivan Cyber Institute is a Network Engineering Bootcamp that caters not just to people around the IT industry but also career shifters.
+              Rivan Cyber Institute is a Network Engineering Bootcamp that
+              caters not just to people around the IT industry but also career
+              shifters.
             </p>
             {/* Social Icons */}
             <div className="flex space-x-4">
@@ -52,6 +55,15 @@ const Footer = () => {
                 className="bg-white rounded-full p-2 transition hover:shadow-lg"
               >
                 <FaInstagram size={20} className="text-[#0D2153]" />
+              </a>
+              {/* YouTube Icon */}
+              <a
+                href="https://youtube.com/@teamrivanit?si=AIoxHdaUUZh8RVap"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white rounded-full p-2 transition hover:shadow-lg"
+              >
+                <FaYoutube size={20} className="text-[#0D2153]" />
               </a>
             </div>
           </div>
@@ -92,7 +104,7 @@ const Footer = () => {
             </p>
             <p className="flex items-center mb-1">
               <FaClock className="mr-2" />
-              Mon-Fri 9:00AM - 5:00PM
+              Mon-Fri 9:00 AM – 5:00 PM
             </p>
           </div>
         </div>
@@ -104,7 +116,7 @@ const Footer = () => {
       </div>
 
       {/* Scroll to Top Button */}
-      <button 
+      <button
         onClick={scrollToTop}
         className="fixed bottom-6 right-6 bg-white rounded-full p-3 shadow-lg transition hover:bg-gray-200 cursor-pointer"
       >
