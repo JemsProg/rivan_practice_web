@@ -7,10 +7,10 @@ const VideosSection = () => {
   const [playing, setPlaying] = useState({})
 
   const videos = [
+    'iv0mkEx91Mc',
     'ROTt5GsPECw',
-    'Wb-2aP6y-RU',
     '5Y_ray2dldU',
-    'iv0mkEx91Mc'
+    'Wb-2aP6y-RU'
   ]
 
   useEffect(() => {
