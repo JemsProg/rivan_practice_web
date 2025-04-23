@@ -16,7 +16,6 @@ const Courses = () => {
   const sectionRef = useRef(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Shortened course data reflecting updated descriptions
   const coursesData = [
     {
       title: 'CCNA',
@@ -69,18 +68,13 @@ const Courses = () => {
   ]
 
   useEffect(() => {
-    // Animate elements with data-animate on scroll
     const elements = sectionRef.current.querySelectorAll('[data-animate]')
     elements.forEach((el, index) => {
       inView(el, () => {
         animate(
           el,
           { opacity: 1, y: 0 },
-          {
-            duration: 0.6,
-            delay: index * 0.1,
-            easing: 'ease-in-out'
-          }
+          { duration: 0.6, delay: index * 0.1, easing: 'ease-in-out' }
         )
       })
     })
@@ -89,56 +83,56 @@ const Courses = () => {
   const visibleCourses = coursesData.slice(currentIndex, currentIndex + 3)
 
   const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(Math.max(currentIndex - 3, 0))
-    }
+    setCurrentIndex(i => Math.max(i - 3, 0))
   }
-
   const handleNext = () => {
-    if (currentIndex + 3 < coursesData.length) {
-      setCurrentIndex(currentIndex + 3)
-    }
+    setCurrentIndex(i =>
+      i + 3 < coursesData.length ? i + 3 : i
+    )
   }
 
   return (
-    <section id='courses' ref={sectionRef} className="bg-[#F9FAFF] pt-12 pb-32 px-4">
-      <div className="container mx-auto max-w-6xl text-left">
-        {/* Heading */}
-        <h2
-          data-animate
-          className="text-3xl md:text-4xl font-semibold text-[#0D2153] mb-2"
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
-        >
-          What courses we have
-        </h2>
-        {/* Subheading */}
-        <p
-          data-animate
-          className="text-gray-600 mb-8"
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
-        >
-          Enhance Your Skills with Our Expert-Led Courses
-        </p>
+    <section
+      id="courses"
+      ref={sectionRef}
+      className="bg-[#F9FAFF] pt-12 pb-32 px-4"
+    >
+      <div className="container mx-auto max-w-6xl">
+        {/* Centered Heading + Subheading */}
+        <div className="text-center mb-8">
+          <h2
+            data-animate
+            className="text-3xl md:text-4xl font-semibold text-[#0D2153] mb-2"
+            style={{ opacity: 0, transform: 'translateY(30px)' }}
+          >
+            What courses we have
+          </h2>
+          <p
+            data-animate
+            className="text-gray-600"
+            style={{ opacity: 0, transform: 'translateY(30px)' }}
+          >
+            Enhance Your Skills with Our Expert-Led Courses
+          </p>
+        </div>
 
-        {/* Navigation and Course Cards */}
-        <div className="relative">
-          {/* Left Arrow for md and up */}
+        {/* Cards & Navigation (still left-aligned) */}
+        <div className="relative text-left">
           {currentIndex > 0 && (
             <button
               onClick={handlePrev}
               data-animate
               style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
+              className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full hover:bg-[#0B1C47]"
             >
               <FaChevronLeft className="w-5 h-5" />
             </button>
           )}
 
-          {/* Course Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
-            {visibleCourses.map((course, index) => (
+            {visibleCourses.map((course, idx) => (
               <div
-                key={index}
+                key={idx}
                 data-animate
                 style={{ opacity: 0, transform: 'translateY(30px)' }}
                 className="max-w-[300px] md:max-w-[350px] mx-auto"
@@ -154,23 +148,21 @@ const Courses = () => {
             ))}
           </div>
 
-          {/* Right Arrow for md and up */}
           {currentIndex + 3 < coursesData.length && (
             <button
               onClick={handleNext}
               data-animate
               style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0B1C47]"
+              className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 bg-[#0D2153] text-white p-2 w-10 h-10 rounded-full hover:bg-[#0B1C47]"
             >
               <FaChevronRight className="w-5 h-5" />
             </button>
           )}
 
-          {/* Mobile Navigation Buttons */}
           <div className="flex md:hidden justify-between mt-8">
             <button
               onClick={handlePrev}
-              className="px-4 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+              className="px-4 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47]"
               disabled={currentIndex === 0}
             >
               <FaChevronLeft className="inline-block mr-2 w-4 h-4" />
@@ -178,7 +170,7 @@ const Courses = () => {
             </button>
             <button
               onClick={handleNext}
-              className="px-4 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] cursor-pointer"
+              className="px-4 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47]"
               disabled={currentIndex + 3 >= coursesData.length}
             >
               Next
@@ -187,13 +179,16 @@ const Courses = () => {
           </div>
         </div>
 
-        {/* Browse All Courses Button (Centered) */}
+        {/* Browse All Courses (centered) */}
         <div
           data-animate
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
           className="mt-12 text-center"
+          style={{ opacity: 0, transform: 'translateY(30px)' }}
         >
-          <Link to="/courses" className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors">
+          <Link
+            to="/courses"
+            className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
+          >
             Browse All Courses
           </Link>
         </div>
