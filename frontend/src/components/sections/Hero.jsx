@@ -72,12 +72,12 @@ const Hero = () => {
             <span className="text-[#0D2153]">Cybersecurity,</span> and Beyond
           </h1>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <Link
+            {/* <Link
               to="/quotation"
               className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
             >
               Request a Quote
-            </Link>
+            </Link> */}
             <Link
               to="/courses"
               className="px-6 py-3 border border-[#0D2153] text-[#0D2153] rounded-full hover:bg-[#EAEFFB] transition-colors"
