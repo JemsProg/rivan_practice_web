@@ -68,8 +68,8 @@ const Hero = () => {
             RivanCyber Training Institute, Inc.
           </p>
           <h1 className="mt-2 text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-            Nurturing <span className="text-[#0D2153]">Tech Skills</span> and Fostering{' '}
-            <span className="text-[#0D2153]">Professional Growth</span> for Tomorrow&apos;s Leaders.
+            #1 Best <span className="text-[#0D2153]">IT Certifications Training Center</span> for Networking,{' '}
+            <span className="text-[#0D2153]">Cybersecurity,</span> and Beyond
           </h1>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Link
