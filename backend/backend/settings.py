@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
     'localhost',          # Keep if you still need local access/testing
 ]
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -137,6 +138,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'                       # Gmail SMTP server
 EMAIL_PORT = 587                                    # Port for TLS
 EMAIL_USE_TLS = True                                # Use TLS for secure connection
-EMAIL_HOST_USER = 'leighest2021@gmail.com'          # Your Gmail address
-EMAIL_HOST_PASSWORD = 'ryjn jnkw jeha diho'         # Your Gmail app password
-DEFAULT_FROM_EMAIL = 'leighter1998@gmail.com'
+EMAIL_HOST_USER = 'rivaninstitute@gmail.com'          # Your Gmail address
+EMAIL_HOST_PASSWORD = 'jxoy cqti obaf oyjh'         # Your Gmail app password
+DEFAULT_FROM_EMAIL = 'rivaninstitute@gmail.com'

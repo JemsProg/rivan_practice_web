@@ -23,10 +23,10 @@ const Footer = () => {
           {/* Left side: Institute Info + Social Icons */}
           <div className="md:w-1/2 mb-6 md:mb-0">
             <h2 className="text-xl font-semibold mb-2">
-              RivanCyber Training Institute
+              RivanCyber Training Institute, Inc.
             </h2>
             <p className="text-gray-200 mb-4">
-              Rivan Cyber Institute is a Network Engineering Bootcamp that
+              RivanCyber Training Institute, Inc. is a Network Engineering Bootcamp that
               caters not just to people around the IT industry but also career
               shifters.
             </p>

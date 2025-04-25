@@ -2,7 +2,10 @@ import React, { useRef, useEffect } from 'react'
 import { animate, inView } from 'motion'
 import { FaStar } from 'react-icons/fa'
 
-import avatar from '../../assets/student_1.png'
+import student_1 from '../../assets/student_1.jpg'
+import student_3 from '../../assets/student_2.jpg'
+import student_2 from '../../assets/student_3.jpg'
+
 
 const Reviews = () => {
   const sectionRef = useRef(null)
@@ -30,39 +33,40 @@ const Reviews = () => {
     {
       quote: (
         <>
-          RivanCyber's training modules were{' '}
-          <span className="text-[#0D2153] font-bold">engaging, up-to-date</span>, and tailored to our specific needs! Our IT department feels more{' '}
-          <span className="text-[#0D2153] font-bold">prepared</span> than ever to tackle emerging threats.
+       <span className='text-[#0D2153] font-bold'>Best learning experience! </span> Got my CCNA bootcamp here way back may 2018 and all I can say is the  <span className='text-[#0D2153] font-bold'> instructors are top notch! </span>
+       Dont hesitate to enroll because its worth every penny.
         </>
       ),
-      name: 'Leigh Jamolin',
-      position: 'CTO, Google Philippines',
-      rating: 5
+      name: 'Christian Temporado',
+      // position: 'CTO, Google Philippines',
+      rating: 5,
+      profile: student_1
+
     },
     {
       quote: (
         <>
-          Working with RivanCyber has been{' '}
-          <span className="text-[#0D2153] font-bold">seamless</span> from start to finish. Their{' '}
-          <span className="text-[#0D2153] font-bold">proactive communication</span> and skill development programs have already made a{' '}
-          <span className="text-[#0D2153] font-bold">huge impact</span> on our bottom line.
+         Rivan has the <span className='text-[#0D2153] font-bold'>  best instructors, best support team, latest topics and equipments </span> you'll ever need to attain your 
+         IT dream job! Guaranteed to give you a <span className='text-[#0D2153] font-bold'>  zero to hero experience. </span> Highly recommended!
         </>
       ),
-      name: 'Leigh Jamolin',
-      position: 'Network Engineer, Accenture',
-      rating: 5
+      name: 'Mervin-Jenny Lota ',
+      // position: 'Network Engineer, Accenture',
+      rating: 5,
+      profile: student_2
     },
     {
       quote: (
         <>
-          The insights and hands-on expertise provided by RivanCyber have{' '}
-          <span className="text-[#0D2153] font-bold">revolutionized</span> our approach to training. Their{' '}
-          <span className="text-[#0D2153] font-bold">tailored and innovative methodology</span> sets them apart in the industry.
+          They provide <span className='text-[#0D2153] font-bold'>  best and updated trainings in the IT industry! </span> Took my CCNA and VMware certs classes and <span className='text-[#0D2153] font-bold'> passed my 
+          certifications! </span> Thank you #teamrivan. 
         </>
       ),
-      name: 'Leigh Jamolin',
-      position: 'Cybersecurity Engineer, BDO',
-      rating: 5
+      name: 'Earl Kent Justine Togonon',
+      // position: 'Cybersecurity Engineer, BDO',
+      rating: 5,
+      profile: student_3
+
     }
   ]
 
@@ -114,7 +118,7 @@ const Reviews = () => {
                 {/* Avatar + Name/Position */}
                 <div className="flex items-center mb-2">
                   <img
-                    src={avatar}
+                    src={review.profile}
                     alt={review.name}
                     className="w-12 h-12 rounded-full mr-3 object-cover"
                   />
@@ -122,14 +126,7 @@ const Reviews = () => {
                     <p className="text-[#0D2153] font-semibold">
                       {review.name}
                     </p>
-                    <p className="text-sm text-gray-500">
-                      {review.position}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Stars below job title */}
-                <div className="flex items-center text-left ml-16">
+                    <div className="flex items-center text-left ">
                   {[...Array(review.rating)].map((_, starIndex) => (
                     <FaStar
                       key={starIndex}
@@ -137,6 +134,14 @@ const Reviews = () => {
                     />
                   ))}
                 </div>
+                    {/* <p className="text-sm text-gray-500">
+                      {review.position}
+                    </p> */}
+                  </div>
+                </div>
+
+                {/* Stars below job title */}
+          
               </div>
             </div>
           ))}
