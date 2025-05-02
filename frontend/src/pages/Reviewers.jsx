@@ -9,6 +9,10 @@ const Reviewers = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     const els = sectionRef.current.querySelectorAll('[data-animate]');
     els.forEach((el, i) =>
       inView(el, () =>
