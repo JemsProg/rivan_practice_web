@@ -55,7 +55,7 @@ const ContactUs = () => {
   }
 
   return (
-    <section id='contact' ref={sectionRef} className="bg-[#F9FAFF] pt-16 pb-32 px-4">
+    <section id='contact' ref={sectionRef} className="bg-[#fff] pt-16 pb-32 px-4">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left: Google Map */}

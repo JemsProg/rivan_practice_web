@@ -111,7 +111,7 @@ const Footer = () => {
 
         {/* Bottom Row */}
         <div className="mt-6 border-t border-gray-600 pt-4 text-center text-sm">
-          © 2025 All Rights Reserved. Design by Leigh.
+          © 2025 All Rights Reserved. Design by Le1gh J.
         </div>
       </div>
 
