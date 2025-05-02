@@ -6,6 +6,7 @@ import Footer from '../src/components/Footer'
 import LandingPage from '../src/pages/LandingPage'
 import Courses from '../src/pages/Courses'
 import Quotation from '../src/pages/Quotation'
+import Reviewers from './pages/Reviewers'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/quotation" element={<Quotation />} />
+            <Route path="/reviewer" element={<Reviewers />}/>
           </Routes>
         </main>
         <Footer />

@@ -41,9 +41,9 @@ const Hero = () => {
           style={{ opacity: 0 }}
           className="
             relative flex-shrink-0 
-            w-[250px] sm:w-[350px] md:w-[700px]        /* responsive widths */
-            mx-auto md:mx-0                           /* center on mobile */
-            md:-ml-[200px]                            /* pull left on md+ */
+            w-[250px] sm:w-[350px] md:w-[700px]
+            mx-auto md:mx-0
+            md:-ml-[200px]
           "
         >
           <img
@@ -72,17 +72,19 @@ const Hero = () => {
             <span className="text-[#0D2153]">Cybersecurity,</span> and Beyond
           </h1>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <Link
-              to="/quotation"
-              className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
-            >
-              Request a Quote
-            </Link>
+            {/* Primary blue button */}
             <Link
               to="/courses"
-              className="px-6 py-3 border border-[#0D2153] text-[#0D2153] rounded-full hover:bg-[#EAEFFB] transition-colors"
+              className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
             >
               Browse Courses
+            </Link>
+            {/* Secondary white button */}
+            <Link
+              to="/reviewer"
+              className="px-6 py-3 border border-[#0D2153] text-[#0D2153] rounded-full hover:bg-[#EAEFFB] transition-colors"
+            >
+              Check Reviewers
             </Link>
           </div>
         </div>
