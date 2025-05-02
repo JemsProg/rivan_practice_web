@@ -6,6 +6,7 @@ const Quotation = () => {
   useEffect(() => window.scrollTo(0, 0), []);
 
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep]   = useState(1);
   const [errors, setErrors]             = useState({});
   const [modal, setModal]               = useState({ open: false, title: "", body: "" });
@@ -18,7 +19,7 @@ const Quotation = () => {
     numberOfAttendees: "",
     attendeeNames: [],
     fundingType: "Personal/Individual",
-    voucherNeeded: "Yes",
+    voucherNeeded: "No",
     jobTitle: "",
     email: "",
     contactNumber: "",
@@ -30,8 +31,6 @@ const Quotation = () => {
     "RivanIT CCNA Network Engineer Training 200-301",
     "CCNP Enterprise: ENCORxENARSIxSDWAN",
     "COMPTIA SECURITY PLUS+",
-    "COMPTIA SEC+ 701 (EXAM) Voucher",
-    "RIVAN ITILV3/4",
   ];
   const fundingOptions  = ["Personal/Individual", "Sponsor/Corporate"];
 
@@ -88,10 +87,11 @@ const Quotation = () => {
   const goToNextStep = () => { if (validateStep()) setCurrentStep((s) => s + 1); };
   const goToPrevStep = () => { if (currentStep > 1) setCurrentStep((s) => s - 1); };
 
-  /* ---------------- submit ---------------- */
+  /* ---------------- submit ---------------- */  
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateStep()) return;
+    if (isSubmitting || !validateStep()) return;
+    setIsSubmitting(true);
 
     fetch("https://rivanit.com/api/quotation/request-quotation/", {
       method: "POST",
@@ -108,6 +108,7 @@ const Quotation = () => {
           });
         } else {
           setModal({ open: true, title: "Error", body: d.error || "Unknown error." });
+          setIsSubmitting(false);
         }
       })
       .catch(() =>
@@ -222,17 +223,24 @@ const Quotation = () => {
                 ))}
               </select>
             </div>
-            <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Voucher for Exam:</label>
-              <select
-                name="voucherNeeded"
-                value={formData.voucherNeeded}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded-lg"
-              >
-                <option>Yes</option><option>No</option>
-              </select>
-            </div>
+
+            {(formData.course === "COMPTIA SECURITY PLUS+" || 
+              formData.course === "COMPTIA SEC+ 701 (EXAM) Voucher") && (
+              <div className="mb-4" id="voucher_option">
+                <label className="block mb-1 text-[#0D2153]">Voucher for Exam:</label>
+                <select
+                  name="voucherNeeded"
+                  value={formData.voucherNeeded}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                >
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+            )}
+
+
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">Job Title:</label>
               <input
@@ -332,11 +340,17 @@ const Quotation = () => {
                 </button>
               )}
               {currentStep === 3 && (
-                <button
+                 <button
                   type="submit"
-                  className="ml-auto px-5 py-2 bg-[#0D2153] text-white rounded-full hover:bg-[#09193E] cursor-pointer"
+                  disabled={isSubmitting}
+                  className={
+                    "ml-auto px-5 py-2 rounded-full " +
+                    (isSubmitting
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#0D2153] hover:bg-[#09193E] cursor-pointer text-white")
+                  }
                 >
-                  Submit
+                  {isSubmitting ? "Submitting…" : "Submit"}
                 </button>
               )}
             </div>

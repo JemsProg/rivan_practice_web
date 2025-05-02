@@ -69,7 +69,7 @@ const Navbar = () => {
             <FaYoutube className="mr-2 w-5 h-5" />
             YouTube
           </a>
-          {/* <RouterLink
+          <RouterLink
             to="/quotation"
             className="
               px-5 py-2
@@ -81,7 +81,7 @@ const Navbar = () => {
             "
           >
             Request a Quote
-          </RouterLink> */}
+          </RouterLink>
         </div>
 
         {/* Mobile: Hamburger Icon */}

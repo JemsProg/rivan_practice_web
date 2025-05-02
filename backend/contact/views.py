@@ -93,8 +93,8 @@ def contact_view(request):
         send_mail(
             subject,                            # Email subject
             plain_message,                      # Plain text content
-            'leighest2021@gmail.com',           # Sender (must match EMAIL_HOST_USER in settings.py)
-            ['leighter1998@gmail.com'],         # Recipient(s)
+            'rivaninstitute@gmail.com',           # Sender (must match EMAIL_HOST_USER in settings.py)
+            ['rivanacad@gmail.com'],         # Recipient(s)
             fail_silently=False,
             html_message=html_message           # HTML content for better design
         )
@@ -107,6 +107,7 @@ def contact_view(request):
         traceback.print_exc()
         return JsonResponse({'status': 'error', 'error': str(e)}, status=500)
 
+from django.http import HttpResponse
 
 def my_basic_view(request):
     return HttpResponse("Hello, this is a basic HTTP response!")
