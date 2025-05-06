@@ -38,16 +38,16 @@ const defaultSections =  [
       title: 'New CCNA v1.1 Lab Sims',
       id: 'ccnaV11',
       items: [
-        { label: 'VLAN & CDP Sim 2', link: '/reviewer/vlan-cdp-2' },
-        { label: 'IPv4 and IPv6 Assignment Sim', link: '/reviewer/ip-assignment' },
-        { label: 'VLAN CDP & LLDP Sim', link: '/reviewer/vlan-cdp-lldp' },
-        { label: 'OSPF Configuration Sim 2', link: '/reviewer/ospf-2' },
-        { label: 'OSPF Configuration Sim 3', link: '/reviewer/ospf-3' },
-        { label: 'Trunking & LACP Sim', link: '/reviewer/trunking-lacp' },
-        { label: 'VLAN Configuration Sim', link: '/reviewer/vlan-config' },
-        { label: 'Allowed, Native VLAN & LACP Sim 2', link: '/reviewer/native-vlan-lacp-2' },
-        { label: '802.1Q Trunking & LACP', link: '/reviewer/8021q-lacp' },
-        { label: 'IPv4 and IPv6 Assignment Sim 2', link: '/reviewer/ip-assignment-2' },
+        { label: 'VLAN & CDP Sim 2', link: '/reviewer/vlan-cdp-2' }, // DONE 
+        { label: 'IPv4 and IPv6 Assignment Sim', link: '/reviewer/ip-assignment' },  // DONE 
+        { label: 'VLAN CDP & LLDP Sim', link: '/reviewer/vlan-cdp-lldp' },  // DONE 
+        { label: 'OSPF Configuration Sim 2', link: '/reviewer/ospf-2' }, // DONE 
+        { label: 'OSPF Configuration Sim 3', link: '/reviewer/ospf-3' }, // DONE 
+        { label: 'Trunking & LACP Sim', link: '/reviewer/trunking-lacp' }, // DONE 
+        { label: 'VLAN Configuration Sim', link: '/reviewer/vlan-config' }, // DONE 
+        { label: 'Allowed, Native VLAN & LACP Sim 2', link: '/reviewer/native-vlan-lacp-2' }, // DONE 
+        { label: '802.1Q Trunking & LACP', link: '/reviewer/8021q-lacp' },  // DONE 
+        { label: 'IPv4 and IPv6 Assignment Sim 2', link: '/reviewer/ip-assignment-2' }, // DONE 
         { label: '802.1Q Trunking, Native VLAN & LACP', link: '/reviewer/8021q-native-lacp' },
         { label: 'Static Routing Configuration Sim 5', link: '/reviewer/static-routing-5' },
         { label: 'Static Routing Configuration Sim 6', link: '/reviewer/static-routing-6' }

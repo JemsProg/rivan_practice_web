@@ -20,9 +20,19 @@ import NamedAccessDhcpSnoopingSim from '../src/components/reviewers/lab_sims_ccn
 import VlanCdpSim from '../src/components/reviewers/lab_sims_ccna/vlan-and-cdp-sim';
 
 
-
-
-
+/* New CCNA v1.1 Lab Sims */
+import VlanCdpSim2 from '../src/components/reviewers/lab_new_ccna/vlan-and-cdp-sim2';
+import IPAssignmentSim from '../src/components/reviewers/lab_new_ccna/ipv4-and-ipv6-assignment-sim';
+import VlanCdpLldpSim from '../src/components/reviewers/lab_new_ccna/vlan-cdp-and-lldp-sim';
+import OspfConfigSim2 from '../src/components/reviewers/lab_new_ccna/ospf-configuration-sim-2';
+import OspfConfigSim3 from '../src/components/reviewers/lab_new_ccna/ospf-configuration-sim3';
+import TrunkingLacpSim from  '../src/components/reviewers/lab_new_ccna/trunking-and-lacp-sim';
+import VlanConfigSim from '../src/components/reviewers/lab_new_ccna/vlan-configuration-sim';
+import VlanAndLacpSim2 from './components/reviewers/lab_new_ccna/vlan-and-lacp-sim2';
+import TrunkingAndLacp8021q from './components/reviewers/lab_new_ccna/8021q-lacp';
+import IPv4IPv6AssignmentSim2 from './components/reviewers/lab_new_ccna/ipv4-and-ipv6-assignment-sim2';
+import NativeLacp8021q from './components/reviewers/lab_new_ccna/8021Qq-native-lacp';
+import StaticRoutingConfigSim5 from './components/reviewers/lab_new_ccna/static-routing-config-sim-5';
 
 
 function App() {
@@ -49,8 +59,32 @@ function App() {
             <Route path="/reviewer/vlan-cdp" element={<VlanCdpSim />} />
 
 
+            {/* New CCNA v1.1 Lab Sims */}
+            <Route path="/reviewer/vlan-cdp-2" element={<VlanCdpSim2 />} />
+            <Route path="/reviewer/ip-assignment" element={<IPAssignmentSim />} />
+            <Route path="/reviewer/vlan-cdp-lldp" element={<VlanCdpLldpSim />} />
+            <Route path="/reviewer/ospf-2" element={<OspfConfigSim2 />} />
+            <Route path="/reviewer/ospf-3" element={<OspfConfigSim3 />} />
+            <Route path="/reviewer/trunking-lacp" element={<TrunkingLacpSim />} />
+            <Route path="/reviewer/vlan-config" element={<VlanConfigSim />} />
+            <Route path="/reviewer/native-vlan-lacp-2" element={<VlanAndLacpSim2 />} />
+            <Route path="/reviewer/8021q-lacp" element={<TrunkingAndLacp8021q />} />
+            <Route path="/reviewer/ip-assignment-2" element={<IPv4IPv6AssignmentSim2 />} />
+            <Route path="/reviewer/8021q-native-lacp" element={<NativeLacp8021q />} />
+            <Route path="/reviewer/static-routing-config-sim-5" element={<StaticRoutingConfigSim5 />} />
+
+           
+
+            
+
+            
+
+           
 
 
+
+
+            
           </Routes>
         </main>
         <Footer />
