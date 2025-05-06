@@ -1,57 +1,49 @@
 // src/pages/Reviewer.jsx
-
-import React, { useRef, useEffect } from 'react';
-import { animate, inView } from 'motion';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCheck } from 'react-icons/fa';
+import Accordion from '../components/reviewers/Accordion';
 
-const Reviewers = () => {
-  const sectionRef = useRef(null);
-
+export default function Reviewers() {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
-    const els = sectionRef.current.querySelectorAll('[data-animate]');
-    els.forEach((el, i) =>
-      inView(el, () =>
-        animate(
-          el,
-          { opacity: 1, y: 0 },
-          { duration: 0.6, delay: i * 0.1, easing: 'ease-in-out' }
-        )
-      )
-    );
+    window.scrollTo(0, 0);
   }, []);
 
   return (
-    <section
-      id="reviewer"
-      ref={sectionRef}
-      className="bg-[#F9FAFF] min-h-screen flex items-start justify-center px-4 pt-32 pb-16"
-    >
-      <div
-        data-animate
-        className="text-center max-w-md mx-auto"
-        style={{ opacity: 0, transform: 'translateY(30px)' }}
-      >
-        <FaUserCheck className="mx-auto mb-6 text-[#0D2153] text-6xl" />
-        <h1 className="text-3xl md:text-4xl font-semibold text-[#0D2153] mb-4">
-          Reviewer Feature Coming Soon
-        </h1>
-        <p className="text-gray-600 mb-8">
-          We’re hard at work building the Reviewers page. Check back soon for updates!
-        </p>
-        <Link
-          to="/"
-          className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
-        >
-          Go Back Home
-        </Link>
+    <section id="reviewer" className="bg-[#F9FAFF] min-h-screen px-6 pt-32 pb-16">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="flex items-start gap-6 flex-wrap md:flex-nowrap" data-animate>
+          <FaUserCheck className="text-[#0D2153] text-5xl mt-1" />
+          <div className="flex-1">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#0D2153] mb-3">
+              Reviewer CCNA
+            </h1>
+            <p className="text-gray-700 mb-6 max-w-2xl">
+              This is a temporary preview for all visitors to our website. Our Rivan Membership
+              program will be launching soon — thank you for your patience and support!
+            </p>
+          </div>
+        </div>
+
+  
+
+        {/* Accordion with built-in defaultSections */}
+        <div className="mt-12">
+          <Accordion className="space-y-1" />
+        </div>
+
+
+              {/* Back button */}
+              <div className="mt-8">
+          <Link
+            to="/"
+            className="inline-block px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
+          >
+            Go Back Home
+          </Link>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Reviewers;
+}
