@@ -33,6 +33,15 @@ import TrunkingAndLacp8021q from './components/reviewers/lab_new_ccna/8021q-lacp
 import IPv4IPv6AssignmentSim2 from './components/reviewers/lab_new_ccna/ipv4-and-ipv6-assignment-sim2';
 import NativeLacp8021q from './components/reviewers/lab_new_ccna/8021Qq-native-lacp';
 import StaticRoutingConfigSim5 from './components/reviewers/lab_new_ccna/static-routing-config-sim-5';
+import StaticRoutingConfigSim6 from './components/reviewers/lab_new_ccna/static-routing-config-sim-6';
+import OldStaticRoutingSim2 from './components/reviewers/lab_new_ccna/old-static-routing-sim2';
+
+
+/* CCNA Training */
+import CcnaTrainingTutorials from './components/reviewers/ccna_training/training-tutorials';
+import SpineLeafTutorial from './components/reviewers/ccna_training/spine-leaf-architecture-tutorial';
+import AiTutorial from './components/reviewers/ccna_training/ai-tutorial';
+import RestApiTutorial from './components/reviewers/ccna_training/rest-api';
 
 
 function App() {
@@ -71,19 +80,20 @@ function App() {
             <Route path="/reviewer/8021q-lacp" element={<TrunkingAndLacp8021q />} />
             <Route path="/reviewer/ip-assignment-2" element={<IPv4IPv6AssignmentSim2 />} />
             <Route path="/reviewer/8021q-native-lacp" element={<NativeLacp8021q />} />
-            <Route path="/reviewer/static-routing-config-sim-5" element={<StaticRoutingConfigSim5 />} />
-
-           
-
-            
-
-            
-
-           
+            <Route path="/reviewer/static-routing-5" element={<StaticRoutingConfigSim5 />} />
+            <Route path="/reviewer/static-routing-6" element={<StaticRoutingConfigSim6 />} />
+            <Route path="/reviewer/static-routing-2" element={<OldStaticRoutingSim2 />} />
 
 
+            {/* CCNA Training */}
+            <Route path="/reviewer/training/tutorials-labs" element={<CcnaTrainingTutorials />} />
+            <Route path="/reviewer/training/spine-leaf-tutorial" element={<SpineLeafTutorial />} />
+            <Route path="/reviewer/training/ai-tutorial" element={<AiTutorial />} />
+            <Route path="/reviewer/training/rest-api" element={<RestApiTutorial />} />
 
+          
 
+      
             
           </Routes>
         </main>

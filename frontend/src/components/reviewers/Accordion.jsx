@@ -12,7 +12,7 @@ const defaultSections =  [
       id: 'ccnaSims',
       items: [
         { label: 'IP Services Sim', link: '/reviewer/ip-services' },
-        { label: 'IP Services Sim Version 2', link: '/reviewer/ip-services-2' },
+        { label: 'IP Services Sim Version 2', link: '/reviewer/ip-services-2' }, 
         { label: 'Static Routing Configuration Sim', link: '/reviewer/static_routing_configuration_sim' },
         { label: 'OSPF Configuration Sim', link: '/reviewer/ospf_configuration_sim' },
         { label: 'LACP Configuration Sim', link: '/reviewer/lacp-configuration-sim' },
@@ -48,27 +48,27 @@ const defaultSections =  [
         { label: 'Allowed, Native VLAN & LACP Sim 2', link: '/reviewer/native-vlan-lacp-2' }, // DONE 
         { label: '802.1Q Trunking & LACP', link: '/reviewer/8021q-lacp' },  // DONE 
         { label: 'IPv4 and IPv6 Assignment Sim 2', link: '/reviewer/ip-assignment-2' }, // DONE 
-        { label: '802.1Q Trunking, Native VLAN & LACP', link: '/reviewer/8021q-native-lacp' },
-        { label: 'Static Routing Configuration Sim 5', link: '/reviewer/static-routing-5' },
-        { label: 'Static Routing Configuration Sim 6', link: '/reviewer/static-routing-6' }
+        { label: '802.1Q Trunking, Native VLAN & LACP', link: '/reviewer/8021q-native-lacp' }, // DONE 
+        { label: 'Static Routing Configuration Sim 5', link: '/reviewer/static-routing-5' }, // DONE 
+        { label: 'Static Routing Configuration Sim 6', link: '/reviewer/static-routing-6' } // DONE 
       ]
     },
     {
       title: 'Below Sims are old and retired so you do not need to learn them',
       id: 'retiredSims',
       items: [
-        { label: 'Static Routing Configuration Sim 2', link: '/reviewer/static-routing-2' }
+        { label: 'Static Routing Configuration Sim 2', link: '/reviewer/static-routing-2' } // DONE 
       ]
     },
     {
       title: 'CCNA Training',
       id: 'ccnaTraining',
       items: [
-        { label: 'IP Services Sim', link: '/reviewer/ip-services' },
-        { label: 'CCNA Tutorials, Practice Labs & Lab Challenges', link: '/reviewer/training/tutorials-labs' },
-        { label: 'Spine-Leaf Architecture Tutorial', link: '#' },
-        { label: 'Generative AI vs Predictive AI Tutorial', link: '#' },
-        { label: 'REST API Tutorial', link: '#' },
+        { label: 'IP Services Sim', link: '/reviewer/ip-services' }, // DONE 
+        { label: 'CCNA Tutorials, Practice Labs & Lab Challenges', link: '/reviewer/training/tutorials-labs' }, //NOT YET GOODS
+        { label: 'Spine-Leaf Architecture Tutorial', link: '/reviewer/training/spine-leaf-tutorial' }, // DONE
+        { label: 'Generative AI vs Predictive AI Tutorial', link: '/reviewer/training/ai-tutorial' }, 
+        { label: 'REST API Tutorial', link: '/reviewer/training/rest-api' },
         { label: 'Network Time Protocol (NTP) Tutorial', link: '#' },
         { label: 'DHCP Snooping Tutorial', link: '#' },
         { label: 'What is SDN?', link: '#' },
