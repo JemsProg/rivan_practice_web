@@ -164,7 +164,7 @@ const RestApiTutorial = () => {
       <div data-animate style={{ opacity: 0, transform: 'translateY(30px)' }} className="mt-8">
         <h2 className="text-2xl font-bold text-[#0D2153] mb-4">Examples of HTTP methods</h2>
         <p className="mb-6">
-          We wrote a tutorial which uses Postman to send REST API to a CSR1000v router <a href="https://www.digitaltut.com/use-postman-to-configure-csr1000v-router-on-cisco-sandbox-with-restconf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">here</a>. You will find many examples of how to use HTTP methods. Below is an example of using GET method:
+          We wrote a tutorial which uses Postman to send REST API to a CSR1000v router <a href="https://www.digitaltut.com/use-postman-to-configure-csr1000v-router-on-cisco-sandbox-with-restconf" target="_blank" rel="noopener noreferrer" className="text-[#0D2153] hover:underline">here</a>. You will find many examples of how to use HTTP methods. Below is an example of using GET method:
         </p>
         
         <div className="flex justify-center my-8">
@@ -209,7 +209,7 @@ const RestApiTutorial = () => {
 
       {/* Principles Section */}
       <div data-animate style={{ opacity: 0, transform: 'translateY(30px)' }} className="mt-8">
-        <h2 className="text-2xl font-bold text-[#0D2153]mb-4">Principles of REST</h2>
+        <h2 className="text-2xl font-bold text-[#0D2153] mb-4">Principles of REST</h2>
         
         <div className="space-y-6 mt-4">
           <div>

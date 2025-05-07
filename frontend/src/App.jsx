@@ -42,6 +42,11 @@ import CcnaTrainingTutorials from './components/reviewers/ccna_training/training
 import SpineLeafTutorial from './components/reviewers/ccna_training/spine-leaf-architecture-tutorial';
 import AiTutorial from './components/reviewers/ccna_training/ai-tutorial';
 import RestApiTutorial from './components/reviewers/ccna_training/rest-api';
+import NtpTutorial from './components/reviewers/ccna_training/ntp-tutorial';
+import DhcpSnooping from './components/reviewers/ccna_training/dhcp-snooping';
+import Sdn from './components/reviewers/ccna_training/sdn';
+import RouterForwardDecision from './components/reviewers/ccna_training/router-forward-decision';
+
 
 
 function App() {
@@ -90,6 +95,14 @@ function App() {
             <Route path="/reviewer/training/spine-leaf-tutorial" element={<SpineLeafTutorial />} />
             <Route path="/reviewer/training/ai-tutorial" element={<AiTutorial />} />
             <Route path="/reviewer/training/rest-api" element={<RestApiTutorial />} />
+            <Route path="/reviewer/training/ntp-tutorial" element={<NtpTutorial />} />
+            <Route path="/reviewer/training/dhcp-snooping" element={<DhcpSnooping />} />
+            <Route path="/reviewer/training/sdn" element={<Sdn />} />
+            <Route path="/reviewer/training/router-decision" element={<RouterForwardDecision />} />
+
+           
+
+           
 
           
 

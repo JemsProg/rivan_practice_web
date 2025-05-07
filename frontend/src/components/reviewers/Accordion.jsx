@@ -68,11 +68,11 @@ const defaultSections =  [
         { label: 'CCNA Tutorials, Practice Labs & Lab Challenges', link: '/reviewer/training/tutorials-labs' }, //NOT YET GOODS
         { label: 'Spine-Leaf Architecture Tutorial', link: '/reviewer/training/spine-leaf-tutorial' }, // DONE
         { label: 'Generative AI vs Predictive AI Tutorial', link: '/reviewer/training/ai-tutorial' },  // DONE
-        { label: 'REST API Tutorial', link: '/reviewer/training/rest-api' },
-        { label: 'Network Time Protocol (NTP) Tutorial', link: '#' },
-        { label: 'DHCP Snooping Tutorial', link: '#' },
-        { label: 'What is SDN?', link: '#' },
-        { label: 'How a router makes a forwarding decision', link: '#' },
+        { label: 'REST API Tutorial', link: '/reviewer/training/rest-api' },   // DONE
+        { label: 'Network Time Protocol (NTP) Tutorial', link: '/reviewer/training/ntp-tutorial' },  // DONE
+        { label: 'DHCP Snooping Tutorial', link: '/reviewer/training/dhcp-snooping' }, // DONE
+        { label: 'What is SDN?', link: '/reviewer/training/sdn' }, // DONE
+        { label: 'How a router makes a forwarding decision', link: '/reviewer/training/router-decision' },
         { label: 'Configure SSH for Remote Access on Cisco Router', link: '#' },
         { label: 'Key Security Concepts Tutorial', link: '#' },
         { label: 'Forwarding per-hop behavior (PHB) for QoS Tutorial', link: '#' },
