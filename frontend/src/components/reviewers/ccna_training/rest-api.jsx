@@ -54,7 +54,7 @@ const RestApiTutorial = () => {
 
       {/* HTTP Methods Section */}
       <div data-animate style={{ opacity: 0, transform: 'translateY(30px)' }} className="mt-8">
-        <h2 className="text-2xl font-bold text-blue-600 mb-4">HTTP Methods in REST</h2>
+        <h2 className="text-2xl font-bold text-[#0D2153] mb-4">HTTP Methods in REST</h2>
         <p className="mb-4">
           HTTP methods in RESTful API development to specify the type of action being performed on a resource. There are five essential HTTP methods:
         </p>
@@ -162,7 +162,7 @@ const RestApiTutorial = () => {
 
       {/* Examples Section */}
       <div data-animate style={{ opacity: 0, transform: 'translateY(30px)' }} className="mt-8">
-        <h2 className="text-2xl font-bold text-blue-600 mb-4">Examples of HTTP methods</h2>
+        <h2 className="text-2xl font-bold text-[#0D2153] mb-4">Examples of HTTP methods</h2>
         <p className="mb-6">
           We wrote a tutorial which uses Postman to send REST API to a CSR1000v router <a href="https://www.digitaltut.com/use-postman-to-configure-csr1000v-router-on-cisco-sandbox-with-restconf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">here</a>. You will find many examples of how to use HTTP methods. Below is an example of using GET method:
         </p>
@@ -203,15 +203,15 @@ const RestApiTutorial = () => {
         </div>
         
         <p className="mb-6 text-sm italic">
-          Note: {{host}} and {{port}} are two variables which we defined before using.
+          Note:  {'{{'}host{'}'}  and {'{{'}port{'}'} are two variables which we defined before using.
         </p>
       </div>
 
       {/* Principles Section */}
       <div data-animate style={{ opacity: 0, transform: 'translateY(30px)' }} className="mt-8">
-        <h2 className="text-2xl font-bold text-blue-600 mb-4">Principles of REST</h2>
+        <h2 className="text-2xl font-bold text-[#0D2153]mb-4">Principles of REST</h2>
         
-        <div className="space-y-6">
+        <div className="space-y-6 mt-4">
           <div>
             <h3 className="text-xl font-semibold mb-2">1. <strong>Stateless</strong>:</h3>
             <p className="mb-4">

@@ -67,7 +67,7 @@ const defaultSections =  [
         { label: 'IP Services Sim', link: '/reviewer/ip-services' }, // DONE 
         { label: 'CCNA Tutorials, Practice Labs & Lab Challenges', link: '/reviewer/training/tutorials-labs' }, //NOT YET GOODS
         { label: 'Spine-Leaf Architecture Tutorial', link: '/reviewer/training/spine-leaf-tutorial' }, // DONE
-        { label: 'Generative AI vs Predictive AI Tutorial', link: '/reviewer/training/ai-tutorial' }, 
+        { label: 'Generative AI vs Predictive AI Tutorial', link: '/reviewer/training/ai-tutorial' },  // DONE
         { label: 'REST API Tutorial', link: '/reviewer/training/rest-api' },
         { label: 'Network Time Protocol (NTP) Tutorial', link: '#' },
         { label: 'DHCP Snooping Tutorial', link: '#' },
