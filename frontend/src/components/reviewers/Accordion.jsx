@@ -116,48 +116,47 @@ const defaultSections =  [
       title: 'CCNA 200-301',
       id: 'ccna200301',
       items: [
-        { label: 'CCNA FAQs & Tips', link: '#' },
-        { label: 'Basic Questions', link: '#' },
-        { label: 'Topology Architecture Questions', link: '#' },
-        { label: 'Cloud & Virtualization Questions', link: '#' },
-        { label: 'CDP & LLDP Questions', link: '#' },
-        { label: 'Switch Questions', link: '#' },
-        { label: 'VLAN & Trunking Questions', link: '#' },
-        { label: 'VLAN & Trunking Questions 2', link: '#' },
-        { label: 'STP & VTP Questions', link: '#' },
-        { label: 'EtherChannel Questions', link: '#' },
-        { label: 'TCP & UDP Questions', link: '#' },
-        { label: 'IP Address & Subnetting Questions', link: '#' },
-        { label: 'IP Routing Questions', link: '#' },
-        { label: 'IP Routing Questions 2', link: '#' },
-        { label: 'OSPF Questions', link: '#' },
-        { label: 'OSPF Questions 2', link: '#' },
-        { label: 'EIGRP Questions', link: '#' },
-        { label: 'NAT Questions', link: '#' },
-        { label: 'NTP Questions', link: '#' },
-        { label: 'Syslog Questions', link: '#' },
-        { label: 'HSRP Questions', link: '#' },
-        { label: 'Access-list Questions', link: '#' },
-        { label: 'AAA Questions', link: '#' },
-        { label: 'Security Questions', link: '#' },
-        { label: 'Security Questions 2', link: '#' },
-        { label: 'DAI Questions', link: '#' },
-        { label: 'IPv6 Questions', link: '#' },
-        { label: 'DNS Questions', link: '#' },
-        { label: 'QoS Questions', link: '#' },
-        { label: 'Port Security Questions', link: '#' },
-        { label: 'Wireless Questions', link: '#' },
-        { label: 'Wireless Questions 2', link: '#' },
-        { label: 'SDN Questions', link: '#' },
-        { label: 'DNA Center Questions', link: '#' },
-        { label: 'Drag Drop Questions', link: '#' },
-        { label: 'Drag Drop Questions 2', link: '#' },
-        { label: 'Drag Drop Questions 3', link: '#' },
-        { label: 'VPN Questions', link: '#' },
-        { label: 'DHCP Questions', link: '#' },
-        { label: 'Automation Questions', link: '#' },
-        { label: 'Miscellaneous Questions', link: '#' },
-        { label: 'Share your CCNA Experience', link: '#' }
+        // { label: 'CCNA FAQs & Tips', link: '#' },
+        { label: 'Basic Questions', link: '/reviewer/Basic_Questions' },  //done
+        { label: 'Topology Architecture Questions', link: '/reviewer/topology-architecture-questions' }, //done
+        { label: 'Cloud & Virtualization Questions', link: '/reviewer/cloud-virtualization-questions' }, //done
+        { label: 'CDP & LLDP Questions', link: '/reviewer/cdp-lldp-questions-2' },  //done
+        { label: 'Switch Questions', link: '/reviewer/switch_questions' },  //done
+        { label: 'VLAN & Trunking Questions', link: '/reviewer/vlan_truncking_questions' }, //done
+        { label: 'VLAN & Trunking Questions 2', link: '/reviewer/vlan_truncking_questions2' },  //done
+        { label: 'STP & VTP Questions', link: '/reviewer/STP_&_VTP_Questions' },  //done
+        { label: 'EtherChannel Questions', link: '/reviewer/EtherChannel_Questions' },  //done
+        // { label: 'TCP & UDP Questions', link: '#' },
+        { label: 'IP Address & Subnetting Questions', link:'/reviewer/IP_Address_Subnetting_Questions' },  //done
+        { label: 'IP Routing Questions', link: '/reviewer/IP_Routing_Questions' },  //done
+        { label: 'IP Routing Questions 2', link: '/reviewer/IP_Routing_Questions2' },  //done
+        { label: 'OSPF Questions', link: '/reviewer/OSPF_Questions' },  //done
+        { label: 'OSPF Questions 2', link: '/reviewer/OSPF_Questions2' },  //done
+        { label: 'EIGRP Questions', link: '/reviewer/EIGRP_Questions' },  //done
+        { label: 'NAT Questions', link: '/reviewer/NAT_Questions' },  //done
+        { label: 'NTP Questions', link: '/reviewer/NTP_Questions' },  //done
+        { label: 'Syslog Questions', link: '/reviewer/Syslog_Questions' },  //done
+        { label: 'HSRP Questions', link: '/reviewer/HSRP_Questions' },  //done
+        { label: 'Access-list Questions', link: '/reviewer/Access-list_Questions' },  //don
+        { label: 'AAA Questions', link: '/reviewer/AAA_Questions' },  //done
+        { label: 'Security Questions', link: '/reviewer/Security_Questions' },  //done
+        { label: 'Security Questions 2', link: '/reviewer/Security_Questions_2' },  //done
+        { label: 'DAI Questions', link: '/reviewer/DAI_Questions' },  //done
+        { label: 'IPv6 Questions', link: '/reviewer/IPv6_Questions' },  //done
+        { label: 'DNS Questions', link: '/reviewer/DNS_Questions' },  //done
+        { label: 'QoS Questions', link: '/reviewer/QoS_Questions' },  //done
+        { label: 'Port Security Questions', link: '/reviewer/Port_Security_Questions' },  //done
+        { label: 'Wireless Questions', link: '/reviewer/Wireless_Questions' },  //done
+        { label: 'Wireless Questions 2',  link: '/reviewer/Wireless_Questions_2' },  //done
+        { label: 'SDN Questions',  link: '/reviewer/SDN_Questions' },  //done
+        { label: 'DNA Center Questions', link: '/reviewer/DNA_Center_Questions' },  //done
+        { label: 'Drag Drop Questions', link: '/reviewer/Drag_Drop_Questions' },  //done
+        { label: 'Drag Drop Questions 2', link: '/reviewer/Drag_Drop_Questions_2' },  //done
+        { label: 'Drag Drop Questions 3', link: '/reviewer/Drag_Drop_Questions_3' },  //done
+        { label: 'VPN Questions', link: '/reviewer/VPN_Questions' },  //done
+        { label: 'DHCP Questions', link: '/reviewer/DHCP_Questions' },  //done
+        { label: 'Automation Questions', link: '/reviewer/Automation_Questions' },  //done
+        { label: 'Miscellaneous Questions', link: '/reviewer/Miscellaneous_Questions' },  //done
       ]
     },
     {

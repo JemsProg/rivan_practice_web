@@ -47,6 +47,53 @@ import DhcpSnooping from './components/reviewers/ccna_training/dhcp-snooping';
 import Sdn from './components/reviewers/ccna_training/sdn';
 import RouterForwardDecision from './components/reviewers/ccna_training/router-forward-decision';
 
+// CCNA 200 - 301
+import TopologyArchitectureQuestions from './components/reviewers/ccna_200_301/topology_architecture_questions';
+import CloudVirtualizationQuestion from './components/reviewers/ccna_200_301/cloud_virtualization_question';
+import Cdplldpquestions from './components/reviewers/ccna_200_301/cdp-lldp-questions-2';
+import Switchquestions from './components/reviewers/ccna_200_301/switch_questions';
+import VlanTrunkingQuesions2 from './components/reviewers/ccna_200_301/vlan_trunking_qeustions2';
+import VlanTrunkingQuesions from './components/reviewers/ccna_200_301/vlan_trunking_qeustions';
+import StpVtpQuestions from './components/reviewers/ccna_200_301/STP_&_VTP_Questions';
+import EtherChannelQuestions from './components/reviewers/ccna_200_301/EtherChannel_Questions';
+import IpAddressSubnettingQuestions from './components/reviewers/ccna_200_301/IP_Address_Subnetting_Questions';
+import IP_Routing_Questions from './components/reviewers/ccna_200_301/IP_Routing_Questions';
+import IP_Routing_Questions2 from './components/reviewers/ccna_200_301/IP_Routing_Questions_2';
+import OspfQuestions from './components/reviewers/ccna_200_301/OSPF_Questions';
+import OspfQuestions2 from './components/reviewers/ccna_200_301/OSPF_Questions2';
+import EigrpQuestions from './components/reviewers/ccna_200_301/EIGRP_Questions';
+import NatQuestion from './components/reviewers/ccna_200_301/NAT_Questions';
+import NtpQuestion from './components/reviewers/ccna_200_301/NTP_Questions';
+import SyslogQuestion from './components/reviewers/ccna_200_301/Syslog_Questions';
+import HsrpQuestion from './components/reviewers/ccna_200_301/HSRP_Questions';
+import AccessListQuestion from './components/reviewers/ccna_200_301/Access-list_Questions';
+import AaaQuestion from './components/reviewers/ccna_200_301/AAA_Questions';
+import SecurityQuestion from './components/reviewers/ccna_200_301/Security_Questions';
+import SecurityQuestion2 from './components/reviewers/ccna_200_301/Security_Questions_2';
+import DaiQuestion from './components/reviewers/ccna_200_301/DAI_Questions';
+import IPv6Question from './components/reviewers/ccna_200_301/IPv6_Questions';
+import DNSQuestion from './components/reviewers/ccna_200_301/DNS_Questions';
+import QoSQuestion from './components/reviewers/ccna_200_301/QoS_Questions';
+import PortSecurityQuestion from './components/reviewers/ccna_200_301/Port_Security_Questions';
+import WirelessQuestion from './components/reviewers/ccna_200_301/Wireless_Questions';
+import WirelessQuestion2 from './components/reviewers/ccna_200_301/Wireless_Questions_2';
+import SDNQuestion from './components/reviewers/ccna_200_301/SDN_Questions';
+import DNACenterQuestion from './components/reviewers/ccna_200_301/DNA_Center_Questions';
+import DragDropQuestion from './components/reviewers/ccna_200_301/Drag_Drop_Questions';
+import DragDropQuestion2 from './components/reviewers/ccna_200_301/Drag_Drop_Questions_2';
+import DragDropQuestion3 from './components/reviewers/ccna_200_301/Drag_Drop_Questions_3';
+import VPNQuestion from './components/reviewers/ccna_200_301/VPN_Questions';
+import DHCPQuestion from './components/reviewers/ccna_200_301/DHCP_Questions';
+import AutomationQuestion from './components/reviewers/ccna_200_301/Automation_Questions';
+import MiscellaneousQuestion from './components/reviewers/ccna_200_301/Miscellaneous_Questions';
+import BasicQuestion from './components/reviewers/ccna_200_301/Basic_Questions';
+
+
+
+
+
+
+
 
 
 function App() {
@@ -100,7 +147,49 @@ function App() {
             <Route path="/reviewer/training/sdn" element={<Sdn />} />
             <Route path="/reviewer/training/router-decision" element={<RouterForwardDecision />} />
 
-           
+
+            {/* CCNA 200 - 301 */}
+            <Route path="/reviewer/Basic_Questions" element={<BasicQuestion />} />
+            <Route path="/reviewer/topology-architecture-questions" element={<TopologyArchitectureQuestions />} />
+            <Route path="/reviewer/cloud-virtualization-questions" element={<CloudVirtualizationQuestion />} />
+            <Route path="/reviewer/cdp-lldp-questions-2" element={<Cdplldpquestions />} />
+            <Route path="/reviewer/switch_questions" element={<Switchquestions />} />
+            <Route path="/reviewer/vlan_truncking_questions" element={<VlanTrunkingQuesions />} />
+            <Route path="/reviewer/vlan_truncking_questions2" element={<VlanTrunkingQuesions2 />} />
+            <Route path="/reviewer/STP_&_VTP_Questions" element={<StpVtpQuestions />} />
+            <Route path="/reviewer/EtherChannel_Questions" element={<EtherChannelQuestions />} />
+            <Route path="/reviewer/IP_Address_Subnetting_Questions" element={<IpAddressSubnettingQuestions />} />
+            <Route path="/reviewer/IP_Routing_Questions" element={<IP_Routing_Questions />} />
+            <Route path="/reviewer/IP_Routing_Questions2" element={<IP_Routing_Questions2 />} />
+            <Route path="/reviewer/OSPF_Questions" element={<OspfQuestions />} />
+            <Route path="/reviewer/OSPF_Questions2" element={<OspfQuestions2 />} />
+            <Route path="/reviewer/EIGRP_Questions" element={<EigrpQuestions />} />
+            <Route path="/reviewer/NAT_Questions" element={<NatQuestion />} />
+            <Route path="/reviewer/NTP_Questions" element={<NtpQuestion />} />
+            <Route path="/reviewer/Syslog_Questions" element={<SyslogQuestion />} />
+            <Route path="/reviewer/HSRP_Questions" element={<HsrpQuestion />} />
+            <Route path="/reviewer/Access-list_Questions" element={<AccessListQuestion />} />
+            <Route path="/reviewer/AAA_Questions" element={<AaaQuestion />} />
+            <Route path="/reviewer/Security_Questions" element={<SecurityQuestion />} />
+            <Route path="/reviewer/Security_Questions_2" element={<SecurityQuestion2 />} />
+            <Route path="/reviewer/DAI_Questions" element={<DaiQuestion />} />
+            <Route path="/reviewer/IPv6_Questions" element={<IPv6Question />} />
+            <Route path="/reviewer/DNS_Questions" element={<DNSQuestion />} />
+            <Route path="/reviewer/QoS_Questions" element={<QoSQuestion />} />
+            <Route path="/reviewer/Port_Security_Questions" element={<PortSecurityQuestion />} />
+            <Route path="/reviewer/Wireless_Questions" element={<WirelessQuestion />} />
+            <Route path="/reviewer/Wireless_Questions_2" element={<WirelessQuestion2 />} />
+            <Route path="/reviewer/SDN_Questions" element={<SDNQuestion />} />
+            <Route path="/reviewer/DNA_Center_Questions" element={<DNACenterQuestion />} />
+            <Route path="/reviewer/Drag_Drop_Questions" element={<DragDropQuestion />} />
+            <Route path="/reviewer/Drag_Drop_Questions_2" element={<DragDropQuestion2 />} />
+            <Route path="/reviewer/Drag_Drop_Questions_3" element={<DragDropQuestion3 />} />
+            <Route path="/reviewer/VPN_Questions" element={<VPNQuestion />} />
+            <Route path="/reviewer/DHCP_Questions" element={<DHCPQuestion />} />
+            <Route path="/reviewer/Automation_Questions" element={<AutomationQuestion />} />
+            <Route path="/reviewer/Miscellaneous_Questions" element={<MiscellaneousQuestion />} />
+
+
 
            
 
