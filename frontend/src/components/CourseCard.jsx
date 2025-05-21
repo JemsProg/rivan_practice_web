@@ -4,13 +4,14 @@ const CourseCard = ({ image, title, subtitle, description }) => {
   return (
     <div
       className="w-full relative bg-white border border-black rounded-4xl shadow p-6 flex flex-row md:flex-col transition-transform duration-300 hover:scale-105"
-      style={{ minHeight: '150px' }}
+      style={{ minHeight: '300px' }} // Ensure cards have the same height
     >
       {/* Image on mobile takes 1/3 width, full width on md+ */}
       <img
         src={image}
         alt={title}
         className="w-1/3 md:w-full object-contain mr-4 md:mr-0"
+        style={{ height: '200px', objectFit: 'cover' }} // Ensure images are consistent in height
       />
       {/* Right side: Title and Subtitle (description hidden on mobile) */}
       <div className="flex flex-col justify-center">

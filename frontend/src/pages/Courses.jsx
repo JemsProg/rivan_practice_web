@@ -1,19 +1,20 @@
-import React, { useRef, useEffect } from "react"
-import { animate, inView } from "motion"
-import CourseCard from "../components/CourseCard"
+import React, { useRef, useEffect } from "react";
+import { animate, inView } from "motion";
+import { Link } from "react-router-dom"; // Import Link for routing
+import CourseCard from "../components/CourseCard";
 
 // Top-row icons
-import networkIcon from "../assets/network_training.png"
-import securityIcon from "../assets/security_training.png"
-import automationIcon from "../assets/network_automation.png"
+import networkIcon from "../assets/network_training.png";
+import securityIcon from "../assets/security_training.png";
+import automationIcon from "../assets/network_automation.png";
 
 // Course images
-import pcnsaImg from "../assets/pcnsa.png"
-import ccnaImg from "../assets/ccna.png"
-import ccnpImg from "../assets/ccnp.png"
-import comptiaSecurityImg from "../assets/comptia_security.png"
-import itilImg from "../assets/itil.png"
-import ccnpEncorImg from "../assets/ccnp_security.png"
+import pcnsaImg from "../assets/pcnsa.png";
+import ccnaImg from "../assets/ccna.png";
+import ccnpImg from "../assets/ccnp.png";
+import comptiaSecurityImg from "../assets/comptia_security.png";
+import itilImg from "../assets/itil.png";
+import fullStackImg from "../assets/full-stack.png"; // Replace with your full stack image path
 
 const coursesData = [
   {
@@ -22,7 +23,7 @@ const coursesData = [
     subtitle: "200-301 CCNA v1.1",
     description:
       "Learn networking fundamentals, routing, switching, and security in this hands-on CCNA course—ideal for beginners and IT pros.",
-    link: "#"
+    link: "/courses/ccna-training",
   },
   {
     image: comptiaSecurityImg,
@@ -30,7 +31,7 @@ const coursesData = [
     subtitle: "SECURITY + SY0-701",
     description:
       "Gain essential cybersecurity skills including threat detection and risk management in our hands-on Security+ training.",
-    link: "#"
+    link: "/courses/comptia-security-plus-training",
   },
   {
     image: ccnpImg,
@@ -38,7 +39,7 @@ const coursesData = [
     subtitle: "ENCOR x ENARSI",
     description:
       "Advance your career with CCNP ENCOR & ENARSI, focusing on enterprise routing, switching, security, and network automation.",
-    link: "#"
+    link: "/courses/ccnp-training",
   },
   {
     image: itilImg,
@@ -46,15 +47,15 @@ const coursesData = [
     subtitle: "Foundation Training",
     description:
       "Master IT service management best practices to improve IT operations and align services with business goals.",
-    link: "#"
+    link: "/courses/itil-training",
   },
   {
-    image: ccnpEncorImg,
-    title: "CCNP Security",
-    subtitle: "SECURITY 350-701",
+    image: fullStackImg,
+    title: "Full Stack Development",
+    subtitle: "React.js, Django, PostgreSQL",
     description:
-      "Learn to secure enterprise networks with firewalls, VPNs, and threat intelligence using Cisco security solutions.",
-    link: "#"
+      "Become a full stack developer with hands-on training on React.js frontend, Django backend, and PostgreSQL database.",
+    link: "/courses/full-stack-web-development-training",
   },
   {
     image: pcnsaImg,
@@ -62,21 +63,20 @@ const coursesData = [
     subtitle: "Palo Alto Networks",
     description:
       "Gain hands-on experience configuring and securing networks with Palo Alto Networks technologies.",
-    link: "#"
-  }
-]
+    link: "/courses/palo-alto-training",
+  },
+];
 
 const Courses = () => {
-  // Force scroll to top when this component mounts
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Animate elements with data-animate on scroll
-    const elements = sectionRef.current.querySelectorAll("[data-animate]")
+    if (!sectionRef.current) return;
+    const elements = sectionRef.current.querySelectorAll("[data-animate]");
     elements.forEach((el, index) => {
       inView(el, () => {
         animate(
@@ -85,12 +85,12 @@ const Courses = () => {
           {
             duration: 0.6,
             delay: index * 0.1,
-            easing: "ease-in-out"
+            easing: "ease-in-out",
           }
-        )
-      })
-    })
-  }, [])
+        );
+      });
+    });
+  }, []);
 
   return (
     <section ref={sectionRef} className="bg-[#F9FAFF] py-12 px-4">
@@ -124,9 +124,12 @@ const Courses = () => {
                 className="w-16 h-16 object-contain flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <div>
-                <h3 className="text-xl font-bold text-[#0D2153] mb-2">Network Training</h3>
+                <h3 className="text-xl font-bold text-[#0D2153] mb-2">
+                  Network Training
+                </h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  We equip you with the skills to deploy cutting-edge network solutions.
+                  We equip you with the skills to deploy cutting-edge network
+                  solutions.
                 </p>
               </div>
             </div>
@@ -145,9 +148,12 @@ const Courses = () => {
                 className="w-16 h-16 object-contain flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <div>
-                <h3 className="text-xl font-bold text-[#0D2153] mb-2">Security Training</h3>
+                <h3 className="text-xl font-bold text-[#0D2153] mb-2">
+                  Security Training
+                </h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Enhance your network security with our industry-focused training.
+                  Enhance your network security with our industry-focused
+                  training.
                 </p>
               </div>
             </div>
@@ -166,16 +172,19 @@ const Courses = () => {
                 className="w-16 h-16 object-contain flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <div>
-                <h3 className="text-xl font-bold text-[#0D2153] mb-2">Network Automation</h3>
+                <h3 className="text-xl font-bold text-[#0D2153] mb-2">
+                  Network Automation
+                </h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Improve network operations with our automation and NetDevOps solutions.
+                  Improve network operations with our automation and NetDevOps
+                  solutions.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Second Row: Use CourseCard components */}
+        {/* Second Row: Use CourseCard components wrapped with Link */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {coursesData.map((course, index) => (
             <div
@@ -183,19 +192,23 @@ const Courses = () => {
               data-animate
               style={{ opacity: 0, transform: "translateY(30px)" }}
             >
-              <CourseCard
-                image={course.image}
-                title={course.title}
-                subtitle={course.subtitle}
-                description={course.description}
-                link={course.link}
-              />
+              <Link
+                to={course.link}
+                className="block rounded-4xl transition-shadow duration-300 hover:shadow-lg"
+              >
+                <CourseCard
+                  image={course.image}
+                  title={course.title}
+                  subtitle={course.subtitle}
+                  description={course.description}
+                />
+              </Link>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default Courses;

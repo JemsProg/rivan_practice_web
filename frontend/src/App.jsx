@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import LandingPage from "../src/pages/LandingPage";
 import Courses from "../src/pages/Courses";
 import Quotation from "../src/pages/Quotation";
@@ -97,6 +98,7 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
+        <ScrollToTop />
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -346,12 +348,12 @@ function App() {
             />
 
 
-            <Route path="/courses/ccna" element={<CCNA />} />
-            <Route path="/courses/ccnp" element={<CCNP />} />
-            <Route path="/courses/comptia-security-plus" element={<SecurityPlus />} />
-            <Route path="/courses/itil" element={<ITIL />} />
-            <Route path="/courses/full-stack-web-development" element={<FullStackDevelopment />} />
-            <Route path="/courses/palo-alto" element={<PaloAlto />} />
+            <Route path="/courses/ccna-training" element={<CCNA />} />
+            <Route path="/courses/ccnp-training" element={<CCNP />} />
+            <Route path="/courses/comptia-security-plus-training" element={<SecurityPlus />} />
+            <Route path="/courses/itil-training" element={<ITIL />} />
+            <Route path="/courses/full-stack-web-development-training" element={<FullStackDevelopment />} />
+            <Route path="/courses/palo-alto-training" element={<PaloAlto />} />
           </Routes>
         </main>
         <Footer />
