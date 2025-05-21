@@ -38,8 +38,7 @@ const Courses = () => {
 
   useEffect(() => {
     // Listen for resizes and update pageSize
-    const onResize = () =>
-      setPageSize(window.innerWidth < 768 ? 1 : 3);
+    const onResize = () => setPageSize(window.innerWidth < 768 ? 1 : 3);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
@@ -110,10 +109,7 @@ const Courses = () => {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#F9FAFF] pt-12 pb-32 px-4"
-    >
+    <section ref={sectionRef} className="bg-[#F9FAFF] pt-12 pb-32 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Heading */}
         <div className="text-center mb-8">
@@ -187,7 +183,7 @@ const Courses = () => {
           style={{ opacity: 0, transform: "translateY(30px)" }}
         >
           <Link
-            to="/best-courses-it-training"
+            to="/top-it-training-courses-philippines-2025"
             className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
           >
             Browse All Courses

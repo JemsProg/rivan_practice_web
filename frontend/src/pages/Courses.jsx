@@ -23,7 +23,7 @@ const coursesData = [
     subtitle: "200-301 CCNA v1.1",
     description:
       "Learn networking fundamentals, routing, switching, and security in this hands-on CCNA course—ideal for beginners and IT pros.",
-    link: "/courses/ccna-training",
+    link: "/top-it-training-courses-philippines-2025/ccna-201-301",
   },
   {
     image: comptiaSecurityImg,
@@ -31,7 +31,7 @@ const coursesData = [
     subtitle: "SECURITY + SY0-701",
     description:
       "Gain essential cybersecurity skills including threat detection and risk management in our hands-on Security+ training.",
-    link: "/courses/comptia-security-plus-training",
+    link: "/top-it-training-courses-philippines-2025/comptia-security-plus-syo-701",
   },
   {
     image: ccnpImg,
@@ -39,7 +39,7 @@ const coursesData = [
     subtitle: "ENCOR x ENARSI",
     description:
       "Advance your career with CCNP ENCOR & ENARSI, focusing on enterprise routing, switching, security, and network automation.",
-    link: "/courses/ccnp-training",
+    link: "/top-it-training-courses-philippines-2025/ccnp-encor-enarsi",
   },
   {
     image: itilImg,
@@ -47,7 +47,7 @@ const coursesData = [
     subtitle: "Foundation Training",
     description:
       "Master IT service management best practices to improve IT operations and align services with business goals.",
-    link: "/courses/itil-training",
+    link: "/top-it-training-courses-philippines-2025/itil-v4-v3",
   },
   {
     image: fullStackImg,
@@ -55,7 +55,7 @@ const coursesData = [
     subtitle: "React.js, Django, PostgreSQL",
     description:
       "Become a full stack developer with hands-on training on React.js frontend, Django backend, and PostgreSQL database.",
-    link: "/courses/full-stack-web-development-training",
+    link: "/top-it-training-courses-philippines-2025/full-stack-web-development-react-django-postgresql",
   },
   {
     image: pcnsaImg,
@@ -63,7 +63,7 @@ const coursesData = [
     subtitle: "Palo Alto Networks",
     description:
       "Gain hands-on experience configuring and securing networks with Palo Alto Networks technologies.",
-    link: "/courses/palo-alto-training",
+    link: "/top-it-training-courses-philippines-2025/palo-alto-network-training",
   },
 ];
 
@@ -105,7 +105,8 @@ const Courses = () => {
             Why Choose RivanCyber Training Institute
           </h2>
           <p className="text-gray-600 mt-2">
-            Future-Proof Your Skills with Industry-Leading Training &amp; Certifications
+            Future-Proof Your Skills with Industry-Leading Training &amp;
+            Certifications
           </p>
         </div>
 

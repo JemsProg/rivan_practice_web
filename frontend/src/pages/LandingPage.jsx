@@ -15,7 +15,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "RivanCyber | Best Training";
+    document.title = "RivanCyber | IT Bootcamp";
 
     if (location.state && location.state.scrollTo) {
       const target = location.state.scrollTo;

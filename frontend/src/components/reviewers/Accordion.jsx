@@ -12,105 +12,147 @@ const defaultSections = [
       'Lab Sims for CCNA (please learn all of them along with "New CCNA v1.1 Lab Sims" below)',
     id: "ccnaSims",
     items: [
-      { label: "IP Services Sim", link: "/reviewer/ip-services" },
-      { label: "IP Services Sim Version 2", link: "/reviewer/ip-services-2" },
+      {
+        label: "IP Services Sim",
+        link: "/ccna-reviewer-course-philippines/ip-services",
+      },
+      {
+        label: "IP Services Sim Version 2",
+        link: "/ccna-reviewer-course-philippines/ip-services-2",
+      },
       {
         label: "Static Routing Configuration Sim",
-        link: "/reviewer/static_routing_configuration_sim",
+        link: "/ccna-reviewer-course-philippines/static_routing_configuration_sim",
       },
       {
         label: "OSPF Configuration Sim",
-        link: "/reviewer/ospf_configuration_sim",
+        link: "/ccna-reviewer-course-philippines/ospf_configuration_sim",
       },
       {
         label: "LACP Configuration Sim",
-        link: "/reviewer/lacp-configuration-sim",
+        link: "/ccna-reviewer-course-philippines/lacp-configuration-sim",
       },
-      { label: "Voice VLAN Configuration Sim", link: "/reviewer/voice-vlan" },
+      {
+        label: "Voice VLAN Configuration Sim",
+        link: "/ccna-reviewer-course-philippines/voice-vlan",
+      },
       {
         label: "VLAN and Trunking Configuration Sim",
-        link: "/reviewer/vlan-trunking",
+        link: "/ccna-reviewer-course-philippines/vlan-trunking",
       },
       {
         label: "IPv4 and IPv6 Connectivity Sim",
-        link: "/reviewer/ip-connectivity",
+        link: "/ccna-reviewer-course-philippines/ip-connectivity",
       },
       {
         label: "Named Access-list & Port Security Sim",
-        link: "/reviewer/accesslist-port-security",
+        link: "/ccna-reviewer-course-philippines/accesslist-port-security",
       },
       {
         label: "Named Access-list & DHCP Snooping Sim",
-        link: "/reviewer/accesslist-dhcp",
+        link: "/ccna-reviewer-course-philippines/accesslist-dhcp",
       },
-      { label: "VLAN and CDP Sim", link: "/reviewer/vlan-cdp" },
+      {
+        label: "VLAN and CDP Sim",
+        link: "/ccna-reviewer-course-philippines/vlan-cdp",
+      },
       {
         label: "IPv4 and IPv6 Deployment Sim",
-        link: "/reviewer/ip-deployment",
+        link: "/ccna-reviewer-course-philippines/ip-deployment",
       },
       {
         label: "Static Routing Configuration Sim 3",
-        link: "/reviewer/static-routing-3",
+        link: "/ccna-reviewer-course-philippines/static-routing-3",
       },
       {
         label: "Static Routing Configuration Sim 4",
-        link: "/reviewer/static-routing-4",
+        link: "/ccna-reviewer-course-philippines/static-routing-4",
       },
-      { label: "VLAN & LLDP Sim", link: "/reviewer/vlan-lldp" },
+      {
+        label: "VLAN & LLDP Sim",
+        link: "/ccna-reviewer-course-philippines/vlan-lldp",
+      },
       {
         label: "IPv6 Static Routing Sim",
-        link: "/reviewer/ipv6-static-routing",
+        link: "/ccna-reviewer-course-philippines/ipv6-static-routing",
       },
       {
         label: "Voice VLAN Configuration Sim 2",
-        link: "/reviewer/voice-vlan-2",
+        link: "/ccna-reviewer-course-philippines/voice-vlan-2",
       },
       {
         label: "Named Access-list & DHCP Snooping Sim 2",
-        link: "/reviewer/accesslist-dhcp-2",
+        link: "/ccna-reviewer-course-philippines/accesslist-dhcp-2",
       },
-      { label: "Voice VLAN & LLDP Sim", link: "/reviewer/voice-lldp" },
+      {
+        label: "Voice VLAN & LLDP Sim",
+        link: "/ccna-reviewer-course-philippines/voice-lldp",
+      },
       {
         label: "Allowed, Native VLAN & LACP Sim",
-        link: "/reviewer/native-vlan-lacp",
+        link: "/ccna-reviewer-course-philippines/native-vlan-lacp",
       },
-      { label: "ISL Trunking and LACP Sim", link: "/reviewer/isl-lacp" },
+      {
+        label: "ISL Trunking and LACP Sim",
+        link: "/ccna-reviewer-course-philippines/isl-lacp",
+      },
     ],
   },
   {
     title: "New CCNA v1.1 Lab Sims",
     id: "ccnaV11",
     items: [
-      { label: "VLAN & CDP Sim 2", link: "/reviewer/vlan-cdp-2" }, // DONE
+      {
+        label: "VLAN & CDP Sim 2",
+        link: "/ccna-reviewer-course-philippines/vlan-cdp-2",
+      }, // DONE
       {
         label: "IPv4 and IPv6 Assignment Sim",
-        link: "/reviewer/ip-assignment",
+        link: "/ccna-reviewer-course-philippines/ip-assignment",
       }, // DONE
-      { label: "VLAN CDP & LLDP Sim", link: "/reviewer/vlan-cdp-lldp" }, // DONE
-      { label: "OSPF Configuration Sim 2", link: "/reviewer/ospf-2" }, // DONE
-      { label: "OSPF Configuration Sim 3", link: "/reviewer/ospf-3" }, // DONE
-      { label: "Trunking & LACP Sim", link: "/reviewer/trunking-lacp" }, // DONE
-      { label: "VLAN Configuration Sim", link: "/reviewer/vlan-config" }, // DONE
+      {
+        label: "VLAN CDP & LLDP Sim",
+        link: "/ccna-reviewer-course-philippines/vlan-cdp-lldp",
+      }, // DONE
+      {
+        label: "OSPF Configuration Sim 2",
+        link: "/ccna-reviewer-course-philippines/ospf-2",
+      }, // DONE
+      {
+        label: "OSPF Configuration Sim 3",
+        link: "/ccna-reviewer-course-philippines/ospf-3",
+      }, // DONE
+      {
+        label: "Trunking & LACP Sim",
+        link: "/ccna-reviewer-course-philippines/trunking-lacp",
+      }, // DONE
+      {
+        label: "VLAN Configuration Sim",
+        link: "/ccna-reviewer-course-philippines/vlan-config",
+      }, // DONE
       {
         label: "Allowed, Native VLAN & LACP Sim 2",
-        link: "/reviewer/native-vlan-lacp-2",
+        link: "/ccna-reviewer-course-philippines/native-vlan-lacp-2",
       }, // DONE
-      { label: "802.1Q Trunking & LACP", link: "/reviewer/8021q-lacp" }, // DONE
+      {
+        label: "802.1Q Trunking & LACP",
+        link: "/ccna-reviewer-course-philippines/8021q-lacp",
+      }, // DONE
       {
         label: "IPv4 and IPv6 Assignment Sim 2",
-        link: "/reviewer/ip-assignment-2",
+        link: "/ccna-reviewer-course-philippines/ip-assignment-2",
       }, // DONE
       {
         label: "802.1Q Trunking, Native VLAN & LACP",
-        link: "/reviewer/8021q-native-lacp",
+        link: "/ccna-reviewer-course-philippines/8021q-native-lacp",
       }, // DONE
       {
         label: "Static Routing Configuration Sim 5",
-        link: "/reviewer/static-routing-5",
+        link: "/ccna-reviewer-course-philippines/static-routing-5",
       }, // DONE
       {
         label: "Static Routing Configuration Sim 6",
-        link: "/reviewer/static-routing-6",
+        link: "/ccna-reviewer-course-philippines/static-routing-6",
       }, // DONE
     ],
   },
@@ -120,7 +162,7 @@ const defaultSections = [
     items: [
       {
         label: "Static Routing Configuration Sim 2",
-        link: "/reviewer/static-routing-2",
+        link: "/ccna-reviewer-course-philippines/static-routing-2",
       }, // DONE
     ],
   },
@@ -128,139 +170,190 @@ const defaultSections = [
     title: "CCNA Training",
     id: "ccnaTraining",
     items: [
-      { label: "IP Services Sim", link: "/reviewer/ip-services" }, // DONE
+      {
+        label: "IP Services Sim",
+        link: "/ccna-reviewer-course-philippines/ip-services",
+      }, // DONE
       {
         label: "CCNA Tutorials, Practice Labs & Lab Challenges",
-        link: "/reviewer/training/tutorials-labs",
+        link: "/ccna-reviewer-course-philippines/training/tutorials-labs",
       }, // TO BE DISABLED
       {
         label: "Spine-Leaf Architecture Tutorial",
-        link: "/reviewer/training/spine-leaf-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/spine-leaf-tutorial",
       }, // DONE
       {
         label: "Generative AI vs Predictive AI Tutorial",
-        link: "/reviewer/training/ai-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/ai-tutorial",
       }, // DONE
-      { label: "REST API Tutorial", link: "/reviewer/training/rest-api" }, // DONE
+      {
+        label: "REST API Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/rest-api",
+      }, // DONE
       {
         label: "Network Time Protocol (NTP) Tutorial",
-        link: "/reviewer/training/ntp-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/ntp-tutorial",
       }, // DONE
       {
         label: "DHCP Snooping Tutorial",
-        link: "/reviewer/training/dhcp-snooping",
+        link: "/ccna-reviewer-course-philippines/training/dhcp-snooping",
       }, // DONE
-      { label: "What is SDN?", link: "/reviewer/training/sdn" }, // DONE
+      {
+        label: "What is SDN?",
+        link: "/ccna-reviewer-course-philippines/training/sdn",
+      }, // DONE
       {
         label: "How a router makes a forwarding decision",
-        link: "/reviewer/training/router-decision",
+        link: "/ccna-reviewer-course-philippines/training/router-decision",
       }, // DONE
       {
         label: "Configure SSH for Remote Access on Cisco Router",
-        link: "/reviewer/training/config-ssh",
+        link: "/ccna-reviewer-course-philippines/training/config-ssh",
       }, // DONE
       {
         label: "Key Security Concepts Tutorial",
-        link: "/reviewer/training/security-concepts-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/security-concepts-tutorial",
       }, // DONE
       {
         label: "Forwarding per-hop behavior (PHB) for QoS Tutorial",
-        link: "/reviewer/training/qos-phb",
+        link: "/ccna-reviewer-course-philippines/training/qos-phb",
       }, // DONE
       {
         label: "Port Security Tutorial",
-        link: "/reviewer/training/port-security",
+        link: "/ccna-reviewer-course-philippines/training/port-security",
       }, //DONE
-      { label: "Puppet Tutorial", link: "/reviewer/training/puppet-tutorial" }, // DONE
-      { label: "Chef Tutorial", link: "/reviewer/training/chef-tutorial" }, // DONE
+      {
+        label: "Puppet Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/puppet-tutorial",
+      }, // DONE
+      {
+        label: "Chef Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/chef-tutorial",
+      }, // DONE
       {
         label: "Ansible Tutorial",
-        link: "/reviewer/training/ansible-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/ansible-tutorial",
       }, // DONE
-      { label: "JSON Tutorial", link: "/reviewer/training/json" }, // DONE
+      {
+        label: "JSON Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/json",
+      }, // DONE
       {
         label: "Layer 2 Threats and Security Features",
-        link: "/reviewer/training/layer2",
+        link: "/ccna-reviewer-course-philippines/training/layer2",
       }, // DONE
       {
         label: "AAA TACACS+ and RADIUS Tutorial",
-        link: "/reviewer/training/radius-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/radius-tutorial",
       }, // DONE
       {
         label: "STP Root Port Election Tutorial",
-        link: "/reviewer/training/stp-root",
+        link: "/ccna-reviewer-course-philippines/training/stp-root",
       }, // DONE
-      { label: "TCP and UDP Tutorial", link: "/reviewer/training/tcp-udp" }, // DONE
-      { label: "WAN Tutorial", link: "/reviewer/training/wan-tutorial" }, // DONE
-      { label: "DHCP Tutorial", link: "/reviewer/training/dhcp-tutorial" }, // DONE
+      {
+        label: "TCP and UDP Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/tcp-udp",
+      }, // DONE
+      {
+        label: "WAN Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/wan-tutorial",
+      }, // DONE
+      {
+        label: "DHCP Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/dhcp-tutorial",
+      }, // DONE
       {
         label: "Simple Network Management Protocol SNMP Tutorial",
-        link: "/reviewer/training/snmp-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/snmp-tutorial",
       }, // DONE
-      { label: "Syslog Tutorial", link: "/reviewer/training/syslog-tutorial" }, // DONE
+      {
+        label: "Syslog Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/syslog-tutorial",
+      }, // DONE
       {
         label: "EtherChannel Tutorial",
-        link: "/reviewer/training/etherchannel-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/etherchannel-tutorial",
       }, // DONE
       {
         label: "Hot Standby Router Protocol HSRP Tutorial",
-        link: "/reviewer/training/hsrp",
+        link: "/ccna-reviewer-course-philippines/training/hsrp",
       }, // DONE - NO PAGE 2
       {
         label: "InterVLAN Routing Tutorial",
-        link: "/reviewer/training/intervlan-routing",
+        link: "/ccna-reviewer-course-philippines/training/intervlan-routing",
       }, // DONE  - NO TAILWIND
       {
         label: "Cisco Command Line Interface CLI",
-        link: "/reviewer/training/cli",
+        link: "/ccna-reviewer-course-philippines/training/cli",
       }, // DONE - NO TAILWIND
       {
         label: "Cisco Router Boot Sequence Tutorial",
-        link: "/reviewer/training/cisco-router-boot",
+        link: "/ccna-reviewer-course-philippines/training/cisco-router-boot",
       }, // DONE - NO TAILWIND
-      { label: "OSI Model Tutorial", link: "/reviewer/training/osi-model" }, // DONE - NO TAILWIND
+      {
+        label: "OSI Model Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/osi-model",
+      }, // DONE - NO TAILWIND
       {
         label: "Subnetting Tutorial – Subnetting Made Easy",
-        link: "/reviewer/training/subnetting",
+        link: "/ccna-reviewer-course-philippines/training/subnetting",
       }, // DONE - NO TAILWIND
-      { label: "Frame Relay Tutorial", link: "/reviewer/training/frame-relay" }, // PENDING - PAGE 2,3
+      {
+        label: "Frame Relay Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/frame-relay",
+      }, // PENDING - PAGE 2,3
       {
         label: "Wireless Tutorial",
-        link: "/reviewer/training/wireless-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/wireless-tutorial",
       }, // PENDING - PAGE 2
       {
         label: "Virtual Local Area Network VLAN Tutorial",
-        link: "/reviewer/training/vlan-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/vlan-tutorial",
       }, // PENDING - PAGE 2
       {
         label: "VLAN Trunking Protocol VTP Tutorial",
-        link: "/reviewer/training/vlan-trunking-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/vlan-trunking-tutorial",
       }, // DONE
-      { label: "IPv6 Tutorial", link: "/reviewer/training/ipv6" }, // PENDING -  PAGE 2
+      {
+        label: "IPv6 Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/ipv6",
+      }, // PENDING -  PAGE 2
       {
         label: "Rapid Spanning Tree Protocol RSTP Tutorial",
-        link: "/reviewer/training/rapid-stp",
+        link: "/ccna-reviewer-course-philippines/training/rapid-stp",
       }, // DONE - NO TAILWIND
       {
         label: "Spanning Tree Protocol STP Tutorial",
-        link: "/reviewer/training/stp-tutorial#",
+        link: "/ccna-reviewer-course-philippines/training/stp-tutorial#",
       }, // DONE - NO TAILWIND
       {
         label: "Network Address Translation NAT Tutorial",
-        link: "/reviewer/training/nat-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/nat-tutorial",
       }, // DONE - NO TAILWIND
       {
         label: "Access List Tutorial",
-        link: "/reviewer/training/access-list-tutorial",
+        link: "/ccna-reviewer-course-philippines/training/access-list-tutorial",
       }, // DONE - NO TAILWIND - PAGE 2
-      { label: "RIP Tutorial", link: "/reviewer/training/rip-tutorial" }, // DONE - NO TAILWIND
-      { label: "EIGRP Tutorial", link: "/reviewer/training/eigrp-tutorial" }, // DONE - NO TAILWIND, PAGE 2, PAGE 3
-      { label: "OSPF Tutorial", link: "/reviewer/training/ospf-tutorial" }, // DONE - NO TAILWIND, PAGE 2, PAGE 3
+      {
+        label: "RIP Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/rip-tutorial",
+      }, // DONE - NO TAILWIND
+      {
+        label: "EIGRP Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/eigrp-tutorial",
+      }, // DONE - NO TAILWIND, PAGE 2, PAGE 3
+      {
+        label: "OSPF Tutorial",
+        link: "/ccna-reviewer-course-philippines/training/ospf-tutorial",
+      }, // DONE - NO TAILWIND, PAGE 2, PAGE 3
       {
         label: "Practice CCNA GNS3 Labs",
-        link: "/reviewer/training/practice-ccna",
+        link: "/ccna-reviewer-course-philippines/training/practice-ccna",
       }, // DONE
-      { label: "CCNA Lab Challenges", link: "/reviewer/training/ccna-lab" }, //
+      {
+        label: "CCNA Lab Challenges",
+        link: "/ccna-reviewer-course-philippines/training/ccna-lab",
+      }, //
     ],
   },
   {
@@ -268,81 +361,162 @@ const defaultSections = [
     id: "ccna200301",
     items: [
       // { label: 'CCNA FAQs & Tips', link: '#' },
-      { label: "Basic Questions", link: "/reviewer/Basic_Questions" }, //done
+      {
+        label: "Basic Questions",
+        link: "/ccna-reviewer-course-philippines/Basic_Questions",
+      }, //done
       {
         label: "Topology Architecture Questions",
-        link: "/reviewer/topology-architecture-questions",
+        link: "/ccna-reviewer-course-philippines/topology-architecture-questions",
       }, //done
       {
         label: "Cloud & Virtualization Questions",
-        link: "/reviewer/cloud-virtualization-questions",
+        link: "/ccna-reviewer-course-philippines/cloud-virtualization-questions",
       }, //done
-      { label: "CDP & LLDP Questions", link: "/reviewer/cdp-lldp-questions-2" }, //done
-      { label: "Switch Questions", link: "/reviewer/switch_questions" }, //done
+      {
+        label: "CDP & LLDP Questions",
+        link: "/ccna-reviewer-course-philippines/cdp-lldp-questions-2",
+      }, //done
+      {
+        label: "Switch Questions",
+        link: "/ccna-reviewer-course-philippines/switch_questions",
+      }, //done
       {
         label: "VLAN & Trunking Questions",
-        link: "/reviewer/vlan_truncking_questions",
+        link: "/ccna-reviewer-course-philippines/vlan_truncking_questions",
       }, //done
       {
         label: "VLAN & Trunking Questions 2",
-        link: "/reviewer/vlan_truncking_questions2",
+        link: "/ccna-reviewer-course-philippines/vlan_truncking_questions2",
       }, //done
-      { label: "STP & VTP Questions", link: "/reviewer/STP_&_VTP_Questions" }, //done
+      {
+        label: "STP & VTP Questions",
+        link: "/ccna-reviewer-course-philippines/STP_&_VTP_Questions",
+      }, //done
       {
         label: "EtherChannel Questions",
-        link: "/reviewer/EtherChannel_Questions",
+        link: "/ccna-reviewer-course-philippines/EtherChannel_Questions",
       }, //done
       // { label: 'TCP & UDP Questions', link: '#' },
       {
         label: "IP Address & Subnetting Questions",
-        link: "/reviewer/IP_Address_Subnetting_Questions",
+        link: "/ccna-reviewer-course-philippines/IP_Address_Subnetting_Questions",
       }, //done
-      { label: "IP Routing Questions", link: "/reviewer/IP_Routing_Questions" }, //done
+      {
+        label: "IP Routing Questions",
+        link: "/ccna-reviewer-course-philippines/IP_Routing_Questions",
+      }, //done
       {
         label: "IP Routing Questions 2",
-        link: "/reviewer/IP_Routing_Questions2",
+        link: "/ccna-reviewer-course-philippines/IP_Routing_Questions2",
       }, //done
-      { label: "OSPF Questions", link: "/reviewer/OSPF_Questions" }, //done
-      { label: "OSPF Questions 2", link: "/reviewer/OSPF_Questions2" }, //done
-      { label: "EIGRP Questions", link: "/reviewer/EIGRP_Questions" }, //done
-      { label: "NAT Questions", link: "/reviewer/NAT_Questions" }, //done
-      { label: "NTP Questions", link: "/reviewer/NTP_Questions" }, //done
-      { label: "Syslog Questions", link: "/reviewer/Syslog_Questions" }, //done
-      { label: "HSRP Questions", link: "/reviewer/HSRP_Questions" }, //done
+      {
+        label: "OSPF Questions",
+        link: "/ccna-reviewer-course-philippines/OSPF_Questions",
+      }, //done
+      {
+        label: "OSPF Questions 2",
+        link: "/ccna-reviewer-course-philippines/OSPF_Questions2",
+      }, //done
+      {
+        label: "EIGRP Questions",
+        link: "/ccna-reviewer-course-philippines/EIGRP_Questions",
+      }, //done
+      {
+        label: "NAT Questions",
+        link: "/ccna-reviewer-course-philippines/NAT_Questions",
+      }, //done
+      {
+        label: "NTP Questions",
+        link: "/ccna-reviewer-course-philippines/NTP_Questions",
+      }, //done
+      {
+        label: "Syslog Questions",
+        link: "/ccna-reviewer-course-philippines/Syslog_Questions",
+      }, //done
+      {
+        label: "HSRP Questions",
+        link: "/ccna-reviewer-course-philippines/HSRP_Questions",
+      }, //done
       {
         label: "Access-list Questions",
-        link: "/reviewer/Access-list_Questions",
+        link: "/ccna-reviewer-course-philippines/Access-list_Questions",
       }, //don
-      { label: "AAA Questions", link: "/reviewer/AAA_Questions" }, //done
-      { label: "Security Questions", link: "/reviewer/Security_Questions" }, //done
-      { label: "Security Questions 2", link: "/reviewer/Security_Questions_2" }, //done
-      { label: "DAI Questions", link: "/reviewer/DAI_Questions" }, //done
-      { label: "IPv6 Questions", link: "/reviewer/IPv6_Questions" }, //done
-      { label: "DNS Questions", link: "/reviewer/DNS_Questions" }, //done
-      { label: "QoS Questions", link: "/reviewer/QoS_Questions" }, //done
+      {
+        label: "AAA Questions",
+        link: "/ccna-reviewer-course-philippines/AAA_Questions",
+      }, //done
+      {
+        label: "Security Questions",
+        link: "/ccna-reviewer-course-philippines/Security_Questions",
+      }, //done
+      {
+        label: "Security Questions 2",
+        link: "/ccna-reviewer-course-philippines/Security_Questions_2",
+      }, //done
+      {
+        label: "DAI Questions",
+        link: "/ccna-reviewer-course-philippines/DAI_Questions",
+      }, //done
+      {
+        label: "IPv6 Questions",
+        link: "/ccna-reviewer-course-philippines/IPv6_Questions",
+      }, //done
+      {
+        label: "DNS Questions",
+        link: "/ccna-reviewer-course-philippines/DNS_Questions",
+      }, //done
+      {
+        label: "QoS Questions",
+        link: "/ccna-reviewer-course-philippines/QoS_Questions",
+      }, //done
       {
         label: "Port Security Questions",
-        link: "/reviewer/Port_Security_Questions",
+        link: "/ccna-reviewer-course-philippines/Port_Security_Questions",
       }, //done
-      { label: "Wireless Questions", link: "/reviewer/Wireless_Questions" }, //done
-      { label: "Wireless Questions 2", link: "/reviewer/Wireless_Questions_2" }, //done
-      { label: "SDN Questions", link: "/reviewer/SDN_Questions" }, //done
-      { label: "DNA Center Questions", link: "/reviewer/DNA_Center_Questions" }, //done
-      { label: "Drag Drop Questions", link: "/reviewer/Drag_Drop_Questions" }, //done
+      {
+        label: "Wireless Questions",
+        link: "/ccna-reviewer-course-philippines/Wireless_Questions",
+      }, //done
+      {
+        label: "Wireless Questions 2",
+        link: "/ccna-reviewer-course-philippines/Wireless_Questions_2",
+      }, //done
+      {
+        label: "SDN Questions",
+        link: "/ccna-reviewer-course-philippines/SDN_Questions",
+      }, //done
+      {
+        label: "DNA Center Questions",
+        link: "/ccna-reviewer-course-philippines/DNA_Center_Questions",
+      }, //done
+      {
+        label: "Drag Drop Questions",
+        link: "/ccna-reviewer-course-philippines/Drag_Drop_Questions",
+      }, //done
       {
         label: "Drag Drop Questions 2",
-        link: "/reviewer/Drag_Drop_Questions_2",
+        link: "/ccna-reviewer-course-philippines/Drag_Drop_Questions_2",
       }, //done
       {
         label: "Drag Drop Questions 3",
-        link: "/reviewer/Drag_Drop_Questions_3",
+        link: "/ccna-reviewer-course-philippines/Drag_Drop_Questions_3",
       }, //done
-      { label: "VPN Questions", link: "/reviewer/VPN_Questions" }, //done
-      { label: "DHCP Questions", link: "/reviewer/DHCP_Questions" }, //done
-      { label: "Automation Questions", link: "/reviewer/Automation_Questions" }, //done
+      {
+        label: "VPN Questions",
+        link: "/ccna-reviewer-course-philippines/VPN_Questions",
+      }, //done
+      {
+        label: "DHCP Questions",
+        link: "/ccna-reviewer-course-philippines/DHCP_Questions",
+      }, //done
+      {
+        label: "Automation Questions",
+        link: "/ccna-reviewer-course-philippines/Automation_Questions",
+      }, //done
       {
         label: "Miscellaneous Questions",
-        link: "/reviewer/Miscellaneous_Questions",
+        link: "/ccna-reviewer-course-philippines/Miscellaneous_Questions",
       }, //done
     ],
   },

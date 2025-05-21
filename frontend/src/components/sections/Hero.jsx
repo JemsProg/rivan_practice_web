@@ -78,7 +78,7 @@ const Hero = () => {
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             {/* Primary blue button */}
             <Link
-              to="/best-courses-it-training"
+              to="/top-it-training-courses-philippines-2025"
               className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
             >
               Browse Courses
