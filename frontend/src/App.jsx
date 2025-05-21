@@ -86,6 +86,13 @@ import AutomationQuestion from "./components/reviewers/ccna_200_301/Automation_Q
 import MiscellaneousQuestion from "./components/reviewers/ccna_200_301/Miscellaneous_Questions";
 import BasicQuestion from "./components/reviewers/ccna_200_301/Basic_Questions";
 
+import CCNA from './pages/courses/ccna';
+import CCNP from './pages/courses/Ccnp';
+import SecurityPlus from './pages/courses/SecurityPlus';
+import ITIL from './pages/courses/Itil';
+import FullStackDevelopment from './pages/courses/FullStack';
+import PaloAlto from './pages/courses/PaloAlto'
+
 function App() {
   return (
     <Router>
@@ -337,6 +344,14 @@ function App() {
               path="/reviewer/Miscellaneous_Questions"
               element={<MiscellaneousQuestion />}
             />
+
+
+            <Route path="/courses/ccna" element={<CCNA />} />
+            <Route path="/courses/ccnp" element={<CCNP />} />
+            <Route path="/courses/comptia-security-plus" element={<SecurityPlus />} />
+            <Route path="/courses/itil" element={<ITIL />} />
+            <Route path="/courses/full-stack-web-development" element={<FullStackDevelopment />} />
+            <Route path="/courses/palo-alto" element={<PaloAlto />} />
           </Routes>
         </main>
         <Footer />
