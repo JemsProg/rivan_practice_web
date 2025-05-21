@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
-import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
-import { Link as ScrollLink } from 'react-scroll'
-import { FaYoutube } from 'react-icons/fa'           // ← import the YouTube icon
-import logo from '../assets/logo.png'
+import React, { useState } from "react";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
+import { FaYoutube } from "react-icons/fa"; // ← import the YouTube icon
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation()
-  const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleNavClick = (target) => {
-    setIsOpen(false)
+    setIsOpen(false);
     if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: target } })
+      navigate("/", { state: { scrollTo: target } });
     }
-  }
+  };
 
   const commonLinkProps = {
     spy: true,
@@ -27,7 +27,7 @@ const Navbar = () => {
     offset: -70,
     activeClass: "text-gray-900",
     className: "cursor-pointer text-gray-500 hover:text-gray-700",
-  }
+  };
 
   return (
     <nav className="bg-[#F9FAFF] shadow-sm sticky top-0 z-10">
@@ -35,19 +35,58 @@ const Navbar = () => {
         {/* Left: Logo + Brand */}
         <div className="flex items-center">
           <img src={logo} alt="RivanCyber Logo" className="h-8 w-8 mr-2" />
-          <RouterLink to="/" className="text-2xl font-semibold text-[#0D2153] cursor-pointer">
+          <RouterLink
+            to="/"
+            className="text-2xl font-semibold text-[#0D2153] cursor-pointer"
+          >
             RivanCyber
           </RouterLink>
         </div>
 
         {/* Middle: Nav Links (hidden on mobile) */}
         <div className="hidden md:flex space-x-6">
-          <ScrollLink to="home"    onClick={() => handleNavClick("home")}    {...commonLinkProps}>Home</ScrollLink>
-          <ScrollLink to="about"   onClick={() => handleNavClick("about")}   {...commonLinkProps}>About</ScrollLink>
-          <ScrollLink to="services" onClick={() => handleNavClick("services")} {...commonLinkProps}>Services</ScrollLink>
-          <ScrollLink to="courses" onClick={() => handleNavClick("courses")} {...commonLinkProps}>Courses</ScrollLink>
-          <ScrollLink to="reviews" onClick={() => handleNavClick("reviews")} {...commonLinkProps}>Reviews</ScrollLink>
-          <ScrollLink to="contact" onClick={() => handleNavClick("contact")} {...commonLinkProps}>Contact</ScrollLink>
+          <ScrollLink
+            to="home"
+            onClick={() => handleNavClick("home")}
+            {...commonLinkProps}
+          >
+            Home
+          </ScrollLink>
+          <ScrollLink
+            to="about"
+            onClick={() => handleNavClick("about")}
+            {...commonLinkProps}
+          >
+            About
+          </ScrollLink>
+          <ScrollLink
+            to="services"
+            onClick={() => handleNavClick("services")}
+            {...commonLinkProps}
+          >
+            Services
+          </ScrollLink>
+          <ScrollLink
+            to="courses"
+            onClick={() => handleNavClick("courses")}
+            {...commonLinkProps}
+          >
+            Courses
+          </ScrollLink>
+          <ScrollLink
+            to="reviews"
+            onClick={() => handleNavClick("reviews")}
+            {...commonLinkProps}
+          >
+            Reviews
+          </ScrollLink>
+          <ScrollLink
+            to="contact"
+            onClick={() => handleNavClick("contact")}
+            {...commonLinkProps}
+          >
+            Contact
+          </ScrollLink>
         </div>
 
         {/* Right: YouTube + "Request a Quote" buttons (hidden on mobile) */}
@@ -70,7 +109,7 @@ const Navbar = () => {
             YouTube
           </a>
           <RouterLink
-            to="/quotation"
+            to="/training-quotation-philippines"
             className="
               px-5 py-2
               bg-[#0D2153]
@@ -105,12 +144,54 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-[#F9FAFF] shadow-sm">
           <div className="px-4 pt-3 pb-4 space-y-2">
-            <ScrollLink to="home"    onClick={() => handleNavClick("home")}    {...commonLinkProps} className="block">Home</ScrollLink>
-            <ScrollLink to="about"   onClick={() => handleNavClick("about")}   {...commonLinkProps} className="block">About</ScrollLink>
-            <ScrollLink to="services" onClick={() => handleNavClick("services")} {...commonLinkProps} className="block">Services</ScrollLink>
-            <ScrollLink to="courses" onClick={() => handleNavClick("courses")} {...commonLinkProps} className="block">Courses</ScrollLink>
-            <ScrollLink to="reviews" onClick={() => handleNavClick("reviews")} {...commonLinkProps} className="block">Reviews</ScrollLink>
-            <ScrollLink to="contact" onClick={() => handleNavClick("contact")} {...commonLinkProps} className="block">Contact</ScrollLink>
+            <ScrollLink
+              to="home"
+              onClick={() => handleNavClick("home")}
+              {...commonLinkProps}
+              className="block"
+            >
+              Home
+            </ScrollLink>
+            <ScrollLink
+              to="about"
+              onClick={() => handleNavClick("about")}
+              {...commonLinkProps}
+              className="block"
+            >
+              About
+            </ScrollLink>
+            <ScrollLink
+              to="services"
+              onClick={() => handleNavClick("services")}
+              {...commonLinkProps}
+              className="block"
+            >
+              Services
+            </ScrollLink>
+            <ScrollLink
+              to="courses"
+              onClick={() => handleNavClick("courses")}
+              {...commonLinkProps}
+              className="block"
+            >
+              Courses
+            </ScrollLink>
+            <ScrollLink
+              to="reviews"
+              onClick={() => handleNavClick("reviews")}
+              {...commonLinkProps}
+              className="block"
+            >
+              Reviews
+            </ScrollLink>
+            <ScrollLink
+              to="contact"
+              onClick={() => handleNavClick("contact")}
+              {...commonLinkProps}
+              className="block"
+            >
+              Contact
+            </ScrollLink>
 
             {/* Mobile YouTube Button */}
             <a
@@ -150,7 +231,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

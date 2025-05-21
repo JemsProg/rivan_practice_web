@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";   // for redirect
+import { useNavigate } from "react-router-dom"; // for redirect
 
 const Quotation = () => {
   /* ---------------- basic state ---------------- */
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(
+    () => {
+      document.title = "Rivan | Training Quotation";
+    },
+    window.scrollTo(0, 0),
+    []
+  );
 
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [currentStep, setCurrentStep]   = useState(1);
-  const [errors, setErrors]             = useState({});
-  const [modal, setModal]               = useState({ open: false, title: "", body: "" });
+  const [currentStep, setCurrentStep] = useState(1);
+  const [errors, setErrors] = useState({});
+  const [modal, setModal] = useState({ open: false, title: "", body: "" });
 
   const [formData, setFormData] = useState({
     customerName: "",
@@ -27,17 +33,20 @@ const Quotation = () => {
   });
 
   /* ---------------- static options ---------------- */
-  const courseOptions   = [
+  const courseOptions = [
     "RivanIT CCNA Network Engineer Training 200-301",
     "CCNP Enterprise: ENCORxENARSIxSDWAN",
     "COMPTIA SECURITY PLUS+",
   ];
-  const fundingOptions  = ["Personal/Individual", "Sponsor/Corporate"];
+  const fundingOptions = ["Personal/Individual", "Sponsor/Corporate"];
 
   /* ---------------- handlers ---------------- */
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((p) => ({ ...p, [name]: type === "checkbox" ? checked : value }));
+    setFormData((p) => ({
+      ...p,
+      [name]: type === "checkbox" ? checked : value,
+    }));
     setErrors((p) => ({ ...p, [name]: "" }));
   };
 
@@ -53,8 +62,11 @@ const Quotation = () => {
   useEffect(() => {
     const num = parseInt(formData.numberOfAttendees, 10);
     if (!isNaN(num) && num > 0) {
-      let names = Array.isArray(formData.attendeeNames) ? formData.attendeeNames : [];
-      if (names.length < num) names = [...names, ...Array(num - names.length).fill("")];
+      let names = Array.isArray(formData.attendeeNames)
+        ? formData.attendeeNames
+        : [];
+      if (names.length < num)
+        names = [...names, ...Array(num - names.length).fill("")];
       if (names.length > num) names = names.slice(0, num);
       if (names.length !== formData.attendeeNames.length)
         setFormData((p) => ({ ...p, attendeeNames: names }));
@@ -67,27 +79,36 @@ const Quotation = () => {
   const validateStep = () => {
     const err = {};
     if (currentStep === 1) {
-      if (!formData.customerName.trim()) err.customerName = "Customer/Company Name is required.";
+      if (!formData.customerName.trim())
+        err.customerName = "Customer/Company Name is required.";
     } else if (currentStep === 2) {
-      if (!formData.numberOfAttendees)           err.numberOfAttendees = "Number of Attendees is required.";
-      if (!Array.isArray(formData.attendeeNames) ||
-          formData.attendeeNames.some((n) => n.trim() === ""))
-                                                 err.attendeeNames = "Full Names of Attendees are required.";
-      if (!formData.jobTitle.trim())             err.jobTitle = "Job Title is required.";
-      if (!formData.email.trim())                err.email = "Email is required.";
-      if (!formData.contactNumber.trim())        err.contactNumber = "Contact Number is required.";
+      if (!formData.numberOfAttendees)
+        err.numberOfAttendees = "Number of Attendees is required.";
+      if (
+        !Array.isArray(formData.attendeeNames) ||
+        formData.attendeeNames.some((n) => n.trim() === "")
+      )
+        err.attendeeNames = "Full Names of Attendees are required.";
+      if (!formData.jobTitle.trim()) err.jobTitle = "Job Title is required.";
+      if (!formData.email.trim()) err.email = "Email is required.";
+      if (!formData.contactNumber.trim())
+        err.contactNumber = "Contact Number is required.";
     } else if (currentStep === 3) {
-      if (!formData.message.trim())              err.message = "Message is required.";
+      if (!formData.message.trim()) err.message = "Message is required.";
     }
     setErrors(err);
     return Object.keys(err).length === 0;
   };
 
   /* ---------------- navigation ---------------- */
-  const goToNextStep = () => { if (validateStep()) setCurrentStep((s) => s + 1); };
-  const goToPrevStep = () => { if (currentStep > 1) setCurrentStep((s) => s - 1); };
+  const goToNextStep = () => {
+    if (validateStep()) setCurrentStep((s) => s + 1);
+  };
+  const goToPrevStep = () => {
+    if (currentStep > 1) setCurrentStep((s) => s - 1);
+  };
 
-  /* ---------------- submit ---------------- */  
+  /* ---------------- submit ---------------- */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSubmitting || !validateStep()) return;
@@ -107,12 +128,20 @@ const Quotation = () => {
             body: "Your quotation request has been sent successfully.",
           });
         } else {
-          setModal({ open: true, title: "Error", body: d.error || "Unknown error." });
+          setModal({
+            open: true,
+            title: "Error",
+            body: d.error || "Unknown error.",
+          });
           setIsSubmitting(false);
         }
       })
       .catch(() =>
-        setModal({ open: true, title: "Error", body: "An error occurred while submitting the form." })
+        setModal({
+          open: true,
+          title: "Error",
+          body: "An error occurred while submitting the form.",
+        })
       );
   };
 
@@ -129,9 +158,13 @@ const Quotation = () => {
       case 1:
         return (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Course Details</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">
+              Course Details
+            </h2>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Customer/Company Name:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Customer/Company Name:
+              </label>
               <input
                 type="text"
                 name="customerName"
@@ -140,10 +173,16 @@ const Quotation = () => {
                 placeholder="Enter customer or company name"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.customerName && <span className="text-red-500 text-xs">{errors.customerName}</span>}
+              {errors.customerName && (
+                <span className="text-red-500 text-xs">
+                  {errors.customerName}
+                </span>
+              )}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Course for Quotation:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Course for Quotation:
+              </label>
               <select
                 name="course"
                 value={formData.course}
@@ -151,12 +190,16 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               >
                 {courseOptions.map((o) => (
-                  <option key={o} value={o}>{o}</option>
+                  <option key={o} value={o}>
+                    {o}
+                  </option>
                 ))}
               </select>
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Training Location:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Training Location:
+              </label>
               <input
                 type="text"
                 name="trainingLocation"
@@ -166,7 +209,9 @@ const Quotation = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Delivery Mode:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Delivery Mode:
+              </label>
               <input
                 type="text"
                 name="deliveryMode"
@@ -181,9 +226,13 @@ const Quotation = () => {
       case 2:
         return (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Customer / Company Info</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">
+              Customer / Company Info
+            </h2>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Number of Attendees:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Number of Attendees:
+              </label>
               <input
                 type="number"
                 name="numberOfAttendees"
@@ -193,10 +242,16 @@ const Quotation = () => {
                 placeholder="Number of Attendees"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.numberOfAttendees && <span className="text-red-500 text-xs">{errors.numberOfAttendees}</span>}
+              {errors.numberOfAttendees && (
+                <span className="text-red-500 text-xs">
+                  {errors.numberOfAttendees}
+                </span>
+              )}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Full Names of Attendees:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Full Names of Attendees:
+              </label>
               {formData.attendeeNames.map((n, i) => (
                 <input
                   key={i}
@@ -208,10 +263,16 @@ const Quotation = () => {
                   className="w-full p-2 border border-gray-300 rounded-lg mb-2"
                 />
               ))}
-              {errors.attendeeNames && <span className="text-red-500 text-xs">{errors.attendeeNames}</span>}
+              {errors.attendeeNames && (
+                <span className="text-red-500 text-xs">
+                  {errors.attendeeNames}
+                </span>
+              )}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Choose Funding:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Choose Funding:
+              </label>
               <select
                 name="fundingType"
                 value={formData.fundingType}
@@ -219,15 +280,19 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
               >
                 {fundingOptions.map((o) => (
-                  <option key={o} value={o}>{o}</option>
+                  <option key={o} value={o}>
+                    {o}
+                  </option>
                 ))}
               </select>
             </div>
 
-            {(formData.course === "COMPTIA SECURITY PLUS+" || 
+            {(formData.course === "COMPTIA SECURITY PLUS+" ||
               formData.course === "COMPTIA SEC+ 701 (EXAM) Voucher") && (
               <div className="mb-4" id="voucher_option">
-                <label className="block mb-1 text-[#0D2153]">Voucher for Exam:</label>
+                <label className="block mb-1 text-[#0D2153]">
+                  Voucher for Exam:
+                </label>
                 <select
                   name="voucherNeeded"
                   value={formData.voucherNeeded}
@@ -240,7 +305,6 @@ const Quotation = () => {
               </div>
             )}
 
-
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">Job Title:</label>
               <input
@@ -251,7 +315,9 @@ const Quotation = () => {
                 placeholder="Enter your job title"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.jobTitle && <span className="text-red-500 text-xs">{errors.jobTitle}</span>}
+              {errors.jobTitle && (
+                <span className="text-red-500 text-xs">{errors.jobTitle}</span>
+              )}
             </div>
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">Email:</label>
@@ -264,10 +330,14 @@ const Quotation = () => {
                 className="w-full p-2 border border-gray-300 rounded-lg"
                 required
               />
-              {errors.email && <span className="text-red-500 text-xs">{errors.email}</span>}
+              {errors.email && (
+                <span className="text-red-500 text-xs">{errors.email}</span>
+              )}
             </div>
             <div className="mb-4">
-              <label className="block mb-1 text-[#0D2153]">Contact Number:</label>
+              <label className="block mb-1 text-[#0D2153]">
+                Contact Number:
+              </label>
               <input
                 type="text"
                 name="contactNumber"
@@ -276,7 +346,11 @@ const Quotation = () => {
                 placeholder="Enter your contact number"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.contactNumber && <span className="text-red-500 text-xs">{errors.contactNumber}</span>}
+              {errors.contactNumber && (
+                <span className="text-red-500 text-xs">
+                  {errors.contactNumber}
+                </span>
+              )}
             </div>
           </div>
         );
@@ -284,7 +358,9 @@ const Quotation = () => {
       case 3:
         return (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Message & Confirmation</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">
+              Message & Confirmation
+            </h2>
             <div className="mb-4">
               <label className="block mb-1 text-[#0D2153]">Message:</label>
               <textarea
@@ -295,7 +371,9 @@ const Quotation = () => {
                 placeholder="Enter your message (optional)"
                 className="w-full p-2 border border-gray-300 rounded-lg"
               />
-              {errors.message && <span className="text-red-500 text-xs">{errors.message}</span>}
+              {errors.message && (
+                <span className="text-red-500 text-xs">{errors.message}</span>
+              )}
             </div>
           </div>
         );
@@ -340,7 +418,7 @@ const Quotation = () => {
                 </button>
               )}
               {currentStep === 3 && (
-                 <button
+                <button
                   type="submit"
                   disabled={isSubmitting}
                   className={
@@ -358,7 +436,9 @@ const Quotation = () => {
         </div>
       </div>
 
-      {modal.open && <Modal title={modal.title} body={modal.body} onClose={closeModal} />}
+      {modal.open && (
+        <Modal title={modal.title} body={modal.body} onClose={closeModal} />
+      )}
     </section>
   );
 };
@@ -377,7 +457,9 @@ const StepIndicator = ({ currentStep }) => (
 const StepCircle = ({ step, currentStep, label }) => (
   <div className="flex flex-col items-center text-center w-20">
     <div
-      className={`${currentStep >= step ? "bg-[#0D2153]" : "bg-gray-300"} rounded-full w-10 h-10 flex items-center justify-center text-white mb-2`}
+      className={`${
+        currentStep >= step ? "bg-[#0D2153]" : "bg-gray-300"
+      } rounded-full w-10 h-10 flex items-center justify-center text-white mb-2`}
     >
       {step}
     </div>
@@ -386,7 +468,11 @@ const StepCircle = ({ step, currentStep, label }) => (
 );
 
 const Line = ({ step, currentStep }) => (
-  <div className={`flex-1 h-0.5 mx-2 ${currentStep > step ? "bg-[#0D2153]" : "bg-gray-300"}`} />
+  <div
+    className={`flex-1 h-0.5 mx-2 ${
+      currentStep > step ? "bg-[#0D2153]" : "bg-gray-300"
+    }`}
+  />
 );
 
 /* ---------------- new modal component ---------------- */

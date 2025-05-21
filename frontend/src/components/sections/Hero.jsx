@@ -1,32 +1,32 @@
 // src/components/Hero.jsx
 
-import React, { useRef, useEffect } from 'react'
-import { animate, inView } from 'motion'
-import { Link } from 'react-router-dom'
+import React, { useRef, useEffect } from "react";
+import { animate, inView } from "motion";
+import { Link } from "react-router-dom";
 
 // Building image
-import buildingImage from '../../assets/building_dragon.png'
+import buildingImage from "../../assets/building_dragon.png";
 
 // Bottom icons
-import developIcon from '../../assets/we_develop.png'
-import nurtureIcon from '../../assets/we_nurture.png'
-import discoverIcon from '../../assets/we_discover.png'
+import developIcon from "../../assets/we_develop.png";
+import nurtureIcon from "../../assets/we_nurture.png";
+import discoverIcon from "../../assets/we_discover.png";
 
 const Hero = () => {
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const els = sectionRef.current.querySelectorAll('[data-animate]')
+    const els = sectionRef.current.querySelectorAll("[data-animate]");
     els.forEach((el, i) =>
       inView(el, () =>
         animate(
           el,
           { opacity: 1, y: 0 },
-          { duration: 0.6, delay: i * 0.1, easing: 'ease-in-out' }
+          { duration: 0.6, delay: i * 0.1, easing: "ease-in-out" }
         )
       )
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <section
@@ -56,7 +56,7 @@ const Hero = () => {
         {/* TEXT & CTAs */}
         <div
           data-animate
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
+          style={{ opacity: 0, transform: "translateY(30px)" }}
           className="
             flex-1
             text-center md:text-left
@@ -68,20 +68,24 @@ const Hero = () => {
             RivanCyber Training Institute, Inc.
           </p>
           <h1 className="mt-2 text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-            #1 Best <span className="text-[#0D2153]">IT Certifications Training Center</span> for Networking,{' '}
+            #1 Best{" "}
+            <span className="text-[#0D2153]">
+              IT Certifications Training Center
+            </span>{" "}
+            for Networking,{" "}
             <span className="text-[#0D2153]">Cybersecurity,</span> and Beyond
           </h1>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             {/* Primary blue button */}
             <Link
-              to="/courses"
+              to="/best-courses-it-training"
               className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
             >
               Browse Courses
             </Link>
             {/* Secondary white button */}
             <Link
-              to="/reviewer"
+              to="/cisco-training-philippines "
               className="px-6 py-3 border border-[#0D2153] text-[#0D2153] rounded-full hover:bg-[#EAEFFB] transition-colors"
             >
               Check Reviewers
@@ -93,15 +97,21 @@ const Hero = () => {
       {/* Bottom row: We Develop / We Nurture / We Discover */}
       <div
         data-animate
-        style={{ opacity: 0, transform: 'translateY(30px)' }}
+        style={{ opacity: 0, transform: "translateY(30px)" }}
         className="bg-white mt-12 py-8 px-4 md:px-8"
       >
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* We Develop */}
           <div className="flex items-start space-x-4">
-            <img src={developIcon} alt="We Develop Icon" className="h-12 w-12 flex-shrink-0" />
+            <img
+              src={developIcon}
+              alt="We Develop Icon"
+              className="h-12 w-12 flex-shrink-0"
+            />
             <div>
-              <h3 className="text-xl font-bold mb-2 text-[#0D2153]">We Develop</h3>
+              <h3 className="text-xl font-bold mb-2 text-[#0D2153]">
+                We Develop
+              </h3>
               <p className="text-gray-600">
                 Empowering IT individuals to reach their full potential.
               </p>
@@ -109,19 +119,32 @@ const Hero = () => {
           </div>
           {/* We Nurture */}
           <div className="flex items-start space-x-4">
-            <img src={nurtureIcon} alt="We Nurture Icon" className="h-12 w-12 flex-shrink-0" />
+            <img
+              src={nurtureIcon}
+              alt="We Nurture Icon"
+              className="h-12 w-12 flex-shrink-0"
+            />
             <div>
-              <h3 className="text-xl font-bold mb-2 text-[#0D2153]">We Nurture</h3>
+              <h3 className="text-xl font-bold mb-2 text-[#0D2153]">
+                We Nurture
+              </h3>
               <p className="text-gray-600">
-                Fostering growth and innovation in the ever-evolving world of IT.
+                Fostering growth and innovation in the ever-evolving world of
+                IT.
               </p>
             </div>
           </div>
           {/* We Discover */}
           <div className="flex items-start space-x-4">
-            <img src={discoverIcon} alt="We Discover Icon" className="h-12 w-12 flex-shrink-0" />
+            <img
+              src={discoverIcon}
+              alt="We Discover Icon"
+              className="h-12 w-12 flex-shrink-0"
+            />
             <div>
-              <h3 className="text-xl font-bold mb-2 text-[#0D2153]">We Discover</h3>
+              <h3 className="text-xl font-bold mb-2 text-[#0D2153]">
+                We Discover
+              </h3>
               <p className="text-gray-600">
                 Uncovering the brightest minds in the IT landscape.
               </p>
@@ -130,7 +153,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
