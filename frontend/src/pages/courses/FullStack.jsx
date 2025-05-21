@@ -10,7 +10,7 @@ import {
   FaLink,
   FaDesktop,
 } from "react-icons/fa";
-import fsdLogo from "../../assets/ccna.png"; // Replace waith your Full Stack logo path
+import fsdLogo from "../../assets/full-stack.png"; // Replace waith your Full Stack logo path
 
 // Example images for the gallery (replace with your actual images)
 import img1 from "../../assets/about_1.png";
