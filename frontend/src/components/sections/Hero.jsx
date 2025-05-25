@@ -64,17 +64,15 @@ const Hero = () => {
             md:ml-8
           "
         >
-          <p className="text-lg md:text-xl font-medium text-gray-500">
-            RivanCyber Training Institute, Inc.
-          </p>
           <h1 className="mt-2 text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-            #1 Best{" "}
-            <span className="text-[#0D2153]">
-              IT Certifications Training Center
-            </span>{" "}
-            for Networking,{" "}
-            <span className="text-[#0D2153]">Cybersecurity,</span> and Beyond
+            IT Training Philippines
           </h1>
+          <p className="text-lg md:text-xl font-medium text-gray-500">
+            RivanCyber Training Institute, Inc. offers top-tier IT training in
+            the Philippines, empowering individuals with hands-on skills in
+            cybersecurity, programming, and digital solutions tailored for the
+            modern tech landscape.
+          </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             {/* Primary blue button */}
             <Link
@@ -110,7 +108,7 @@ const Hero = () => {
             />
             <div>
               <h3 className="text-xl font-bold mb-2 text-[#0D2153]">
-                We Develop
+                IT Training Philippines
               </h3>
               <p className="text-gray-600">
                 Empowering IT individuals to reach their full potential.
@@ -126,7 +124,7 @@ const Hero = () => {
             />
             <div>
               <h3 className="text-xl font-bold mb-2 text-[#0D2153]">
-                We Nurture
+                Tech Skills Development
               </h3>
               <p className="text-gray-600">
                 Fostering growth and innovation in the ever-evolving world of
@@ -143,7 +141,7 @@ const Hero = () => {
             />
             <div>
               <h3 className="text-xl font-bold mb-2 text-[#0D2153]">
-                We Discover
+                Train for IT Careers
               </h3>
               <p className="text-gray-600">
                 Uncovering the brightest minds in the IT landscape.

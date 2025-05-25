@@ -1,15 +1,15 @@
-import React, { useRef, useEffect } from 'react'
-import { animate, inView } from 'motion'
-import aboutImg1 from '../../assets/about_1.png'
-import aboutImg2 from '../../assets/about_2.png'
-import aboutImg3 from '../../assets/about_3.png'
-import aboutImg4 from '../../assets/about_4.png'
+import React, { useRef, useEffect } from "react";
+import { animate, inView } from "motion";
+import aboutImg1 from "../../assets/about_1.png";
+import aboutImg2 from "../../assets/about_2.png";
+import aboutImg3 from "../../assets/about_3.png";
+import aboutImg4 from "../../assets/about_4.png";
 
 const About = () => {
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const elements = sectionRef.current.querySelectorAll('[data-animate]')
+    const elements = sectionRef.current.querySelectorAll("[data-animate]");
     elements.forEach((el, index) => {
       inView(el, () => {
         animate(
@@ -18,38 +18,34 @@ const About = () => {
           {
             duration: 0.6,
             delay: index * 0.1,
-            easing: 'ease-in-out'
+            easing: "ease-in-out",
           }
-        )
-      })
-    })
-  }, [])
+        );
+      });
+    });
+  }, []);
 
-  const aboutImages = [aboutImg1, aboutImg2, aboutImg3, aboutImg4]
+  const aboutImages = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
 
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="bg-[#F9FAFF] py-24 px-4"
-    >
+    <section id="about" ref={sectionRef} className="bg-[#F9FAFF] py-24 px-4">
       <div className="container mx-auto max-w-6xl">
         <h2
           data-animate
           className="text-center text-2xl md:text-4xl font-semibold text-[#0D2153]"
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
+          style={{ opacity: 0, transform: "translateY(30px)" }}
         >
-          Looking to Become a Tech Professional?
+          IT Certification Exam
         </h2>
 
         <p
           data-animate
           className="mt-4 text-center text-gray-700 max-w-3xl mx-auto"
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
+          style={{ opacity: 0, transform: "translateY(30px)" }}
         >
-          RivanCyber empowers IT professionals, fosters innovation, and uncovers 
-          exceptional talent across the evolving tech landscape. Through skill 
-          development, growth opportunities, and a dynamic community, we drive 
+          RivanCyber empowers IT professionals, fosters innovation, and uncovers
+          exceptional talent across the evolving tech landscape. Through skill
+          development, growth opportunities, and a dynamic community, we drive
           progress and shape a transformative future for IT.
         </p>
 
@@ -59,7 +55,7 @@ const About = () => {
               key={index}
               data-animate
               className="overflow-hidden rounded-2xl"
-              style={{ opacity: 0, transform: 'translateY(50px)' }}
+              style={{ opacity: 0, transform: "translateY(50px)" }}
             >
               <img
                 src={imgSrc}
@@ -71,7 +67,7 @@ const About = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

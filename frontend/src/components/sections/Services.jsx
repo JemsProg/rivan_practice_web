@@ -1,95 +1,96 @@
-import React, { useRef, useEffect } from 'react'
-import { animate, inView } from 'motion'
+// src/components/Services.jsx
+import React, { useRef, useEffect } from "react";
+import { animate, inView } from "motion";
 
-import service1 from '../../assets/services_1.png'
-import service2 from '../../assets/services_2.png'
-import service3 from '../../assets/services_3.png'
-import service4 from '../../assets/services_4.png'
-import service5 from '../../assets/services_5.png'
-import service6 from '../../assets/services_6.png'
+import service1 from "../../assets/services_1.png";
+import service2 from "../../assets/services_2.png";
+import service3 from "../../assets/services_3.png";
+import service4 from "../../assets/services_4.png";
+import service5 from "../../assets/services_5.png";
+import service6 from "../../assets/services_6.png";
 
 const Services = () => {
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Select all elements that need animation
-    const elements = sectionRef.current.querySelectorAll('[data-animate]')
+    const elements = sectionRef.current.querySelectorAll("[data-animate]");
     elements.forEach((el, index) => {
-      // Trigger animation when each element enters the viewport
       inView(el, () => {
         animate(
           el,
           { opacity: 1, y: 0 },
-          {
-            duration: 0.6,
-            delay: index * 0.1, // stagger effect
-            easing: 'ease-in-out'
-          }
-        )
-      })
-    })
-  }, [])
+          { duration: 0.6, delay: index * 0.1, easing: "ease-in-out" }
+        );
+      });
+    });
+  }, []);
 
-  // Array of services
+  // SEO-optimised service blocks
   const servicesData = [
     {
-      title: 'Linux Security and Hardening',
+      title: "Linux Security & Hardening Training Philippines",
       description:
-        'Learn best practices to secure Linux servers, mitigate threats, manage user permissions, and more.',
-      img: service1
+        "Hands-on Linux server hardening course: threat mitigation, SELinux, firewall & user-permission control for Philippine IT teams.",
+      img: service1,
     },
     {
-      title: 'Complete Cyber Security Analysis',
+      title: "Cyber-Security Analyst Certification Course Manila",
       description:
-        'Identify potential vulnerabilities and become a proficient cyber security analyst.',
-      img: service2
+        "Identify, analyse and mitigate cyber threats with tools and labs aligned to global SOC roles — perfect for aspiring analysts in Manila.",
+      img: service2,
     },
     {
-      title: 'Network Engineer: CCNA Track',
+      title: "CCNA Network Engineer Bootcamp Philippines",
       description:
-        'A comprehensive track covering network fundamentals, routing, switching, and exam prep for CCNA certification.',
-      img: service3
+        "Full Cisco CCNA training: networking fundamentals, IPv4/IPv6 routing, switching and exam prep — delivered in Makati & Cebu.",
+      img: service3,
     },
     {
-      title: 'Incident Response for Cyber Professionals',
+      title: "Incident Response & Detection Training Philippines",
       description:
-        'Master techniques and strategies for quick detection, mitigation, and response to cyber incidents.',
-      img: service4
+        "Learn rapid detection, triage and containment techniques to minimise cyber-attack impact; ideal for corporate CSIRT members.",
+      img: service4,
     },
     {
-      title: 'VMWare – Sphere 7',
+      title: "VMware vSphere 7 Administration Course",
       description:
-        'From virtualization to vMotion management, and deployment of virtual machines.',
-      img: service5
+        "Virtualisation essentials, vMotion management and VM deployment — upskill for data-centre roles in the Philippine market.",
+      img: service5,
     },
     {
-      title: 'Penetration Testing the Right Way',
+      title: "Ethical Hacking & Penetration Testing Course PH",
       description:
-        'Learn the methodologies and best practices to effectively test for system vulnerabilities.',
-      img: service6
-    }
-  ]
+        "Master vulnerability assessment, exploit frameworks and reporting best-practice in this hands-on ethical hacking class.",
+      img: service6,
+    },
+  ];
 
   return (
-    <section id='services' ref={sectionRef} className="bg-white py-24 px-4">
+    <section
+      id="it-training-services"
+      ref={sectionRef}
+      className="bg-white py-24 px-4"
+    >
       <div className="container mx-auto max-w-6xl">
-        {/* Right-aligned heading and paragraph */}
+        {/* Section heading & intro copy packed with target keywords */}
         <div className="md:text-right mb-12">
           <h2
             data-animate
             className="text-3xl md:text-4xl font-semibold text-[#0D2153]"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
+            style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            What services we offer
+            IT&nbsp;Training&nbsp;&amp;&nbsp;Certification Courses in the
+            Philippines
           </h2>
           <p
             data-animate
             className="mt-4 text-gray-600 leading-relaxed max-w-2xl md:ml-auto"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
+            style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            Rivan Cyber Institute empowers individuals to enter the IT industry, 
-            focusing on cutting-edge fields like Cyber Security, Network Engineering, 
-            and DevOps to foster comprehensive skill development.
+            Rivan&nbsp;Cyber Institute delivers career-ready CCNA, CCNP,
+            Cyber-Security, Linux Hardening, VMware and Full-Stack developer
+            programmes in Manila, Makati and Cebu — complete with exam
+            preparation and job-placement support.
           </p>
         </div>
 
@@ -100,12 +101,12 @@ const Services = () => {
               key={index}
               data-animate
               className="border border-gray-300 rounded-4xl p-6 flex items-start space-x-4 bg-white transition-colors duration-300 hover:border-blue-300"
-              style={{ opacity: 0, transform: 'translateY(30px)' }}
+              style={{ opacity: 0, transform: "translateY(30px)" }}
             >
               {/* Service Image */}
               <img
                 src={service.img}
-                alt={service.title}
+                alt={`${service.title} Icon`}
                 className="w-20 h-20 object-cover flex-shrink-0 rounded"
               />
               {/* Title & Description */}
@@ -113,16 +114,14 @@ const Services = () => {
                 <h3 className="text-lg font-semibold text-[#0D2153] mb-1">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
-                  {service.description}
-                </p>
+                <p className="text-gray-600 text-sm">{service.description}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;
