@@ -125,7 +125,7 @@ import AutomationQuestion from "./components/reviewers/ccna_200_301/Automation_Q
 import MiscellaneousQuestion from "./components/reviewers/ccna_200_301/Miscellaneous_Questions";
 import BasicQuestion from "./components/reviewers/ccna_200_301/Basic_Questions";
 
-import CCNA from "./pages/courses/ccna";
+import CCNA from "./pages/courses/Ccna";
 import CCNP from "./pages/courses/Ccnp";
 import SecurityPlus from "./pages/courses/SecurityPlus";
 import ITIL from "./pages/courses/Itil";
@@ -140,6 +140,7 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Routes>
+ 
             <Route path="/" element={<LandingPage />} />
             <Route
               path="/top-it-training-courses-philippines-2025"

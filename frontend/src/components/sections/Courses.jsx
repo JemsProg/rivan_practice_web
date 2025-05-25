@@ -50,7 +50,7 @@ const Courses = () => {
       description:
         "Learn networking fundamentals, routing, switching, and security in our hands-on CCNA course—ideal for beginners and IT pros.",
       img: ccnaImg,
-      link: "/courses/ccna-training",
+      link: "/top-it-training-courses-philippines-2025/ccna-201-301",
     },
     {
       title: "CompTIA Security+",
@@ -58,7 +58,7 @@ const Courses = () => {
       description:
         "Gain essential cybersecurity skills including threat detection and risk management in our hands-on Security+ training.",
       img: comptiaSecurityImg,
-      link: "/courses/comptia-security-plus-training",
+      link: "/top-it-trianing-courses-philippines-2025/comptia-security-plus-syo-701",
     },
     {
       title: "Full Stack Development",
@@ -66,7 +66,7 @@ const Courses = () => {
       description:
         "Become a full stack developer with hands-on training on React.js frontend, Django backend, PostgreSQL database, and Ubuntu for deployment.",
       img: fullStackImg,
-      link: "/courses/full-stack-web-development-training",
+      link: "/top-it-training-courses-philippines-2025/full-stack-web-development-react-django-postgresql",
     },
     {
       title: "ITIL",
@@ -74,7 +74,7 @@ const Courses = () => {
       description:
         "Master IT service management best practices to improve IT operations and align services with business goals.",
       img: itilImg,
-      link: "/courses/itil-training",
+      link: "/top-it-training-courses-philippines-2025/itil-v4-v3",
     },
     {
       title: "CCNP ENCOR",
@@ -82,7 +82,7 @@ const Courses = () => {
       description:
         "Gain in-depth knowledge of enterprise infrastructure and network automation through CCNP ENCOR training.",
       img: ccnpImg,
-      link: "/courses/ccnp-training",
+      link: "/top-it-training-courses-philippines-2025/ccnp-encor-enarsi",
     },
     {
       title: "PCNSA",
@@ -90,7 +90,7 @@ const Courses = () => {
       description:
         "Gain hands-on experience configuring and securing networks with Palo Alto Networks technologies.",
       img: pcnsaImg,
-      link: "/courses/palo-alto-training",
+      link: "/top-it-training-courses-philippines-2025/palo-alto-network-training",
     },
   ];
 
