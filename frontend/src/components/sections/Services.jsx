@@ -1,13 +1,17 @@
 // src/components/Services.jsx
 import React, { useRef, useEffect } from "react";
 import { animate, inView } from "motion";
+import {
+  AcademicCapIcon,
+  ShieldCheckIcon,
+  CpuChipIcon,
+  CodeBracketIcon,
+} from "@heroicons/react/24/outline";
 
-import service1 from "../../assets/services_1.png";
-import service2 from "../../assets/services_2.png";
-import service3 from "../../assets/services_3.png";
-import service4 from "../../assets/services_4.png";
-import service5 from "../../assets/services_5.png";
-import service6 from "../../assets/services_6.png";
+import service_video from "../../assets/service_video.mp4";
+
+import Slider from "react-slick";
+import { courses } from "../data/courses";
 
 const Services = () => {
   const sectionRef = useRef(null);
@@ -15,55 +19,66 @@ const Services = () => {
   useEffect(() => {
     const elements = sectionRef.current.querySelectorAll("[data-animate]");
     elements.forEach((el, index) => {
-      inView(el, () => {
-        animate(
-          el,
-          { opacity: 1, y: 0 },
-          { duration: 0.6, delay: index * 0.1, easing: "ease-in-out" }
-        );
-      });
+      inView(
+        el,
+        () => {
+          animate(
+            el,
+            { opacity: 1, y: 0 },
+            { duration: 0.6, delay: index * 0.1, easing: "ease-in-out" }
+          );
+        },
+        { once: false } // optional: re-trigger animation on re-entry
+      );
     });
   }, []);
 
-  // SEO-optimised service blocks
-  const servicesData = [
+  const features = [
     {
-      title: "Linux Security & Hardening Training Philippines",
+      name: "CCNA Training",
       description:
-        "Hands-on Linux server hardening course: threat mitigation, SELinux, firewall & user-permission control for Philippine IT teams.",
-      img: service1,
+        "Get hands-on training for Cisco Certified Network Associate (CCNA). Learn networking fundamentals, IP connectivity, security basics, and automation.",
+      icon: AcademicCapIcon,
     },
     {
-      title: "Cyber-Security Analyst Certification Course Manila",
+      name: "CCNP Training",
       description:
-        "Identify, analyse and mitigate cyber threats with tools and labs aligned to global SOC roles — perfect for aspiring analysts in Manila.",
-      img: service2,
+        "Advance your networking career with Cisco Certified Network Professional (CCNP) training. Deep dive into routing, switching, and enterprise networking.",
+      icon: CpuChipIcon,
     },
     {
-      title: "CCNA Network Engineer Bootcamp Philippines",
+      name: "CompTIA Security+",
       description:
-        "Full Cisco CCNA training: networking fundamentals, IPv4/IPv6 routing, switching and exam prep — delivered in Makati & Cebu.",
-      img: service3,
+        "Master cybersecurity fundamentals with our CompTIA Security+ program. Learn threat detection, network security, compliance, and risk management.",
+      icon: ShieldCheckIcon,
     },
     {
-      title: "Incident Response & Detection Training Philippines",
+      name: "Full-Stack Development",
       description:
-        "Learn rapid detection, triage and containment techniques to minimise cyber-attack impact; ideal for corporate CSIRT members.",
-      img: service4,
-    },
-    {
-      title: "VMware vSphere 7 Administration Course",
-      description:
-        "Virtualisation essentials, vMotion management and VM deployment — upskill for data-centre roles in the Philippine market.",
-      img: service5,
-    },
-    {
-      title: "Ethical Hacking & Penetration Testing Course PH",
-      description:
-        "Master vulnerability assessment, exploit frameworks and reporting best-practice in this hands-on ethical hacking class.",
-      img: service6,
+        "Become a full-stack web developer. Learn HTML, CSS, JavaScript, React, Node.js, Django, REST APIs, and PostgreSQL from front-end to back-end.",
+      icon: CodeBracketIcon,
     },
   ];
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 640,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
 
   return (
     <section
@@ -71,53 +86,85 @@ const Services = () => {
       ref={sectionRef}
       className="bg-white py-24 px-4"
     >
-      <div className="container mx-auto max-w-6xl">
-        {/* Section heading & intro copy packed with target keywords */}
-        <div className="md:text-right mb-12">
-          <h2
-            data-animate
-            className="text-3xl md:text-4xl font-semibold text-[#0D2153]"
-            style={{ opacity: 0, transform: "translateY(30px)" }}
-          >
-            IT&nbsp;Training&nbsp;&amp;&nbsp;Certification Courses in the
-            Philippines
-          </h2>
-          <p
-            data-animate
-            className="mt-4 text-gray-600 leading-relaxed max-w-2xl md:ml-auto"
-            style={{ opacity: 0, transform: "translateY(30px)" }}
-          >
-            Rivan&nbsp;Cyber Institute delivers career-ready CCNA, CCNP,
-            Cyber-Security, Linux Hardening, VMware and Full-Stack developer
-            programmes in Manila, Makati and Cebu — complete with exam
-            preparation and job-placement support.
-          </p>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {servicesData.map((service, index) => (
-            <div
-              key={index}
-              data-animate
-              className="border border-gray-300 rounded-4xl p-6 flex items-start space-x-4 bg-white transition-colors duration-300 hover:border-blue-300"
-              style={{ opacity: 0, transform: "translateY(30px)" }}
-            >
-              {/* Service Image */}
-              <img
-                src={service.img}
-                alt={`${service.title} Icon`}
-                className="w-20 h-20 object-cover flex-shrink-0 rounded"
-              />
-              {/* Title & Description */}
-              <div>
-                <h3 className="text-lg font-semibold text-[#0D2153] mb-1">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{service.description}</p>
-              </div>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 ">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:pr-8 lg:pt-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base/7 font-semibold text-[#0D2153]">
+                BEST IT TRAINING
+              </h2>
+              <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                Service we offer
+              </p>
+              <p className="mt-6 text-lg/8 text-gray-600">
+                We specialize in providing top-tier IT training programs
+                designed to empower learners with real-world skills in
+                networking, cybersecurity, and full-stack web development.
+                Whether you're starting out or upskilling, our courses are built
+                for career success.
+              </p>
+              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                {features.map((feature) => (
+                  <div
+                    key={feature.name}
+                    data-animate
+                    className="relative pl-9 opacity-0 translate-y-4"
+                  >
+                    <dt className="inline font-semibold text-gray-900">
+                      <feature.icon
+                        aria-hidden="true"
+                        className="absolute left-1 top-1 size-5 text-[#5ed8ff]"
+                      />
+                      {feature.name}
+                    </dt>{" "}
+                    <dd className="inline">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+              {/* <div className="mt-8">
+                <a
+                  href="/services" // or the route you want to link to
+                  className="inline-block rounded-md bg-[#0D2153] px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 transition"
+                >
+                  View All Services
+                </a>
+              </div> */}
             </div>
-          ))}
+          </div>
+          <div>
+            <video
+              src={service_video}
+              width={2432}
+              height={1442}
+              className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:max-w-full md:max-w-3xl lg:-ml-0"
+              controls
+              autoPlay
+              muted
+              loop
+            />
+
+            <div className="mt-10 w-[48rem] max-w-none  sm:max-w-full md:max-w-3xl lg:-ml-0">
+              <Slider {...settings}>
+                {courses.map((course, index) => (
+                  <div key={index} className="px-3">
+                    <div className="bg-white rounded-lg shadow-lg p-4 h-90 border border-gray-200">
+                      <img
+                        src={course.image}
+                        alt={course.title}
+                        className="w-full h-40 object-cover rounded-md mb-4"
+                      />
+                      <h3 className="text-lg font-semibold text-[#0D2153]">
+                        {course.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 mt-2">
+                        {course.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          </div>
         </div>
       </div>
     </section>

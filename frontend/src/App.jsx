@@ -1,6 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// adds lang
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -140,7 +144,6 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Routes>
- 
             <Route path="/" element={<LandingPage />} />
             <Route
               path="/top-it-training-courses-philippines-2025"
