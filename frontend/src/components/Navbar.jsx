@@ -213,7 +213,7 @@ const Navbar = () => {
 
             {/* Mobile Request a Quote */}
             <RouterLink
-              to="/quotation"
+              to="/training-quotation-philippines"
               onClick={() => setIsOpen(false)}
               className="
                 block text-center mt-2
