@@ -64,7 +64,7 @@ const Services = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -134,16 +134,15 @@ const Services = () => {
           <div>
             <video
               src={service_video}
-              width={2432}
               height={1442}
-              className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:max-w-full md:max-w-3xl lg:-ml-0"
+              className="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:max-w-full md:max-w-3xl lg:-ml-0"
               controls
               autoPlay
               muted
               loop
             />
 
-            <div className="mt-10 w-[48rem] max-w-none  sm:max-w-full md:max-w-3xl lg:-ml-0">
+            <div className="mt-10 w-full max-w-none  sm:max-w-full md:max-w-3xl lg:-ml-0">
               <Slider {...settings}>
                 {courses.map((course, index) => (
                   <div key={index} className="px-3">

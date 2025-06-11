@@ -44,7 +44,7 @@ const Navbar = () => {
         </div>
 
         {/* Middle: Nav Links (hidden on mobile) */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden xl:flex space-x-6">
           <ScrollLink
             to="home"
             onClick={() => handleNavClick("home")}
@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
 
         {/* Right: YouTube + "Request a Quote" buttons (hidden on mobile) */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden xl:flex items-center space-x-4">
           <a
             href="https://www.youtube.com/@teamrivanit?sub_confirmation=1"
             target="_blank"
@@ -126,7 +126,7 @@ const Navbar = () => {
         {/* Mobile: Hamburger Icon */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
+          className="xl:hidden text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
         >
           {isOpen ? (
             <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@ const Navbar = () => {
 
       {/* Mobile Menu (slide-down) */}
       {isOpen && (
-        <div className="md:hidden bg-[#F9FAFF] shadow-sm">
+        <div className="xl:hidden bg-[#F9FAFF] shadow-sm">
           <div className="px-4 pt-3 pb-4 space-y-2">
             <ScrollLink
               to="home"
@@ -212,7 +212,7 @@ const Navbar = () => {
             </a>
 
             {/* Mobile Request a Quote */}
-            {/* <RouterLink
+            <RouterLink
               to="/quotation"
               onClick={() => setIsOpen(false)}
               className="
@@ -226,7 +226,7 @@ const Navbar = () => {
               "
             >
               Request a Quote
-            </RouterLink> */}
+            </RouterLink>
           </div>
         </div>
       )}
