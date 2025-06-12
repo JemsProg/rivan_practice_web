@@ -12,6 +12,8 @@ import LandingPage from "../src/pages/LandingPage";
 import Courses from "../src/pages/Courses";
 import Quotation from "../src/pages/Quotation";
 import Reviewers from "./pages/Reviewers";
+import Cisco_products from "../src/components/sections/Products";
+
 import IPServicesSim from "../src/components/reviewers/lab_sims_ccna/ip-services-sim";
 import IPServicesSim2 from "../src/components/reviewers/lab_sims_ccna/ip-services-sim-version-2";
 import StaticRouting from "../src/components/reviewers/lab_sims_ccna/static_routing_configuration_sim";
@@ -153,6 +155,9 @@ function App() {
               path="/training-quotation-philippines"
               element={<Quotation />}
             />
+
+            <Route path="/it-products-available" element={<Cisco_products />} />
+
             <Route path="/cisco-training-philippines" element={<Reviewers />} />
             <Route
               path="/ccna-reviewer-course-philippines/ip-services"

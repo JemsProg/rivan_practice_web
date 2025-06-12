@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   FaFacebookF,
   FaFacebookMessenger,
@@ -8,13 +8,13 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaClock,
-  FaChevronUp
-} from 'react-icons/fa'
+  FaChevronUp,
+} from "react-icons/fa";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="bg-[#0D2153] text-white pt-16 pb-6 px-4 relative">
@@ -26,9 +26,9 @@ const Footer = () => {
               RivanCyber Training Institute, Inc.
             </h2>
             <p className="text-gray-200 mb-4">
-              RivanCyber Training Institute, Inc. is a Network Engineering Bootcamp that
-              caters not just to people around the IT industry but also career
-              shifters.
+              RivanCyber Training Institute, Inc. is a Network Engineering
+              Bootcamp that caters not just to people around the IT industry but
+              also career shifters.
             </p>
             {/* Social Icons */}
             <div className="flex space-x-4">
@@ -111,7 +111,7 @@ const Footer = () => {
 
         {/* Bottom Row */}
         <div className="mt-6 border-t border-gray-600 pt-4 text-center text-sm">
-          © 2025 All Rights Reserved. Design by Le1gh J.
+          © 2025 RivanCyber. All rights reserved.
         </div>
       </div>
 
@@ -123,7 +123,7 @@ const Footer = () => {
         <FaChevronUp size={20} className="text-[#0D2153]" />
       </button>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

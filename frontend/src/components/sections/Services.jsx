@@ -1,8 +1,9 @@
 // src/components/Services.jsx
 import React, { useRef, useEffect } from "react";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+
 import { animate, inView } from "motion";
 import {
-  AcademicCapIcon,
   ShieldCheckIcon,
   CpuChipIcon,
   CodeBracketIcon,
@@ -35,27 +36,21 @@ const Services = () => {
 
   const features = [
     {
-      name: "CCNA Training",
+      name: "Cisco Networking Solutions",
       description:
-        "Get hands-on training for Cisco Certified Network Associate (CCNA). Learn networking fundamentals, IP connectivity, security basics, and automation.",
-      icon: AcademicCapIcon,
-    },
-    {
-      name: "CCNP Training",
-      description:
-        "Advance your networking career with Cisco Certified Network Professional (CCNP) training. Deep dive into routing, switching, and enterprise networking.",
+        "Enterprise-grade switches, routers, and access points from Cisco’s Catalyst and Meraki lines to keep your network fast, reliable, and secure.",
       icon: CpuChipIcon,
     },
     {
-      name: "CompTIA Security+",
+      name: "Palo Alto Security Appliances",
       description:
-        "Master cybersecurity fundamentals with our CompTIA Security+ program. Learn threat detection, network security, compliance, and risk management.",
+        "Next-generation firewalls, VPNs, and secure SD-WAN from Palo Alto Networks to protect your data and users against advanced threats.",
       icon: ShieldCheckIcon,
     },
     {
-      name: "Full-Stack Development",
+      name: "Fortinet Firewall Solutions",
       description:
-        "Become a full-stack web developer. Learn HTML, CSS, JavaScript, React, Node.js, Django, REST APIs, and PostgreSQL from front-end to back-end.",
+        "High-performance FortiGate firewalls with integrated UTM features—antivirus, web filtering, and intrusion prevention—to shield your organization.",
       icon: CodeBracketIcon,
     },
   ];
@@ -91,17 +86,15 @@ const Services = () => {
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base/7 font-semibold text-[#0D2153]">
-                BEST IT TRAINING
+                BEST NETWORKING EQUIPMENT
               </h2>
               <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                Service we offer
+                Products We Offer
               </p>
               <p className="mt-6 text-lg/8 text-gray-600">
-                We specialize in providing top-tier IT training programs
-                designed to empower learners with real-world skills in
-                networking, cybersecurity, and full-stack web development.
-                Whether you're starting out or upskilling, our courses are built
-                for career success.
+                We supply the latest enterprise-grade hardware from Cisco, Palo
+                Alto Networks, and Fortinet—switches, firewalls, and access
+                points—to fortify your network and security posture.
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
                 {features.map((feature) => (
@@ -121,14 +114,14 @@ const Services = () => {
                   </div>
                 ))}
               </dl>
-              {/* <div className="mt-8">
-                <a
-                  href="/services" // or the route you want to link to
-                  className="inline-block rounded-md bg-[#0D2153] px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 transition"
+              <div className="mt-20">
+                <RouterLink
+                  to="/it-products-available"
+                  className="inline-block rounded-md bg-[#0D2153] px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-[#0d2153bf] transition"
                 >
-                  View All Services
-                </a>
-              </div> */}
+                  View All Products
+                </RouterLink>
+              </div>
             </div>
           </div>
           <div>
@@ -146,11 +139,11 @@ const Services = () => {
               <Slider {...settings}>
                 {courses.map((course, index) => (
                   <div key={index} className="px-3">
-                    <div className="bg-white rounded-lg shadow-lg p-4 h-90 border border-gray-200">
+                    <div className="bg-white rounded-lg shadow-lg p-4 h-110 border border-gray-200">
                       <img
                         src={course.image}
                         alt={course.title}
-                        className="w-full h-40 object-cover rounded-md mb-4"
+                        className="w-full h-60 object-cover rounded-md mb-4"
                       />
                       <h3 className="text-lg font-semibold text-[#0D2153]">
                         {course.title}
