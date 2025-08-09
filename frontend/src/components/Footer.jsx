@@ -1,4 +1,5 @@
-import React from "react";
+// src/components/Footer.jsx
+import React, { useEffect, useState } from "react";
 import {
   FaFacebookF,
   FaFacebookMessenger,
@@ -10,118 +11,217 @@ import {
   FaClock,
   FaChevronUp,
 } from "react-icons/fa";
+import { Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 320);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="bg-[#0D2153] text-white pt-16 pb-6 px-4 relative">
+    <footer className="relative bg-[#0B142B] text-white pt-16 pb-8 px-4">
+      {/* subtle top hairline */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
       <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col md:flex-row justify-between items-start">
-          {/* Left side: Institute Info + Social Icons */}
-          <div className="md:w-1/2 mb-6 md:mb-0">
-            <h2 className="text-xl font-semibold mb-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Brand & socials */}
+          <div>
+            <h2 className="text-xl font-extrabold tracking-tight">
               RivanCyber Training Institute, Inc.
             </h2>
-            <p className="text-gray-200 mb-4">
-              RivanCyber Training Institute, Inc. is a Network Engineering
-              Bootcamp that caters not just to people around the IT industry but
-              also career shifters.
+            <p className="mt-2 text-white/80">
+              Network engineering & IT training in the Philippines — hands-on
+              courses, mentor-led labs, and certification prep.
             </p>
-            {/* Social Icons */}
-            <div className="flex space-x-4">
-              <a
-                href="https://www.facebook.com/RivanInstitute"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-white rounded-full p-2 transition hover:shadow-lg"
-              >
-                <FaFacebookF size={20} className="text-[#0D2153]" />
-              </a>
-              <a
-                href="https://m.me/RivanInstitute"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-white rounded-full p-2 transition hover:shadow-lg"
-              >
-                <FaFacebookMessenger size={20} className="text-[#0D2153]" />
-              </a>
-              <a
-                href="https://www.instagram.com/rivancyberinstitute"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-white rounded-full p-2 transition hover:shadow-lg"
-              >
-                <FaInstagram size={20} className="text-[#0D2153]" />
-              </a>
-              {/* YouTube Icon */}
-              <a
-                href="https://youtube.com/@teamrivanit?si=AIoxHdaUUZh8RVap"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-white rounded-full p-2 transition hover:shadow-lg"
-              >
-                <FaYoutube size={20} className="text-[#0D2153]" />
-              </a>
-            </div>
+
+            <ul
+              className="mt-4 flex items-center gap-3"
+              aria-label="Social links"
+            >
+              <li>
+                <a
+                  href="https://www.facebook.com/RivanInstitute"
+                  aria-label="RivanCyber on Facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full
+                             bg-white/10 backdrop-blur-md ring-1 ring-white/20 hover:bg-white/20 transition"
+                >
+                  <FaFacebookF className="h-4 w-4" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://m.me/RivanInstitute"
+                  aria-label="Message us on Messenger"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full
+                             bg-white/10 backdrop-blur-md ring-1 ring-white/20 hover:bg-white/20 transition"
+                >
+                  <FaFacebookMessenger className="h-5 w-5" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/rivancyberinstitute"
+                  aria-label="RivanCyber on Instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full
+                             bg-white/10 backdrop-blur-md ring-1 ring-white/20 hover:bg-white/20 transition"
+                >
+                  <FaInstagram className="h-5 w-5" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://youtube.com/@teamrivanit?sub_confirmation=1"
+                  aria-label="RivanCyber on YouTube"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full
+                             bg-white/10 backdrop-blur-md ring-1 ring-white/20 hover:bg-white/20 transition"
+                >
+                  <FaYoutube className="h-5 w-5" />
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Right side: Contact Info */}
-          <div className="md:w-1/2 flex flex-col items-start md:items-end text-gray-200">
-            <h2 className="text-lg font-semibold mb-2">Contact us</h2>
-            <p className="flex items-center mb-1">
-              <FaMapMarkerAlt className="mr-2" />
-              Rivan Building, 18d Mola, Makati, 1200 Metro Manila
-            </p>
-            <p className="flex items-center mb-1">
-              <FaEnvelope className="mr-2" />
-              <a
-                href="mailto:teamrivan@rvci.org@gmail.com"
-                className="hover:text-blue-400 transition"
-              >
-                teamrivan@rvci.org
-              </a>
-            </p>
-            <p className="flex items-center mb-1">
-              <FaPhoneAlt className="mr-2" />
-              <a
-                href="tel:+639493760000"
-                className="hover:text-blue-400 transition"
-              >
-                +63 949-376-0000
-              </a>
-            </p>
-            <p className="flex items-center mb-1">
-              <FaPhoneAlt className="mr-2" />
-              <a
-                href="tel:+63284252848"
-                className="hover:text-blue-400 transition"
-              >
-                +63 2-8425-2848 (Landline)
-              </a>
-            </p>
-            <p className="flex items-center mb-1">
-              <FaClock className="mr-2" />
-              Mon-Fri 9:00 AM – 5:00 PM
-            </p>
+          {/* Quick links (SEO-friendly internal links) */}
+          <nav aria-label="Footer" className="md:mx-auto">
+            <h3 className="text-lg font-semibold">Explore</h3>
+            <ul className="mt-3 space-y-2 text-white/85">
+              <li>
+                <RouterLink
+                  to="/top-it-training-courses-philippines-2025"
+                  className="hover:underline"
+                >
+                  Courses
+                </RouterLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="about"
+                  smooth
+                  offset={-80}
+                  duration={500}
+                  className="cursor-pointer hover:underline"
+                >
+                  About
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="reviews"
+                  smooth
+                  offset={-80}
+                  duration={500}
+                  className="cursor-pointer hover:underline"
+                >
+                  Reviews
+                </ScrollLink>
+              </li>
+              <li>
+                <RouterLink
+                  to="/training-quotation-philippines"
+                  className="hover:underline"
+                >
+                  Request a Quote
+                </RouterLink>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Contact */}
+          <div className="md:ml-auto">
+            <h3 className="text-lg font-semibold">Contact</h3>
+            <ul className="mt-3 space-y-2 text-white/85">
+              <li className="flex items-start">
+                <FaMapMarkerAlt className="mt-1 mr-2 shrink-0" />
+                Rivan Building, 18D Mola, Makati, 1200 Metro Manila
+              </li>
+              <li className="flex items-center">
+                <FaEnvelope className="mr-2" />
+                <a href="mailto:info@rivanit.com" className="hover:underline">
+                  info@rivanit.com
+                </a>
+              </li>
+              <li className="flex items-center">
+                <FaPhoneAlt className="mr-2" />
+                <a href="tel:+639493760000" className="hover:underline">
+                  +63 949-376-0000
+                </a>
+              </li>
+              <li className="flex items-center">
+                <FaPhoneAlt className="mr-2" />
+                <a href="tel:+63284252848" className="hover:underline">
+                  +63 2-8425-2848 (Landline)
+                </a>
+              </li>
+              <li className="flex items-center">
+                <FaClock className="mr-2" />
+                Mon–Fri, 9:00 AM–5:00 PM
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Row */}
-        <div className="mt-6 border-t border-gray-600 pt-4 text-center text-sm">
-          © 2025 RivanCyber. All rights reserved.
+        {/* Bottom row */}
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-4 text-sm text-white/70 md:flex-row">
+          <p>© {new Date().getFullYear()} RivanCyber. All rights reserved.</p>
         </div>
       </div>
 
-      {/* Scroll to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 bg-white rounded-full p-3 shadow-lg transition hover:bg-gray-200 cursor-pointer"
-      >
-        <FaChevronUp size={20} className="text-[#0D2153]" />
-      </button>
+      {/* Scroll-to-top (appears after scroll) */}
+      {showTop && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          className="fixed bottom-6 right-6 inline-flex h-12 w-12 items-center justify-center rounded-full
+                     bg-white/10 backdrop-blur-md ring-1 ring-white/20 shadow-lg transition hover:bg-white/20"
+        >
+          <FaChevronUp className="h-5 w-5" />
+        </button>
+      )}
+
+      {/* Organization JSON-LD for local SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "RivanCyber Training Institute, Inc.",
+            url: "https://rivanit.com",
+            email: "info@rivanit.com",
+            telephone: "+63 949-376-0000",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Rivan Building, 18D Mola",
+              addressLocality: "Makati",
+              postalCode: "1200",
+              addressCountry: "PH",
+            },
+            sameAs: [
+              "https://www.facebook.com/RivanInstitute",
+              "https://m.me/RivanInstitute",
+              "https://www.instagram.com/rivancyberinstitute",
+              "https://youtube.com/@teamrivanit",
+            ],
+          }),
+        }}
+      />
     </footer>
   );
 };

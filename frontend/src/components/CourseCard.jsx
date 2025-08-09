@@ -1,26 +1,47 @@
-import React from 'react'
+// src/components/CourseCard.jsx
+import React from "react";
 
-const CourseCard = ({ image, title, subtitle, description }) => {
+const CourseCard = ({ image, title, subtitle, description, alt }) => {
   return (
-    <div
-      className="w-full relative bg-white border border-black rounded-4xl shadow p-6 flex flex-row md:flex-col transition-transform duration-300 hover:scale-105"
-      style={{ minHeight: '300px' }} // Ensure cards have the same height
+    <article
+      className="group flex h-full flex-col overflow-hidden rounded-xl"
+      // parent <Link> already provides the glass background & border
     >
-      {/* Image on mobile takes 1/3 width, full width on md+ */}
-      <img
-        src={image}
-        alt={title}
-        className="w-1/3 md:w-full object-contain mr-4 md:mr-0"
-        style={{ height: '200px', objectFit: 'cover' }} // Ensure images are consistent in height
-      />
-      {/* Right side: Title and Subtitle (description hidden on mobile) */}
-      <div className="flex flex-col justify-center">
-        <h3 className="text-xl font-semibold text-[#0D2153] mb-1">{title}</h3>
-        <p className="text-gray-600 mb-2">{subtitle}</p>
-        <p className="text-gray-500 text-sm mb-6 hidden md:block">{description}</p>
+      {/* Media */}
+      <div className="relative h-44 w-full overflow-hidden rounded-lg ring-1 ring-white/10 md:h-48">
+        <img
+          src={image}
+          alt={alt || title}
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          draggable="false"
+          loading="lazy"
+        />
+        {/* soft bottom gradient for readability */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/35 to-transparent"
+        />
       </div>
-    </div>
-  )
-}
 
-export default CourseCard
+      {/* Content */}
+      <div className="flex flex-1 flex-col px-4 pb-4 pt-3">
+        <h3 className="text-base md:text-lg font-semibold text-white leading-snug">
+          {title}
+        </h3>
+        <p className="mt-1 text-sm text-white/75">{subtitle}</p>
+
+        <p className="mt-3 hidden text-sm text-white/70 md:block">
+          {description}
+        </p>
+
+        {/* tiny accent line on hover for a premium feel */}
+        <span
+          aria-hidden="true"
+          className="mt-4 h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-16"
+        />
+      </div>
+    </article>
+  );
+};
+
+export default CourseCard;

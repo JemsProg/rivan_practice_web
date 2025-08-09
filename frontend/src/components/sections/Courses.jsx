@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+// src/components/Courses.jsx
+import React, { useRef, useEffect, useState, useMemo } from "react";
 import { animate, inView } from "motion";
 import { Link } from "react-router-dom";
 import CourseCard from "../CourseCard";
 
-// Course images
 import pcnsaImg from "../../assets/pcnsa.png";
 import ccnaImg from "../../assets/ccna.png";
 import ccnpImg from "../../assets/ccnp.png";
@@ -13,119 +13,124 @@ import fullStackImg from "../../assets/full-stack.png";
 
 const Courses = () => {
   const sectionRef = useRef(null);
+  const hoverRef = useRef(false);
 
-  // 0-based index of the first item on the current “page”
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Determine how many cards per page: 1 on mobile (<768px), else 3
   const [pageSize, setPageSize] = useState(() =>
     window.innerWidth < 768 ? 1 : 3
   );
+  const [currentPage, setCurrentPage] = useState(0);
 
-  useEffect(() => {
-    // Animate in when scrolled into view
-    const els = sectionRef.current.querySelectorAll("[data-animate]");
-    els.forEach((el, i) => {
-      inView(el, () =>
-        animate(
-          el,
-          { opacity: 1, y: 0 },
-          { duration: 0.6, delay: i * 0.1, easing: "ease-in-out" }
-        )
-      );
-    });
-  }, []);
+  const coursesData = useMemo(
+    () => [
+      {
+        title: "CCNA Training",
+        subtitle: "200-301 CCNA v1.1",
+        description:
+          "Networking fundamentals, routing, switching, and security—hands-on labs aligned with the CCNA exam.",
+        img: ccnaImg,
+        link: "/top-it-training-courses-philippines-2025/ccna-201-301",
+      },
+      {
+        title: "CompTIA Security+",
+        subtitle: "SY0-701",
+        description:
+          "Threat detection, hardening, and risk management—Security+ prep with practical exercises.",
+        img: comptiaSecurityImg,
+        link: "/top-it-training-courses-philippines-2025/comptia-security-plus-syo-701",
+      },
+      {
+        title: "Full Stack Development",
+        subtitle: "React • Django • PostgreSQL",
+        description:
+          "React frontend, Django REST APIs, PostgreSQL database, and Ubuntu deployment.",
+        img: fullStackImg,
+        link: "/top-it-training-courses-philippines-2025/full-stack-web-development-react-django-postgresql",
+      },
+      {
+        title: "ITIL Foundation",
+        subtitle: "Service Management Essentials",
+        description:
+          "Learn ITIL best practices to align IT services with business goals.",
+        img: itilImg,
+        link: "/top-it-training-courses-philippines-2025/itil-v4-v3",
+      },
+      {
+        title: "CCNP ENCOR",
+        subtitle: "Enterprise Core",
+        description:
+          "Enterprise infrastructure, security, and automation for CCNP ENCOR.",
+        img: ccnpImg,
+        link: "/top-it-training-courses-philippines-2025/ccnp-encor-enarsi",
+      },
+      {
+        title: "PCNSA",
+        subtitle: "Palo Alto Networks",
+        description:
+          "Configure and secure networks with Palo Alto Networks technologies.",
+        img: pcnsaImg,
+        link: "/top-it-training-courses-philippines-2025/palo-alto-network-training",
+      },
+    ],
+    []
+  );
 
-  useEffect(() => {
-    // Listen for resizes and update pageSize
-    const onResize = () => setPageSize(window.innerWidth < 768 ? 1 : 3);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  const coursesData = [
-    {
-      title: "CCNA",
-      subtitle: "200-301 CCNA v1.1",
-      description:
-        "Learn networking fundamentals, routing, switching, and security in our hands-on CCNA course—ideal for beginners and IT pros.",
-      img: ccnaImg,
-      link: "/top-it-training-courses-philippines-2025/ccna-201-301",
-    },
-    {
-      title: "CompTIA Security+",
-      subtitle: "CompTIA Security+",
-      description:
-        "Gain essential cybersecurity skills including threat detection and risk management in our hands-on Security+ training.",
-      img: comptiaSecurityImg,
-      link: "/top-it-trianing-courses-philippines-2025/comptia-security-plus-syo-701",
-    },
-    {
-      title: "Full Stack Development",
-      subtitle: "React.js, Django, PostgreSQL",
-      description:
-        "Become a full stack developer with hands-on training on React.js frontend, Django backend, PostgreSQL database, and Ubuntu for deployment.",
-      img: fullStackImg,
-      link: "/top-it-training-courses-philippines-2025/full-stack-web-development-react-django-postgresql",
-    },
-    {
-      title: "ITIL",
-      subtitle: "ITIL Foundation",
-      description:
-        "Master IT service management best practices to improve IT operations and align services with business goals.",
-      img: itilImg,
-      link: "/top-it-training-courses-philippines-2025/itil-v4-v3",
-    },
-    {
-      title: "CCNP ENCOR",
-      subtitle: "Cisco CCNP ENCOR",
-      description:
-        "Gain in-depth knowledge of enterprise infrastructure and network automation through CCNP ENCOR training.",
-      img: ccnpImg,
-      link: "/top-it-training-courses-philippines-2025/ccnp-encor-enarsi",
-    },
-    {
-      title: "PCNSA",
-      subtitle: "Palo Alto Networks",
-      description:
-        "Gain hands-on experience configuring and securing networks with Palo Alto Networks technologies.",
-      img: pcnsaImg,
-      link: "/top-it-training-courses-philippines-2025/palo-alto-network-training",
-    },
-  ];
-
-  // Compute pagination
   const pageCount = Math.ceil(coursesData.length / pageSize);
-  const currentPage = Math.floor(currentIndex / pageSize);
-
-  // Slice out only the cards for the current page
   const visibleCourses = coursesData.slice(
     currentPage * pageSize,
     currentPage * pageSize + pageSize
   );
 
-  const goToPage = (page) => {
-    setCurrentIndex(page * pageSize);
-  };
+  useEffect(() => {
+    const els = sectionRef.current.querySelectorAll("[data-animate]");
+    els.forEach((el, i) =>
+      inView(el, () =>
+        animate(el, { opacity: 1, y: 0 }, { duration: 0.6, delay: i * 0.1 })
+      )
+    );
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      const newSize = window.innerWidth < 768 ? 1 : 3;
+      setPageSize(newSize);
+      setCurrentPage(0); // reset to avoid empty slice
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!hoverRef.current) {
+        setCurrentPage((p) => (p + 1) % pageCount);
+      }
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [pageCount]);
 
   return (
-    <section ref={sectionRef} className="bg-[#F9FAFF] pt-12 pb-32 px-4">
+    <section
+      ref={sectionRef}
+      className="bg-[#0B142B] text-white pt-16 pb-28 px-4"
+      onMouseEnter={() => (hoverRef.current = true)}
+      onMouseLeave={() => (hoverRef.current = false)}
+    >
       <div className="container mx-auto max-w-6xl">
         {/* Heading */}
         <div className="text-center mb-8">
           <h2
             data-animate
-            className="text-3xl md:text-4xl font-semibold text-[#0D2153] mb-2"
+            className="text-3xl md:text-4xl font-bold mb-2"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            What courses we have
+            Explore Our IT Training Courses
           </h2>
           <p
             data-animate
-            className="text-gray-600"
+            className="text-gray-300"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            Enhance Your Skills with Our Expert-Led Courses
+            Networking, cybersecurity, and development — all taught by experts.
           </p>
         </div>
 
@@ -135,15 +140,14 @@ const Courses = () => {
             <div
               key={idx}
               data-animate
-              style={{
-                opacity: 0,
-                transform: "translateY(30px)",
-              }}
+              style={{ opacity: 0, transform: "translateY(30px)" }}
               className="max-w-[350px] mx-auto h-full flex"
             >
               <Link
                 to={course.link}
-                className="rounded-4xl transition-shadow duration-300 hover:shadow-lg h-full flex flex-col"
+                className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10
+                           hover:bg-white/15 transition-all duration-300 shadow-lg
+                           h-full flex flex-col"
               >
                 <CourseCard
                   image={course.img}
@@ -157,21 +161,16 @@ const Courses = () => {
         </div>
 
         {/* Dot Pagination */}
-        <div className="flex justify-center mt-8 space-x-3 md:space-x-2">
+        <div className="flex justify-center mt-8 space-x-3">
           {Array.from({ length: pageCount }).map((_, page) => (
             <button
               key={page}
-              onClick={() => goToPage(page)}
-              aria-label={`Go to page ${page + 1}`}
-              className={`
-                rounded-full transition-transform duration-200
-                ${
-                  currentPage === page
-                    ? "bg-[#0D2153] scale-125"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }
-                w-4 h-4 md:w-3 md:h-3
-              `}
+              onClick={() => setCurrentPage(page)}
+              className={`h-3 w-3 rounded-full transition-all ${
+                currentPage === page
+                  ? "bg-white scale-125"
+                  : "bg-gray-500 hover:bg-gray-400"
+              }`}
             />
           ))}
         </div>
@@ -184,7 +183,8 @@ const Courses = () => {
         >
           <Link
             to="/top-it-training-courses-philippines-2025"
-            className="px-6 py-3 bg-[#0D2153] text-white rounded-full hover:bg-[#0B1C47] transition-colors"
+            className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/10
+                       text-white rounded-full hover:bg-white/15 transition-colors"
           >
             Browse All Courses
           </Link>

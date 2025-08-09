@@ -9,6 +9,7 @@ import VideosSection from "../components/sections/Videos";
 import Partners from "../components/sections/Partners";
 import Reviews from "../components/sections/Reviews";
 import ContactUs from "../components/sections/ContactUs";
+import SectionDivider from "../components/SectionDivider";
 
 const LandingPage = () => {
   const location = useLocation();

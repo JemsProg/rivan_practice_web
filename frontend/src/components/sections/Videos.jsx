@@ -1,144 +1,203 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { animate, inView } from 'motion';
-import { FaPlay, FaYoutube } from 'react-icons/fa';
+// src/components/VideosSection.jsx
+import React, { useRef, useEffect, useState } from "react";
+import { animate, inView } from "motion";
+import { FaPlay, FaYoutube } from "react-icons/fa";
+
+const YT = (id, autoplay = false) =>
+  `https://www.youtube-nocookie.com/embed/${id}?${[
+    autoplay ? "autoplay=1" : "autoplay=0",
+    "mute=1",
+    "controls=1",
+    "playsinline=1",
+    "rel=0",
+    "modestbranding=1",
+  ].join("&")}`;
 
 const VideosSection = () => {
   const sectionRef = useRef(null);
-  const [playing, setPlaying] = useState({});
-  const [featuredPlaying, setFeaturedPlaying] = useState(false);
+  const [playing, setPlaying] = useState({ featured: false, sides: {} });
 
   const videos = [
-    'iv0mkEx91Mc',  // featured
-    'ROTt5GsPECw',
-    '5Y_ray2dldU',
-    'Wb-2aP6y-RU'
+    { id: "iv0mkEx91Mc", title: "Rivan CCNA Training — Day 1 Preview" }, // featured
+    { id: "ROTt5GsPECw", title: "CCNA Routing & Switching Demo" },
+    { id: "5Y_ray2dldU", title: "Full-Stack: React + Django Walkthrough" },
+    { id: "Wb-2aP6y-RU", title: "Security+: Threats & Hardening Basics" },
   ];
 
-  const featuredVideo = videos[0];
-  const sideVideos    = videos.slice(1);
-
   useEffect(() => {
-    const els = sectionRef.current.querySelectorAll('[data-animate]');
-    els.forEach((el, i) => {
+    const els = sectionRef.current.querySelectorAll("[data-animate]");
+    els.forEach((el, i) =>
       inView(el, () =>
-        animate(
-          el,
-          { opacity: 1, y: 0 },
-          { duration: 0.6, delay: i * 0.1, easing: 'ease-in-out' }
-        )
-      );
-    });
+        animate(el, { opacity: 1, y: 0 }, { duration: 0.6, delay: i * 0.08 })
+      )
+    );
   }, []);
-
-  const handleClick = idx =>
-    setPlaying(prev => ({ ...prev, [idx]: true }));
 
   return (
     <section
       id="videos"
       ref={sectionRef}
-      className="bg-white pt-12 pb-32 px-4"
+      className="bg-[#0B142B] px-4 pt-14 pb-28"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div
           data-animate
-          className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8"
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
+          style={{ opacity: 0, transform: "translateY(24px)" }}
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#0D2153] mb-4 md:mb-0">
-            Want a Sneak Peek of Our Training?
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+            Want a Sneak Peek of Our IT Training?
           </h2>
           <a
             href="https://www.youtube.com/@teamrivanit?sub_confirmation=1"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center px-6 py-3 border border-[#0D2153] text-[#0D2153] rounded-full hover:bg-[#EAEFFB] transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-3 text-white font-semibold hover:bg-red-700 transition-colors shadow-md"
           >
-            <FaYoutube className="mr-2 w-5 h-5" />
-            Subscribe
+            <FaYoutube className="h-5 w-5" />
+            Subscribe on YouTube
           </a>
         </div>
 
-        {/* Subtitle */}
         <p
           data-animate
-          className="text-gray-600 mb-12"
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
+          style={{ opacity: 0, transform: "translateY(24px)" }}
+          className="text-white/80 mb-8 max-w-3xl"
         >
-          Watch real lessons from our YouTube channel and see what our training is all about.
+          Short clips from our CCNA, Security+, and Full-Stack classes—see how
+          we teach and the projects you’ll build.
         </p>
 
-        {/* Two‐column: featured (¾) + side (¼), children stretched */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-8">
-          {/* Featured video (3/4) */}
+        {/* Layout: 3/4 featured + 1/4 list */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+          {/* Featured */}
           <div
             data-animate
-            onClick={() => setFeaturedPlaying(true)}
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
-            className="w-full lg:w-3/4 bg-white rounded-lg overflow-hidden cursor-pointer transition-shadow duration-200 hover:shadow-[0_0_15px_rgba(13,33,83,0.8)]"
+            style={{ opacity: 0, transform: "translateY(24px)" }}
+            className="lg:col-span-3"
           >
-            {featuredPlaying ? (
-              <iframe
-                className="w-full h-full aspect-video"
-                src={`https://www.youtube.com/embed/${featuredVideo}?autoplay=1&controls=1`}
-                title="Featured video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            ) : (
-              <div className="relative w-full h-full aspect-video">
-                <img
-                  src={`https://img.youtube.com/vi/${featuredVideo}/hqdefault.jpg`}
-                  alt="Featured video thumbnail"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <FaPlay className="text-white text-5xl" />
-                </div>
+            <div className="group relative rounded-2xl ring-1 ring-white/10 bg-white/5 p-2 shadow-[0_12px_40px_-12px_rgba(2,6,23,.6)]">
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                {playing.featured ? (
+                  <iframe
+                    className="absolute inset-0 h-full w-full"
+                    src={YT(videos[0].id, true)}
+                    title={videos[0].title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPlaying((p) => ({ ...p, featured: true }))
+                    }
+                    className="absolute inset-0"
+                    aria-label={`Play: ${videos[0].title}`}
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${videos[0].id}/maxresdefault.jpg`}
+                      alt={`Preview: ${videos[0].title}`}
+                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                      loading="lazy"
+                      draggable="false"
+                    />
+                    {/* overlay & play ripple */}
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
+                    <span className="absolute inset-0 grid place-items-center">
+                      <span className="relative inline-flex items-center justify-center">
+                        <span className="absolute inline-block h-16 w-16 rounded-full bg-white/20 animate-ping" />
+                        <FaPlay className="relative text-white text-4xl drop-shadow-lg" />
+                      </span>
+                    </span>
+                  </button>
+                )}
               </div>
-            )}
+            </div>
           </div>
 
-          {/* Side videos (1/4), with gaps */}
-          <div className="w-full lg:w-1/4 flex flex-col space-y-6">
-            {sideVideos.map((id, i) => {
-              const idx = i + 1;
+          {/* Side list */}
+          <div
+            data-animate
+            style={{ opacity: 0, transform: "translateY(24px)" }}
+            className="flex flex-col gap-4"
+          >
+            {videos.slice(1).map((v, i) => {
+              const isPlaying = playing.sides?.[i];
               return (
                 <div
-                  key={id}
-                  data-animate
-                  onClick={() => handleClick(idx)}
-                  style={{ opacity: 0, transform: 'translateY(30px)' }}
-                  className="bg-white rounded-lg overflow-hidden cursor-pointer transition-shadow duration-200 hover:shadow-[0_0_15px_rgba(13,33,83,0.8)]"
+                  key={v.id}
+                  className="group rounded-xl ring-1 ring-white/10 bg-white/5 p-1 hover:ring-white/20 transition"
                 >
-                  {playing[idx] ? (
-                    <iframe
-                      className="w-full aspect-video"
-                      src={`https://www.youtube.com/embed/${id}?autoplay=1&controls=1`}
-                      title={`Video ${idx + 1}`}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <div className="relative w-full aspect-video">
-                      <img
-                        src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
-                        alt={`Video thumbnail ${idx + 1}`}
-                        className="w-full h-full object-cover"
+                  <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                    {isPlaying ? (
+                      <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src={YT(v.id, true)}
+                        title={v.title}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
                       />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <FaPlay className="text-white text-4xl" />
-                      </div>
-                    </div>
-                  )}
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPlaying((p) => ({
+                            ...p,
+                            sides: { ...p.sides, [i]: true },
+                          }))
+                        }
+                        className="absolute inset-0 text-left"
+                        aria-label={`Play: ${v.title}`}
+                        title={v.title}
+                      >
+                        <img
+                          src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
+                          alt={`Preview: ${v.title}`}
+                          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          loading="lazy"
+                          draggable="false"
+                        />
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
+                        <span className="absolute inset-0 grid place-items-center">
+                          <FaPlay className="text-white text-3xl drop-shadow-md" />
+                        </span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
+
+        {/* JSON-LD for video SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              itemListElement: videos.map((v, idx) => ({
+                "@type": "ListItem",
+                position: idx + 1,
+                item: {
+                  "@type": "VideoObject",
+                  name: v.title,
+                  thumbnailUrl: `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`,
+                  embedUrl: `https://www.youtube-nocookie.com/embed/${v.id}`,
+                  publisher: {
+                    "@type": "Organization",
+                    name: "RivanCyber Training Institute",
+                  },
+                },
+              })),
+            }),
+          }}
+        />
       </div>
     </section>
   );

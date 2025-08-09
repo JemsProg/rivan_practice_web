@@ -1,3 +1,4 @@
+// src/pages/FullStackDevelopment.jsx
 import React, { useEffect, useRef } from "react";
 import { animate, inView } from "motion";
 import {
@@ -10,9 +11,9 @@ import {
   FaLink,
   FaDesktop,
 } from "react-icons/fa";
-import fsdLogo from "../../assets/full-stack.png"; // Replace waith your Full Stack logo path
 
-// Example images for the gallery (replace with your actual images)
+// Assets
+import fsdLogo from "../../assets/full-stack.png";
 import img1 from "../../assets/about_1.png";
 import img2 from "../../assets/about_2.png";
 import img3 from "../../assets/about_3.png";
@@ -26,192 +27,257 @@ const FullStackDevelopment = () => {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    const elements = sectionRef.current.querySelectorAll("[data-animate]");
-    elements.forEach((el, index) => {
-      inView(el, () => {
+    const els = sectionRef.current.querySelectorAll("[data-animate]");
+    els.forEach((el, i) =>
+      inView(el, () =>
         animate(
           el,
           { opacity: 1, y: 0 },
-          { duration: 0.6, delay: index * 0.15, easing: "ease-in-out" }
-        );
-      });
-    });
+          { duration: 0.6, delay: i * 0.08, easing: "ease-in-out" }
+        )
+      )
+    );
+    window.scrollTo(0, 0);
+    document.title = "Full Stack Web Development Bootcamp | RivanCyber";
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#F9FAFF] py-12 px-6">
-      <div className="container mx-auto max-w-6xl">
+    <section
+      ref={sectionRef}
+      className="relative bg-[#0B142B] text-white py-16 px-4"
+      aria-labelledby="fsd-heading"
+    >
+      {/* soft gradient accents */}
+      <div aria-hidden="true">
+        <div className="pointer-events-none absolute -top-32 -left-24 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-blue-400/20 blur-3xl" />
+      </div>
 
-        {/* Header */}
-        <div
+      <div className="container mx-auto max-w-6xl relative">
+        {/* Header / Hero Card */}
+        <header
           data-animate
-          style={{ opacity: 0, transform: "translateY(30px)" }}
-          className="bg-[#0D2153] rounded-lg p-8 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8 mb-12 text-white"
+          style={{ opacity: 0, transform: "translateY(24px)" }}
+          className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 md:p-8 shadow-[0_12px_40px_-12px_rgba(2,6,23,.6)] mb-10"
         >
-          <img
-            src={fsdLogo}
-            alt="Full Stack Development Logo"
-            className="w-48 md:w-56 object-contain rounded-md flex-shrink-0"
-          />
-          <div className="flex-1">
-            <h1 className="text-3xl md:text-4xl font-bold mb-1">Full Stack Web Development Bootcamp</h1>
-            <p className="text-sm md:text-base text-gray-300 mb-4">React.js, Django, PostgreSQL</p>
-            <p className="leading-relaxed max-w-full">
-              Master building dynamic web applications using React.js, Django, and PostgreSQL. This course equips you with both frontend and backend skills to launch your developer career.
-            </p>
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+            <img
+              src={fsdLogo}
+              alt="Full Stack Web Development"
+              className="w-40 md:w-48 flex-shrink-0 rounded-xl bg-white/5 ring-1 ring-white/10 p-3"
+              loading="eager"
+            />
+            <div className="flex-1 text-center md:text-left">
+              <h1
+                id="fsd-heading"
+                className="text-3xl md:text-4xl font-extrabold tracking-tight"
+              >
+                Full Stack Web Development Bootcamp
+              </h1>
+              <p className="text-sm md:text-base text-white/70 mt-1">
+                React • Django • PostgreSQL
+              </p>
+              <p className="mt-4 text-white/90 leading-relaxed">
+                Build production-ready apps from front end to back end. Learn
+                React for UI, Django REST for APIs, PostgreSQL for data, and
+                deploy on Linux.
+              </p>
+              <p className="sr-only">
+                Full Stack developer training in the Philippines: React, Django,
+                PostgreSQL with hands-on projects.
+              </p>
+            </div>
           </div>
-        </div>
+        </header>
 
-        {/* Second section: 3 columns */}
+        {/* Main content */}
         <div
           data-animate
-          style={{ opacity: 0, transform: "translateY(30px)" }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto text-[#0D2153]"
+          style={{ opacity: 0, transform: "translateY(24px)" }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         >
-          {/* Left 2/3 columns */}
-          <div className="lg:col-span-2 flex flex-col gap-8">
-
-            {/* About the Course */}
-            <section className="border border-gray-300 bg-white rounded-lg p-6">
-              <h2 className="text-2xl font-semibold mb-4">About the Course</h2>
-              <p className="mb-4 text-gray-700 leading-relaxed">
-                This course prepares you for roles as a full stack developer by teaching modern web technologies and best practices.
+          {/* Left: 2/3 stack */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {/* About */}
+            <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+              <h2 className="text-2xl font-bold">About the Course</h2>
+              <p className="mt-3 text-white/85 leading-relaxed">
+                Become a job-ready Full Stack Developer. You’ll learn modern
+                patterns, clean code, and deployment workflows used by real
+                teams.
               </p>
-              <p className="mb-4 text-gray-700 leading-relaxed">
-                Ideal for aspiring developers, software engineers, and IT professionals seeking a solid foundation in web development.
+              <p className="mt-3 text-white/85">
+                Ideal for aspiring developers, software engineers, and IT pros
+                transitioning to web dev.
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">
-                <li>Frontend Developer</li>
-                <li>Backend Developer</li>
-                <li>Full Stack Developer</li>
-                <li>Software Engineer</li>
-              </ul>
-              <p className="text-gray-700 leading-relaxed">
-                The training combines practical projects with core concepts ensuring you are job-ready.
-              </p>
-            </section>
-
-            {/* What you will learn */}
-            <section className="border border-gray-300 bg-white rounded-lg p-6">
-              <h3 className="font-semibold text-2xl mb-6">What you will learn</h3>
-              <ul className="list-none space-y-4">
+              <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/85">
                 {[
-                  "Build dynamic user interfaces with React.js",
-                  "Develop RESTful APIs and backend services using Django",
-                  "Manage relational databases using PostgreSQL",
-                  "Implement user authentication and authorization",
-                  "Deploy full stack applications to production"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start space-x-3 text-gray-800">
-                    <FaCheck className="text-green-600 mt-1 flex-shrink-0" />
-                    <p>{item}</p>
+                  "Frontend Developer",
+                  "Backend Developer",
+                  "Full Stack Developer",
+                  "Software Engineer",
+                ].map((role) => (
+                  <li key={role} className="inline-flex items-center gap-2">
+                    <span className="inline-grid h-5 w-5 place-items-center rounded-full bg-emerald-400/15 ring-1 ring-emerald-400/30">
+                      <FaCheck className="text-emerald-400 text-xs" />
+                    </span>
+                    {role}
                   </li>
                 ))}
               </ul>
             </section>
 
-            {/* Hands-on Experience */}
-            <section className="border border-gray-300 bg-white rounded-lg p-6">
-              <h3 className="font-semibold text-2xl mb-6">Hands-on Experience</h3>
-              <p className="mb-3 text-gray-700">
-                You will work on real projects involving:
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1">
-                <li>React component development and state management</li>
-                <li>Django backend API creation and database integration</li>
-                <li>PostgreSQL database schema design and querying</li>
-                <li>Application deployment and troubleshooting</li>
+            {/* What you'll learn */}
+            <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+              <h3 className="text-2xl font-bold">What you’ll learn</h3>
+              <ul className="mt-4 space-y-3">
+                {[
+                  "Build dynamic UIs with React (hooks, state, routing)",
+                  "Design RESTful APIs and services with Django & DRF",
+                  "Model & query data with PostgreSQL (indexes, migrations)",
+                  "AuthN/AuthZ flows (JWT/sessions), form handling, security basics",
+                  "Deploy to Linux servers (systemd, Nginx, SSL) and CI-friendly setups",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-white/90">
+                    <span className="mt-1 inline-grid h-5 w-5 place-items-center rounded-full bg-emerald-400/15 ring-1 ring-emerald-400/30">
+                      <FaCheck className="text-emerald-400 text-xs" />
+                    </span>
+                    <span>{t}</span>
+                  </li>
+                ))}
               </ul>
             </section>
 
-            {/* This training includes */}
-            <section className="border border-gray-300 bg-white rounded-lg p-6">
-              <h3 className="font-semibold text-2xl mb-6">This training includes:</h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10 text-gray-700">
-                <li className="flex items-center space-x-3">
-                  <FaPenNib className="text-xl" />
-                  <span>Notebook</span>
+            {/* Hands-on */}
+            <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+              <h3 className="text-2xl font-bold">Hands-on Experience</h3>
+              <p className="mt-3 text-white/85">
+                You’ll build and ship practice projects:
+              </p>
+              <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/85">
+                {[
+                  "React components, state mgmt, routing",
+                  "Django REST API with auth & testing",
+                  "PostgreSQL schema design & migrations",
+                  "App deployment, logs & troubleshooting",
+                ].map((t) => (
+                  <li key={t} className="inline-flex items-center gap-2">
+                    <FaCheck className="text-emerald-400" /> {t}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Includes */}
+            <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+              <h3 className="text-2xl font-bold">This training includes</h3>
+              <ul className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-white/90">
+                <li className="flex items-center gap-3">
+                  <FaPenNib /> Notebook & pens
                 </li>
-                <li className="flex items-center space-x-3">
-                  <FaPenNib className="text-xl" />
-                  <span>Pens</span>
+                <li className="flex items-center gap-3">
+                  <FaBook /> Course book/materials
                 </li>
-                <li className="flex items-center space-x-3">
-                  <FaBook className="text-xl" />
-                  <span>Book (course materials)</span>
+                <li className="flex items-center gap-3">
+                  <FaUtensils /> Lunch & snacks (onsite)
                 </li>
-                <li className="flex items-center space-x-3">
-                  <FaUtensils className="text-xl" />
-                  <span>Lunch</span>
+                <li className="flex items-center gap-3">
+                  <FaDownload /> Installers & setup guides
                 </li>
-                <li className="flex items-center space-x-3">
-                  <FaFileContract className="text-xl" />
-                  <span>Reviewers and practice exercises</span>
+                <li className="flex items-center gap-3">
+                  <FaFileContract /> Reviewers & exercises
                 </li>
-                <li className="flex items-center space-x-3">
-                  <FaDownload className="text-xl" />
-                  <span>Software installers and setup guides</span>
+                <li className="flex items-center gap-3">
+                  <FaFileContract /> Certificate of Completion
                 </li>
-                <li className="flex items-center space-x-3">
-                  <FaFileContract className="text-xl" />
-                  <span>Certificate of Completion</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <FaDesktop className="text-4xl" />
-                  <span>Each person has their own set of equipment and devices for hands-on activities</span>
+                <li className="flex items-center gap-3">
+                  <FaDesktop /> Dedicated workstation per student
                 </li>
               </ul>
             </section>
           </div>
 
-          {/* Right 1/3 column */}
-          <div className="flex flex-col gap-8">
-            {/* Schedule */}
-            <section className="border border-gray-300 bg-white rounded-lg p-6">
-              <h3 className="font-semibold text-2xl mb-4">Schedule</h3>
-              <p>
-                <strong>Training Days:</strong> 4 days (Weekdays or Weekend, Saturday or Sunday)
-              </p>
-              <p>
-                <strong>Time:</strong> 9:00 AM to 5:00 PM
+          {/* Right: schedule / outline */}
+          <aside className="flex flex-col gap-6">
+            <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+              <h3 className="text-2xl font-bold">Schedule</h3>
+              <ul className="mt-3 space-y-1 text-white/85">
+                <li>
+                  <strong>Duration:</strong> 4 days
+                </li>
+                <li>
+                  <strong>Days:</strong> Weekdays or Weekends (Sat/Sun)
+                </li>
+                <li>
+                  <strong>Time:</strong> 9:00 AM – 5:00 PM
+                </li>
+              </ul>
+              <p className="mt-2 text-sm text-white/70">
+                Includes guided labs and take-home exercises with feedback.
               </p>
             </section>
 
-            {/* Course Outline */}
-            <section className="border border-gray-300 bg-white rounded-lg p-6">
-              <h3 className="font-semibold text-2xl mb-4">Course Outline</h3>
+            <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+              <h3 className="text-2xl font-bold">Course Outline</h3>
               <a
                 href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0D2153] underline flex items-center space-x-2"
+                onClick={(e) => e.preventDefault()}
+                className="mt-3 inline-flex items-center gap-2 text-emerald-300 hover:underline"
               >
-                <FaLink />
-                <span>Full Stack Web Development Course Outline</span>
+                <FaLink aria-hidden /> Full Stack Web Development — Detailed
+                Outline
               </a>
             </section>
-          </div>
+          </aside>
         </div>
 
         {/* Gallery */}
         <section
           data-animate
-          style={{ opacity: 0, transform: "translateY(30px)" }}
-          className="mt-16 max-w-6xl mx-auto"
+          style={{ opacity: 0, transform: "translateY(24px)" }}
+          className="mt-12"
         >
-          <h3 className="text-[#0D2153] font-semibold text-2xl mb-6">Gallery</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {galleryImages.map((img, i) => (
-              <img
+          <h3 className="text-2xl font-bold">Gallery</h3>
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {galleryImages.map((src, i) => (
+              <figure
                 key={i}
-                src={img}
-                alt={`Gallery image ${i + 1}`}
-                className="w-full h-24 object-cover rounded-md border border-gray-300"
-              />
+                className="group relative overflow-hidden rounded-xl bg-white/5 ring-1 ring-white/10"
+                tabIndex={0}
+              >
+                <img
+                  src={src}
+                  alt={`Full Stack training photo ${i + 1}`}
+                  className="h-28 w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-2 text-xs text-white/90 bg-gradient-to-t from-[#0B142B]/60 to-transparent">
+                  Full Stack hands-on labs
+                </figcaption>
+              </figure>
             ))}
           </div>
         </section>
 
+        {/* JSON-LD for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Course",
+              name: "Full Stack Web Development Bootcamp (React • Django • PostgreSQL)",
+              description:
+                "Hands-on full stack developer training in the Philippines covering React, Django REST, and PostgreSQL with deployment.",
+              provider: {
+                "@type": "Organization",
+                name: "RivanCyber Training Institute",
+                sameAs: "https://rivanit.com",
+              },
+            }),
+          }}
+        />
       </div>
     </section>
   );

@@ -1,154 +1,163 @@
-import React, { useRef, useEffect } from 'react'
-import { animate, inView } from 'motion'
-import { FaStar } from 'react-icons/fa'
+import React, { useRef, useEffect } from "react";
+import { animate, inView } from "motion";
+import { FaStar } from "react-icons/fa";
 
-import student_1 from '../../assets/student_1.jpg'
-import student_3 from '../../assets/student_2.jpg'
-import student_2 from '../../assets/student_3.jpg'
-
+import student_1 from "../../assets/student_1.jpg";
+import student_3 from "../../assets/student_2.jpg";
+import student_2 from "../../assets/student_3.jpg";
 
 const Reviews = () => {
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Animate elements with data-animate on scroll
-    const elements = sectionRef.current.querySelectorAll('[data-animate]')
-    elements.forEach((el, index) => {
-      inView(el, () => {
+    const els = sectionRef.current.querySelectorAll("[data-animate]");
+    els.forEach((el, i) =>
+      inView(el, () =>
         animate(
           el,
           { opacity: 1, y: 0 },
-          {
-            duration: 0.6,
-            delay: index * 0.1,
-            easing: 'ease-in-out'
-          }
+          { duration: 0.6, delay: i * 0.08, easing: "ease-in-out" }
         )
-      })
-    })
-  }, [])
+      )
+    );
+  }, []);
 
-  // Sample reviews data with highlighted phrases
   const reviewsData = [
     {
-      quote: (
-        <>
-       <span className='text-[#0D2153] font-bold'>Best learning experience! </span> Got my CCNA bootcamp here way back may 2018 and all I can say is the  <span className='text-[#0D2153] font-bold'> instructors are top notch! </span>
-       Dont hesitate to enroll because its worth every penny.
-        </>
-      ),
-      name: 'Christian Temporado',
-      // position: 'CTO, Google Philippines',
+      quote:
+        "Best learning experience! Got my CCNA bootcamp here and the instructors are top-notch. Don’t hesitate to enroll—worth every penny.",
+      name: "Christian Temporado",
       rating: 5,
-      profile: student_1
-
+      profile: student_1,
     },
     {
-      quote: (
-        <>
-         Rivan has the <span className='text-[#0D2153] font-bold'>  best instructors, best support team, latest topics and equipments </span> you'll ever need to attain your 
-         IT dream job! Guaranteed to give you a <span className='text-[#0D2153] font-bold'>  zero to hero experience. </span> Highly recommended!
-        </>
-      ),
-      name: 'Mervin-Jenny Lota ',
-      // position: 'Network Engineer, Accenture',
+      quote:
+        "Rivan has the best instructors, support team, and up-to-date topics and equipment. Zero-to-hero experience—highly recommended!",
+      name: "Mervin-Jenny Lota",
       rating: 5,
-      profile: student_2
+      profile: student_2,
     },
     {
-      quote: (
-        <>
-          They provide <span className='text-[#0D2153] font-bold'>  best and updated trainings in the IT industry! </span> Took my CCNA and VMware certs classes and <span className='text-[#0D2153] font-bold'> passed my 
-          certifications! </span> Thank you #teamrivan. 
-        </>
-      ),
-      name: 'Earl Kent Justine Togonon',
-      // position: 'Cybersecurity Engineer, BDO',
+      quote:
+        "They provide the best, updated IT trainings! Took my CCNA and VMware classes and passed my certifications. Thank you #teamrivan.",
+      name: "Earl Kent Justine Togonon",
       rating: 5,
-      profile: student_3
-
-    }
-  ]
+      profile: student_3,
+    },
+  ];
 
   return (
     <section
-      id='reviews'
+      id="reviews"
       ref={sectionRef}
-      className="bg-[#F9FAFF] py-32 px-4"
+      className="bg-[#0B142B] text-white py-24 px-4"
     >
-      <div className="container mx-auto max-w-6xl text-center">
+      <div className="container mx-auto max-w-6xl">
         {/* Heading */}
-        <h2
+        <div
           data-animate
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
-          className="text-3xl md:text-4xl font-semibold text-[#0D2153]"
+          style={{ opacity: 0, transform: "translateY(24px)" }}
+          className="text-center"
         >
-          What our students' feedback
-        </h2>
-
-        {/* Subheading */}
-        <p
-          data-animate
-          style={{ opacity: 0, transform: 'translateY(30px)' }}
-          className="text-gray-600 mt-2"
-        >
-          Real Stories from Tech Professionals
-        </p>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+            Student Reviews
+          </h2>
+          <p className="mt-2 text-white/80">
+            Real feedback from IT professionals who trained with us in the
+            Philippines.
+          </p>
+        </div>
 
         {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          {reviewsData.map((review, index) => (
-            <div
-              key={index}
-              data-animate
-              style={{ opacity: 0, transform: 'translateY(30px)' }}
-              className={`bg-white shadow-lg rounded-3xl p-6 flex flex-col justify-between transition-transform duration-300 ${
-                index === 1
-                  ? 'min-h-[320px] md:scale-105 md:shadow-xl'
-                  : 'min-h-[280px]'
-              }`}
-            >
-              {/* Quote (left-aligned, non-italic) */}
-              <p className="text-gray-700 text-left">
-                {review.quote}
-              </p>
+        <ul role="list" className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {reviewsData.map((r, i) => (
+            <li key={i}>
+              <article
+                data-animate
+                style={{ opacity: 0, transform: "translateY(24px)" }}
+                className="group relative h-full rounded-2xl bg-white/7 ring-1 ring-white/10 p-5 md:p-6 
+                           shadow-[0_12px_40px_-12px_rgba(2,6,23,.6)] transition-transform 
+                           hover:-translate-y-1"
+                onMouseMove={(e) => {
+                  const t = e.currentTarget.getBoundingClientRect();
+                  const rx = (e.clientX - t.left) / t.width - 0.5;
+                  const ry = (e.clientY - t.top) / t.height - 0.5;
+                  e.currentTarget.style.transform = `translateY(-4px) rotateX(${
+                    ry * 2
+                  }deg) rotateY(${rx * -2}deg)`;
+                }}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
+              >
+                {/* quote */}
+                <p className="text-white/90 leading-relaxed">“{r.quote}”</p>
 
-              {/* Reviewer Info (left-aligned) */}
-              <div className="mt-6">
-                {/* Avatar + Name/Position */}
-                <div className="flex items-center mb-2">
+                {/* footer */}
+                <div className="mt-6 flex items-center">
                   <img
-                    src={review.profile}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full mr-3 object-cover"
+                    src={r.profile}
+                    alt={`${r.name} profile`}
+                    className="h-12 w-12 rounded-full object-cover ring-1 ring-white/20"
+                    loading="lazy"
+                    draggable="false"
                   />
-                  <div className="text-left">
-                    <p className="text-[#0D2153] font-semibold">
-                      {review.name}
-                    </p>
-                    <div className="flex items-center text-left ">
-                  {[...Array(review.rating)].map((_, starIndex) => (
-                    <FaStar
-                      key={starIndex}
-                      className="text-yellow-400 w-5 h-5 mr-1"
-                    />
-                  ))}
-                </div>
-                    {/* <p className="text-sm text-gray-500">
-                      {review.position}
-                    </p> */}
+                  <div className="ml-3">
+                    <p className="font-semibold">{r.name}</p>
+                    <div
+                      className="flex items-center"
+                      aria-label={`${r.rating} out of 5 stars`}
+                    >
+                      {Array.from({ length: r.rating }).map((_, s) => (
+                        <FaStar
+                          key={s}
+                          className="h-4 w-4 text-yellow-400 mr-1"
+                          aria-hidden="true"
+                        />
+                      ))}
+                      <span className="sr-only">{r.rating} out of 5 stars</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Stars below job title */}
-          
-              </div>
-            </div>
+                {/* subtle glow on hover */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+                             bg-gradient-to-br from-white/8 to-transparent"
+                />
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
+
+        {/* JSON-LD for SEO (optional) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product", // your training as a product/service
+              name: "RivanCyber IT Training",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5.0",
+                reviewCount: String(reviewsData.length),
+              },
+              review: reviewsData.map((r) => ({
+                "@type": "Review",
+                reviewBody: r.quote,
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: r.rating,
+                  bestRating: "5",
+                },
+                author: { "@type": "Person", name: r.name },
+              })),
+            }),
+          }}
+        />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Reviews
+export default Reviews;

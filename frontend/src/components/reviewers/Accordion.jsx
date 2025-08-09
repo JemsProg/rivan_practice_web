@@ -1,4 +1,3 @@
-// src/components/Accordion.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { animate, inView } from "motion";
 import { Link } from "react-router-dom";
@@ -553,13 +552,14 @@ const Accordion = ({ sections = defaultSections, className = "" }) => {
   const [openSection, setOpenSection] = useState(null);
 
   useEffect(() => {
+    if (!sectionRef.current) return;
     const els = sectionRef.current.querySelectorAll("[data-animate]");
     els.forEach((el, i) =>
       inView(el, () =>
         animate(
           el,
           { opacity: 1, y: 0 },
-          { duration: 0.6, delay: i * 0.1, easing: "ease-in-out" }
+          { duration: 0.6, delay: i * 0.08, easing: "ease-in-out" }
         )
       )
     );
@@ -570,40 +570,78 @@ const Accordion = ({ sections = defaultSections, className = "" }) => {
 
   return (
     <div ref={sectionRef} className={className}>
-      {sections.map((section) => (
-        <div
-          key={section.id}
-          data-animate
-          style={{ opacity: 0, transform: "translateY(30px)" }}
-        >
-          <button
-            onClick={() => toggleSection(section.id)}
-            className="flex items-center w-full bg-[#1F305E] text-white px-4 py-3 rounded-md font-semibold text-left"
+      {sections.map((section, idx) => {
+        const panelId = `acc-panel-${section.id || idx}`;
+        const btnId = `acc-button-${section.id || idx}`;
+        const isOpen = openSection === section.id;
+
+        return (
+          <div
+            key={section.id || idx}
+            data-animate
+            style={{ opacity: 0, transform: "translateY(24px)" }}
+            className="mb-3"
           >
-            {section.icon || <FaNetworkWired className="mr-2" />}
-            <span className="ml-2">{section.title}</span>
-            <BsChevronDown
-              className={`ml-auto transform transition-transform ${
-                openSection === section.id ? "rotate-180" : ""
-              }`}
-            />
-          </button>
-          {openSection === section.id && (
-            <ul className="bg-white border border-t-0 rounded-b-md shadow max-h-80 overflow-y-auto">
-              {section.items.map((item) => (
-                <li key={item.link} className="border-b last:border-b-0">
-                  <Link
-                    to={item.link}
-                    className="block px-4 py-2 hover:bg-gray-100 transition"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      ))}
+            {/* Header */}
+            <button
+              id={btnId}
+              onClick={() => toggleSection(section.id)}
+              aria-expanded={isOpen}
+              aria-controls={panelId}
+              className="
+                group w-full flex items-center gap-3 text-left
+                rounded-xl px-4 py-3
+                bg-white/10 hover:bg-white/15
+                border border-white/15
+                text-white font-semibold
+                transition
+                focus:outline-none focus:ring-2 focus:ring-white/30
+              "
+            >
+              {section.icon ?? <FaNetworkWired />}
+              <span className="flex-1">{section.title}</span>
+              <BsChevronDown
+                className={`shrink-0 transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                } opacity-80`}
+              />
+            </button>
+
+            {/* Panel */}
+            <div
+              id={panelId}
+              role="region"
+              aria-labelledby={btnId}
+              hidden={!isOpen}
+              className="
+                mt-1 rounded-xl
+                bg-white/5 border border-white/10
+                backdrop-blur
+                shadow-[0_12px_32px_-12px_rgba(2,6,23,.6)]
+                overflow-hidden
+              "
+            >
+              {/* Remove any fixed heights. Let it size naturally, but cap for long lists */}
+              <ul className="max-h-[60vh] overflow-y-auto divide-y divide-white/10">
+                {section.items.map((item) => (
+                  <li key={item.link}>
+                    <Link
+                      to={item.link}
+                      className="
+                        block px-4 py-2.5
+                        text-white/90 hover:text-white
+                        hover:bg-white/10 transition
+                      "
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
