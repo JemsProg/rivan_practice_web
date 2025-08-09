@@ -137,6 +137,7 @@ import SecurityPlus from "./pages/courses/SecurityPlus";
 import ITIL from "./pages/courses/Itil";
 import FullStackDevelopment from "./pages/courses/FullStack";
 import PaloAlto from "./pages/courses/PaloAlto";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -627,6 +628,7 @@ function App() {
               path="/top-it-training-courses-philippines-2025/palo-alto-network-training"
               element={<PaloAlto />}
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
