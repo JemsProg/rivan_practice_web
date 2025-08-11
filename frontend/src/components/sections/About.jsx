@@ -40,7 +40,6 @@ const About = () => {
   ];
 
   return (
-    // Component section (not a full page)
     <section
       id="about"
       ref={sectionRef}
@@ -48,14 +47,12 @@ const About = () => {
       aria-labelledby="about-heading"
       onMouseMove={handleMouseMove}
     >
-      {/* Gentle navy gradients for depth */}
       <div aria-hidden="true">
         <div className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-indigo-500/15 blur-3xl" />
         <div className="pointer-events-none absolute bottom-50 -right-2 h-[22rem] w-[22rem] rounded-full bg-blue-400/15 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl  py-20">
-        {/* Heading + short copy */}
         <div
           data-animate
           style={{ opacity: 0, transform: "translateY(24px)" }}
@@ -74,7 +71,6 @@ const About = () => {
             </p>
           </div>
 
-          {/* small chips; dark theme */}
           <ul className="mt-6 flex flex-wrap justify-center gap-2">
             {[
               "Cisco • CompTIA • CCNA • CCNP • Fullstack",
@@ -90,7 +86,6 @@ const About = () => {
           </ul>
         </div>
 
-        {/* Interactive grid with dark cards + cursor spotlight */}
         <div
           ref={spotlightRef}
           className="relative mt-12"
@@ -111,18 +106,19 @@ const About = () => {
                   src={src}
                   alt={`${cap} at RivanCyber`}
                   loading="lazy"
+                  decoding="async"
                   className="h-64 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   draggable="false"
+                  width={1024}
+                  height={512}
                 />
 
-                {/* caption pill */}
                 <figcaption className="absolute inset-x-0 bottom-0 p-4">
                   <span className="inline-flex rounded-full bg-black/40 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/15 backdrop-blur">
                     {cap}
                   </span>
                 </figcaption>
 
-                {/* micro parallax on hover */}
                 <div
                   className="pointer-events-none absolute inset-0 transition-transform duration-200 ease-out"
                   onMouseMove={(e) => {
@@ -142,7 +138,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* sr-only SEO helper; stays invisible */}
         <p className="sr-only">
           RivanCyber provides IT certification exam training in the Philippines,
           including Cisco, CompTIA, and cloud tracks.

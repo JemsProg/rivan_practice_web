@@ -1,11 +1,14 @@
-import React, { useRef, useEffect } from "react";
+// src/components/Products.jsx
+import React, { useRef, useEffect, useState } from "react";
 import Slider from "react-slick";
 import { inView, animate } from "motion";
+import { Link } from "react-router-dom";
 import { courses } from "../data/courses";
 import { products } from "../data/products";
 
 const Products = () => {
   const sectionRef = useRef(null);
+  const [autoplay, setAutoplay] = useState(true);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -32,7 +35,7 @@ const Products = () => {
     cssEase: "ease",
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay,
     autoplaySpeed: 3200,
     pauseOnHover: true,
     pauseOnFocus: true,
@@ -44,6 +47,8 @@ const Products = () => {
       { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
   };
+
+  const courseListWithLinks = courses.filter((c) => !!c.link);
 
   return (
     <section
@@ -85,45 +90,94 @@ const Products = () => {
         {/* Carousel (Courses) */}
         <div
           role="region"
-          aria-label="Featured training courses"
+          aria-roledescription="carousel"
+          aria-label="Featured training courses carousel"
           className="rounded-2xl"
         >
+          <div className="flex items-center justify-end gap-2 mb-2">
+            <button
+              type="button"
+              onClick={() => setAutoplay(false)}
+              className="text-xs rounded-full border border-white/20 px-2.5 py-1 text-white/80 hover:bg-white/10"
+              aria-label="Pause carousel autoplay"
+            >
+              Pause
+            </button>
+            <button
+              type="button"
+              onClick={() => setAutoplay(true)}
+              className="text-xs rounded-full border border-white/20 px-2.5 py-1 text-white/80 hover:bg-white/10"
+              aria-label="Play carousel autoplay"
+            >
+              Play
+            </button>
+          </div>
+
           <Slider {...settings}>
-            {courses.map((course, idx) => (
-              <div
-                key={idx}
-                className="px-3"
-                data-animate
-                style={{ opacity: 0, transform: "translateY(18px)" }}
-              >
-                <article
-                  className="group h-full rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl
-                             shadow-[0_10px_40px_-15px_rgba(2,6,23,.6)] transition-transform duration-300
-                             hover:-translate-y-1 hover:shadow-[0_18px_50px_-12px_rgba(2,6,23,.7)]"
+            {courses.map((course, idx) => {
+              const CardWrapper = course.link ? Link : "div";
+              const wrapperProps = course.link
+                ? {
+                    to: course.link,
+                    className:
+                      "block focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-2xl",
+                  }
+                : {};
+
+              return (
+                <div
+                  key={idx}
+                  className="px-3"
+                  data-animate
+                  style={{ opacity: 0, transform: "translateY(18px)" }}
                 >
-                  <div className="relative overflow-hidden rounded-xl">
-                    <img
-                      src={course.image}
-                      alt={`${course.title} – ${course.subtitle}`}
-                      loading="lazy"
-                      className="h-44 w-full object-cover"
-                    />
-                    {/* shine */}
-                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className="absolute -inset-x-10 -top-10 h-24 rotate-6 bg-white/10 blur-xl" />
-                    </div>
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-white">
-                    {course.title}
-                  </h3>
-                  <p className="text-sm text-white/60">{course.subtitle}</p>
-                  <p className="mt-2 line-clamp-3 text-sm text-white/70">
-                    {course.description}
-                  </p>
-                </article>
-              </div>
-            ))}
+                  <CardWrapper {...wrapperProps}>
+                    <article
+                      className="group h-full rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl
+                                 shadow-[0_10px_40px_-15px_rgba(2,6,23,.6)] transition-transform duration-300
+                                 hover:-translate-y-1 hover:shadow-[0_18px_50px_-12px_rgba(2,6,23,.7)]"
+                    >
+                      <div className="relative overflow-hidden rounded-xl">
+                        <img
+                          src={course.image}
+                          alt={`${course.title} – ${course.subtitle}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-44 w-full object-cover"
+                          width={800}
+                          height={352}
+                        />
+                        {/* shine */}
+                        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <div className="absolute -inset-x-10 -top-10 h-24 rotate-6 bg-white/10 blur-xl" />
+                        </div>
+                      </div>
+                      <h3 className="mt-4 text-lg font-semibold text-white">
+                        {course.title}
+                      </h3>
+                      <p className="text-sm text-white/60">{course.subtitle}</p>
+                      <p className="mt-2 line-clamp-3 text-sm text-white/70">
+                        {course.description}
+                      </p>
+                    </article>
+                  </CardWrapper>
+                </div>
+              );
+            })}
           </Slider>
+
+          {/* Non-JS fallback so content is crawlable */}
+          <noscript>
+            <ul>
+              {courseListWithLinks.slice(0, 6).map((c, i) => (
+                <li key={i}>
+                  <a href={c.link}>
+                    {c.title} – {c.subtitle}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </noscript>
         </div>
 
         {/* Customers Also Purchased */}
@@ -143,7 +197,10 @@ const Products = () => {
                     src={product.image}
                     alt={`${product.name} by ${product.vendor}`}
                     loading="lazy"
+                    decoding="async"
                     className="h-48 w-full object-cover"
+                    width={800}
+                    height={384}
                   />
                   <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
@@ -162,7 +219,7 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Minimal OfferCatalog JSON-LD */}
+      {/* JSON-LD: OfferCatalog for products */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -182,6 +239,29 @@ const Products = () => {
           }),
         }}
       />
+
+      {/* JSON-LD: ItemList for featured course links (if present) */}
+      {courseListWithLinks.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              itemListElement: courseListWithLinks.map((c, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: c.link,
+                item: {
+                  "@type": "Course",
+                  name: c.title,
+                  description: c.description,
+                },
+              })),
+            }),
+          }}
+        />
+      )}
     </section>
   );
 };

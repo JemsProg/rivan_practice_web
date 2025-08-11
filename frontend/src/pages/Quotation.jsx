@@ -21,6 +21,8 @@ const Quotation = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
   const [modal, setModal] = useState({ open: false, title: "", body: "" });
+  // somewhere near your other constants
+  const voucherOptions = ["Yes", "No"];
 
   const [formData, setFormData] = useState({
     customerName: "",
@@ -50,7 +52,8 @@ const Quotation = () => {
     () => [
       "RivanIT CCNA Network Engineer Training 200-301",
       "CCNP Enterprise: ENCORxENARSIxSDWAN",
-      "CompTIA Security+ (SY0-701)",
+      "COMPTIA SECURITY PLUS + ",
+      "Fullstack (React.js, Django)",
     ],
     []
   );
@@ -360,17 +363,57 @@ const Quotation = () => {
               </Listbox>
             </Field>
 
-            {formData.course.includes("Security+") && (
+            {formData.course.includes("COMPTIA SECURITY PLUS +") && (
               <Field label="Voucher for Exam">
-                <select
-                  name="voucherNeeded"
+                <Listbox
                   value={formData.voucherNeeded}
-                  onChange={handleChange}
-                  className={inputClass}
+                  onChange={(value) =>
+                    setFormData((prev) => ({ ...prev, voucherNeeded: value }))
+                  }
                 >
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
+                  <div className="relative">
+                    {/* Button */}
+                    <Listbox.Button
+                      className="w-full px-4 py-3 rounded-lg border border-white/15
+          bg-white/10 backdrop-blur text-white text-left
+          hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30
+          flex items-center justify-between"
+                    >
+                      <span>{formData.voucherNeeded || "Select option"}</span>
+                      <ChevronUpDownIcon
+                        className="h-5 w-5 text-white/60"
+                        aria-hidden="true"
+                      />
+                    </Listbox.Button>
+
+                    {/* Options */}
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Listbox.Options
+                        className="absolute z-20 mt-2 w-full max-h-60 overflow-auto
+                        rounded-lg border border-white/10 bg-[#0B142B] text-white
+                        shadow-xl focus:outline-none"
+                      >
+                        {voucherOptions.map((option) => (
+                          <Listbox.Option
+                            key={option}
+                            value={option}
+                            className="cursor-pointer px-4 py-2 hover:bg-white/10 ui-selected:bg-white/15"
+                          >
+                            {option}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
+                  </div>
+                </Listbox>
               </Field>
             )}
 

@@ -605,7 +605,7 @@ function App() {
             />
 
             <Route
-              path="/top-it-training-courses-philippines-2025/ccna-201-301"
+              path="/top-it-training-courses-philippines-2025/ccna-200-301"
               element={<CCNA />}
             />
             <Route

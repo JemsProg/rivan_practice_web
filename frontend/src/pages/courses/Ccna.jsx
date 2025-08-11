@@ -40,8 +40,79 @@ const CCNA = () => {
       )
     );
     window.scrollTo(0, 0);
-    document.title = "CCNA Training Bootcamp | RivanCyber";
   }, []);
+
+  // --- JSON-LD data (rich, localized) ---
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "CCNA Training Philippines (200-301)",
+    description:
+      "Hands-on CCNA 200-301 training in the Philippines with 5-day onsite sessions and 20 days of guided homelabs.",
+    url: "https://www.rivanit.com/top-it-training-courses-philippines-2025/ccna-200-301",
+    image: "https://www.rivanit.com/og/ccna-200-301.jpg", // swap to a real 1200x630 image if available
+    provider: {
+      "@type": "Organization",
+      name: "RivanCyber Training Institute",
+      url: "https://www.rivanit.com",
+    },
+    educationalCredentialAwarded: "CCNA (200-301)",
+    teaches: [
+      "Networking fundamentals",
+      "Routing and switching",
+      "IP connectivity and services",
+      "Security fundamentals",
+      "Automation and programmability",
+    ],
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "Onsite + Homelab",
+        location: {
+          "@type": "Place",
+          name: "Metro Manila, Philippines",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "PH",
+            addressRegion: "NCR",
+            addressLocality: "Manila",
+          },
+        },
+        startDate: "2025-09-01", // optional; set real dates if you have them
+        endDate: "2025-10-01",
+        offers: {
+          "@type": "AggregateOffer",
+          priceCurrency: "PHP",
+          availability: "https://schema.org/InStock",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.rivanit.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "IT Training Courses Philippines",
+        item: "https://www.rivanit.com/top-it-training-courses-philippines-2025",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "CCNA Training (200-301)",
+        item: "https://www.rivanit.com/top-it-training-courses-philippines-2025/ccna-200-301",
+      },
+    ],
+  };
 
   return (
     <section
@@ -49,6 +120,46 @@ const CCNA = () => {
       className="relative bg-[#0B142B] text-white py-16 px-4"
       aria-labelledby="ccna-heading"
     >
+      {/* Head tags (React 19) */}
+      <title>CCNA Training Philippines (200-301) | RivanCyber</title>
+      <meta
+        name="description"
+        content="Hands-on CCNA (200-301) training in the Philippines with live labs, 5-day onsite bootcamp, and 20-day guided homelabs. Weekend schedules available."
+      />
+      <link
+        rel="canonical"
+        href="https://www.rivanit.com/top-it-training-courses-philippines-2025/ccna-200-301"
+      />
+      {/* Social preview (optional) */}
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:title"
+        content="CCNA Training Philippines (200-301) | RivanCyber"
+      />
+      <meta
+        property="og:description"
+        content="Hands-on CCNA bootcamp with labs, onsite sessions, and guided homelabs in Manila."
+      />
+      <meta
+        property="og:url"
+        content="https://www.rivanit.com/top-it-training-courses-philippines-2025/ccna-200-301"
+      />
+      <meta
+        property="og:image"
+        content="https://www.rivanit.com/og/ccna-200-301.jpg"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* soft gradient accents */}
       <div aria-hidden="true">
         <div className="pointer-events-none absolute -top-32 -left-24 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
@@ -68,13 +179,15 @@ const CCNA = () => {
               alt="CCNA logo"
               className="w-40 md:w-48 flex-shrink-0 rounded-xl bg-white/5 ring-1 ring-white/10 p-3"
               loading="eager"
+              width={192}
+              height={192}
             />
             <div className="flex-1 text-center md:text-left">
               <h1
                 id="ccna-heading"
                 className="text-3xl md:text-4xl font-extrabold tracking-tight"
               >
-                CCNA Training Bootcamp
+                CCNA Training Philippines (200-301)
               </h1>
               <p className="text-sm md:text-base text-white/70 mt-1">
                 200-301 CCNA v1.1
@@ -84,7 +197,7 @@ const CCNA = () => {
                 outputs in a class group with instructor feedback so you build
                 real, job-ready networking skills.
               </p>
-              {/* SR-only semantic helper for SEO */}
+              {/* SR-only helper for SEO */}
               <p className="sr-only">
                 CCNA training in the Philippines: Cisco 200-301 with hands-on
                 labs and certification prep.
@@ -110,19 +223,16 @@ const CCNA = () => {
                 and programmability. Perfect for roles like:
               </p>
               <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/85">
-                <li className="inline-flex items-center gap-2">
-                  <FaCheck className="text-emerald-400" /> Network Engineer
-                </li>
-                <li className="inline-flex items-center gap-2">
-                  <FaCheck className="text-emerald-400" /> Systems Administrator
-                </li>
-                <li className="inline-flex items-center gap-2">
-                  <FaCheck className="text-emerald-400" /> IT Support Specialist
-                </li>
-                <li className="inline-flex items-center gap-2">
-                  <FaCheck className="text-emerald-400" /> Infrastructure
-                  Technician
-                </li>
+                {[
+                  "Network Engineer",
+                  "Systems Administrator",
+                  "IT Support Specialist",
+                  "Infrastructure Technician",
+                ].map((role) => (
+                  <li key={role} className="inline-flex items-center gap-2">
+                    <FaCheck className="text-emerald-400" /> {role}
+                  </li>
+                ))}
               </ul>
               <p className="mt-3 text-white/85">
                 Training goes beyond theory—configure Cisco gear and simulate
@@ -179,41 +289,27 @@ const CCNA = () => {
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
               <h3 className="text-2xl font-bold">This training includes</h3>
               <ul className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-white/90">
-                <li className="flex items-center gap-3">
-                  <FaPenNib /> Printed training materials
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaBook /> CCNA official book (if available)
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaUtensils /> Breakfast, lunch & snacks onsite
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaDownload /> Software installers for homelab
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaFileContract /> CCNA exam reviewers
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaHome /> Free dorm access (for far students)
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaCloud /> 6-month Meraki cloud lab access
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaFileContract /> Certificate of Completion
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaDownload /> 1-year sit-in validity
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaDesktop /> Dedicated equipment per student
-                </li>
+                {[
+                  [FaPenNib, "Printed training materials"],
+                  [FaBook, "CCNA official book (if available)"],
+                  [FaUtensils, "Breakfast, lunch & snacks onsite"],
+                  [FaDownload, "Software installers for homelab"],
+                  [FaFileContract, "CCNA exam reviewers"],
+                  [FaHome, "Free dorm access (for far students)"],
+                  [FaCloud, "6-month Meraki cloud lab access"],
+                  [FaFileContract, "Certificate of Completion"],
+                  [FaDownload, "1-year sit-in validity"],
+                  [FaDesktop, "Dedicated equipment per student"],
+                ].map(([Icon, text]) => (
+                  <li key={text} className="flex items-center gap-3">
+                    <Icon /> {text}
+                  </li>
+                ))}
               </ul>
             </section>
           </div>
 
-          {/* Right: certification, schedule, outline */}
+          {/* Right: cert, schedule, outline */}
           <aside className="flex flex-col gap-6">
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
               <p className="font-semibold text-lg mb-3">
@@ -224,6 +320,9 @@ const CCNA = () => {
                   src={ccnaLogo}
                   alt="CCNA"
                   className="w-14 h-14 object-contain rounded-lg bg-white/5 ring-1 ring-white/10 p-1.5"
+                  width={56}
+                  height={56}
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-bold">CCNA</h4>
@@ -283,6 +382,8 @@ const CCNA = () => {
                   className="h-28 w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                   loading="lazy"
                   draggable="false"
+                  width={320}
+                  height={160}
                 />
                 <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-2 text-xs text-white/90 bg-gradient-to-t from-[#0B142B]/60 to-transparent">
                   CCNA hands-on training
@@ -291,25 +392,6 @@ const CCNA = () => {
             ))}
           </div>
         </section>
-
-        {/* JSON-LD for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Course",
-              name: "CCNA Training Bootcamp (200-301)",
-              description:
-                "Hands-on CCNA 200-301 training in the Philippines with 5-day onsite sessions and 20 days of guided homelabs.",
-              provider: {
-                "@type": "Organization",
-                name: "RivanCyber Training Institute",
-                sameAs: "https://rivanit.com",
-              },
-            }),
-          }}
-        />
       </div>
     </section>
   );

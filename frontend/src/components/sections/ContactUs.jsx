@@ -33,7 +33,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
-    if (form.hp) return; // bots fill hidden field -> ignore
+    if (form.hp) return;
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setErrorMsg("Please fill out all fields.");
@@ -78,7 +78,7 @@ const ContactUs = () => {
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* LEFT: Map + stats in one column */}
+          {/* LEFT: Map + stats */}
           <div
             data-animate
             style={{ opacity: 0, transform: "translateY(24px)" }}
@@ -94,23 +94,22 @@ const ContactUs = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
+                  width="800"
+                  height="500"
                 />
               </div>
 
-              {/* Open in Maps chip (stays inside card) */}
               <a
                 href="https://maps.google.com/?q=RivanCyber+Training+Institute+Makati"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute right-4 bottom-4 inline-flex items-center gap-2 rounded-full
-                           bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1.5 text-sm
-                           text-white hover:bg-white/20 transition"
+                className="absolute right-4 bottom-4 inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 px-3 py-1.5 text-sm text-white hover:bg-white/20 transition"
               >
                 Open in Google Maps <span aria-hidden>↗</span>
               </a>
             </div>
 
-            {/* Stats strip below the map */}
+            {/* Stats strip */}
             <div className="rounded-xl bg-white/5 ring-1 ring-white/10 p-3">
               <div className="flex flex-wrap flex-col gap-3">
                 <div className="flex flex-wrap gap-5">
@@ -184,10 +183,10 @@ const ContactUs = () => {
               prep.
             </p>
 
-            {/* quick contact chips (crawlable for SEO) */}
+            {/* crawlable quick contact */}
             <div className="mt-4 flex flex-wrap gap-2 text-sm">
               <a
-                href="teamrivan@rvci.org"
+                href="mailto:teamrivan@rvci.org"
                 className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-white/90 hover:bg-white/20"
               >
                 teamrivan@rvci.org
@@ -201,7 +200,7 @@ const ContactUs = () => {
             </div>
 
             <form className="mt-6 space-y-4" onSubmit={handleSubmit} noValidate>
-              {/* Honeypot (hidden from users) */}
+              {/* Honeypot */}
               <input
                 type="text"
                 name="hp"
@@ -226,9 +225,9 @@ const ContactUs = () => {
                   value={form.name}
                   onChange={onChange}
                   required
+                  autoComplete="name"
                   placeholder="Jane Dela Cruz"
-                  className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/50
-                             focus:outline-none focus:ring-2 focus:ring-white/30"
+                  className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
                 />
               </div>
 
@@ -246,9 +245,9 @@ const ContactUs = () => {
                   value={form.email}
                   onChange={onChange}
                   required
+                  autoComplete="email"
                   placeholder="you@company.com"
-                  className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/50
-                             focus:outline-none focus:ring-2 focus:ring-white/30"
+                  className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
                 />
               </div>
 
@@ -265,20 +264,27 @@ const ContactUs = () => {
                   value={form.message}
                   onChange={onChange}
                   required
+                  autoComplete="off"
                   placeholder="Tell us what you need help with (course, schedule, team training, etc.)"
-                  className="mt-1 w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 h-32 resize-none text-white placeholder-white/50
-                             focus:outline-none focus:ring-2 focus:ring-white/30"
+                  className="mt-1 w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 h-32 resize-none text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
                 />
               </div>
 
-              {errorMsg && <p className="text-sm text-red-300">{errorMsg}</p>}
+              {errorMsg && (
+                <p
+                  className="text-sm text-red-300"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  {errorMsg}
+                </p>
+              )}
 
               <button
                 type="submit"
                 disabled={loading || submitted}
-                className="inline-flex w-full items-center justify-center rounded-full
-                           bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 font-semibold text-white
-                           shadow-lg transition-all hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex w-full items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
+                aria-live="polite"
               >
                 {loading ? (
                   <span className="relative inline-flex items-center">
@@ -298,7 +304,7 @@ const ContactUs = () => {
         </div>
       </div>
 
-      {/* ContactPoint + org facts JSON-LD (edit phone/email to canonical) */}
+      {/* ContactPoint JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -306,13 +312,14 @@ const ContactUs = () => {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "RivanCyber Training Institute",
+            url: "https://www.rivanit.com",
             foundingDate: "2000",
             contactPoint: [
               {
                 "@type": "ContactPoint",
                 contactType: "customer support",
                 email: "teamrivan@rvci.org",
-                telephone: "+63 949 376 0000",
+                telephone: "+639493760000",
                 areaServed: "PH",
                 availableLanguage: ["en"],
               },
@@ -326,7 +333,7 @@ const ContactUs = () => {
               {
                 "@type": "PropertyValue",
                 name: "Learners trained",
-                value: "10000+",
+                value: "20000+",
               },
             ],
           }),

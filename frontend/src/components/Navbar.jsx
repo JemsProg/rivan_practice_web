@@ -19,7 +19,6 @@ const Navbar = () => {
     }
   };
 
-  // Styles
   const linkBase = "cursor-pointer text-sm font-medium transition-colors";
   const linkIdle = "text-white/70 hover:text-white";
   const linkActive =
@@ -35,7 +34,6 @@ const Navbar = () => {
   };
 
   return (
-    // Not sticky — just a normal block at the top of the page
     <nav
       className="w-full bg-[#0B142B] text-white"
       role="navigation"
@@ -53,12 +51,18 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <RouterLink to="/" className="flex items-center gap-3">
+            <RouterLink
+              to="/"
+              className="flex items-center gap-3"
+              aria-label="RivanCyber home"
+            >
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
                 <img
                   src={logo}
                   alt="RivanCyber logo"
                   className="h-8 w-8"
+                  width={32}
+                  height={32}
                   loading="lazy"
                   draggable="false"
                 />
@@ -71,6 +75,14 @@ const Navbar = () => {
 
           {/* Desktop links */}
           <div className="hidden xl:flex items-center gap-6">
+            {/* Crawler-visible landing link to courses list (exact-match anchor) */}
+            <RouterLink
+              to="/top-it-training-courses-philippines-2025"
+              className={`${linkBase} ${linkIdle}`}
+            >
+              IT Training Courses Philippines
+            </RouterLink>
+
             <ScrollLink
               to="home"
               onClick={() => handleNavClick("home")}
@@ -120,7 +132,7 @@ const Navbar = () => {
             <a
               href="https://www.youtube.com/@teamrivanit?sub_confirmation=1"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               aria-label="Open RivanCyber YouTube channel"
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2 text-sm text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
             >
@@ -173,10 +185,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Divider line for structure */}
       <div className="h-px w-full bg-white/10" />
 
-      {/* Mobile fullscreen overlay menu (solid, no glass) */}
+      {/* Mobile menu */}
       <div
         id="mobile-menu"
         className={`xl:hidden fixed inset-0 z-50 bg-[#0B142B] transition-opacity duration-200 ${
@@ -188,9 +199,18 @@ const Navbar = () => {
       >
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex h-16 items-center justify-between">
-            <span className="flex items-center gap-3">
+            <span
+              className="flex items-center gap-3"
+              aria-label="RivanCyber home"
+            >
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
-                <img src={logo} alt="" className="h-6 w-6" />
+                <img
+                  src={logo}
+                  alt="RivanCyber logo"
+                  className="h-6 w-6"
+                  width={24}
+                  height={24}
+                />
               </span>
               <span className="text-lg font-semibold tracking-tight">
                 RivanCyber
@@ -220,6 +240,15 @@ const Navbar = () => {
 
           <div className="py-6">
             <nav className="flex flex-col gap-2">
+              {/* Crawler-visible link first in mobile too */}
+              <RouterLink
+                to="/top-it-training-courses-philippines-2025"
+                onClick={() => setIsOpen(false)}
+                className="block rounded-lg px-3 py-3 text-lg text-white hover:bg-white/5"
+              >
+                IT Training Courses Philippines
+              </RouterLink>
+
               {[
                 ["home", "Home"],
                 ["about", "About"],
@@ -247,7 +276,7 @@ const Navbar = () => {
                 <a
                   href="https://www.youtube.com/@teamrivanit?sub_confirmation=1"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-4 py-3 text-white hover:bg-white/10"
                 >
                   <FaYoutube className="h-5 w-5" />

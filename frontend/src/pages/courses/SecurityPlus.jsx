@@ -39,8 +39,77 @@ const SecurityPlus = () => {
       )
     );
     window.scrollTo(0, 0);
-    document.title = "CompTIA Security+ (SY0-701) Training | RivanCyber";
   }, []);
+
+  // Rich JSON-LD
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "CompTIA Security+ Training Philippines (SY0-701)",
+    description:
+      "Hands-on Security+ training in the Philippines: threats, cryptography, IAM, risk, incident response. Includes labs and exam prep aligned to SY0-701.",
+    url: "https://www.rivanit.com/top-it-training-courses-philippines-2025/comptia-security-plus-syo-701",
+    image: "https://www.rivanit.com/og/security-plus-sy0-701.jpg", // replace with real 1200x630 image
+    provider: {
+      "@type": "Organization",
+      name: "RivanCyber Training Institute",
+      url: "https://www.rivanit.com",
+    },
+    teaches: [
+      "Threats and vulnerabilities",
+      "Identity and access management (IAM)",
+      "Cryptography and PKI",
+      "Risk management",
+      "Incident response",
+    ],
+    educationalCredentialAwarded: "CompTIA Security+ (SY0-701)",
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "Onsite + Labs",
+        location: {
+          "@type": "Place",
+          name: "Metro Manila, Philippines",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "PH",
+            addressRegion: "NCR",
+            addressLocality: "Manila",
+          },
+        },
+        offers: {
+          "@type": "AggregateOffer",
+          priceCurrency: "PHP",
+          availability: "https://schema.org/InStock",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.rivanit.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "IT Training Courses Philippines",
+        item: "https://www.rivanit.com/top-it-training-courses-philippines-2025",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "CompTIA Security+ (SY0-701)",
+        item: "https://www.rivanit.com/top-it-training-courses-philippines-2025/comptia-security-plus-syo-701",
+      },
+    ],
+  };
 
   return (
     <section
@@ -48,6 +117,48 @@ const SecurityPlus = () => {
       className="relative bg-[#0B142B] text-white py-16 px-4"
       aria-labelledby="sec-heading"
     >
+      {/* Head tags (React 19) */}
+      <title>
+        CompTIA Security+ Training Philippines (SY0-701) | RivanCyber
+      </title>
+      <meta
+        name="description"
+        content="Security+ (SY0-701) training in the Philippines with hands-on cyber labs, IAM, cryptography, risk, and incident response. Weekend and weekday schedules."
+      />
+      <link
+        rel="canonical"
+        href="https://www.rivanit.com/top-it-training-courses-philippines-2025/comptia-security-plus-syo-701"
+      />
+      {/* Social preview */}
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:title"
+        content="CompTIA Security+ Training Philippines (SY0-701) | RivanCyber"
+      />
+      <meta
+        property="og:description"
+        content="Hands-on Security+ course with labs and exam prep in Manila."
+      />
+      <meta
+        property="og:url"
+        content="https://www.rivanit.com/top-it-training-courses-philippines-2025/comptia-security-plus-syo-701"
+      />
+      <meta
+        property="og:image"
+        content="https://www.rivanit.com/og/security-plus-sy0-701.jpg"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* soft gradient accents for depth */}
       <div aria-hidden="true">
         <div className="pointer-events-none absolute -top-32 -left-24 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
@@ -64,16 +175,18 @@ const SecurityPlus = () => {
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <img
               src={secLogo}
-              alt="CompTIA Security+"
+              alt="CompTIA Security+ logo"
               className="w-40 md:w-48 flex-shrink-0 rounded-xl bg-white/5 ring-1 ring-white/10 p-3"
               loading="eager"
+              width={192}
+              height={192}
             />
             <div className="flex-1 text-center md:text-left">
               <h1
                 id="sec-heading"
                 className="text-3xl md:text-4xl font-extrabold tracking-tight"
               >
-                CompTIA Security+ Training (SY0-701)
+                CompTIA Security+ Training Philippines (SY0-701)
               </h1>
               <p className="text-sm md:text-base text-white/70 mt-1">
                 Threats • Cryptography • IAM • Risk • SecOps
@@ -84,7 +197,6 @@ const SecurityPlus = () => {
                 secure protocols, and real-world troubleshooting aligned to the
                 latest SY0-701 objectives.
               </p>
-              {/* SEO helper without visual clutter */}
               <p className="sr-only">
                 Security+ training in the Philippines with hands-on
                 cybersecurity labs and SY0-701 exam prep.
@@ -206,8 +318,11 @@ const SecurityPlus = () => {
               <div className="flex items-center gap-4">
                 <img
                   src={secLogo}
-                  alt="Security+ Logo"
+                  alt="Security+ logo"
                   className="w-14 h-14 object-contain rounded-lg bg-white/5 ring-1 ring-white/10 p-1"
+                  width={56}
+                  height={56}
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-semibold text-white">
@@ -269,6 +384,8 @@ const SecurityPlus = () => {
                   className="h-28 w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                   loading="lazy"
                   draggable="false"
+                  width={320}
+                  height={160}
                 />
                 <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-2 text-xs text-white/90 bg-gradient-to-t from-[#0B142B]/60 to-transparent">
                   Hands-on cyber labs
@@ -277,25 +394,6 @@ const SecurityPlus = () => {
             ))}
           </div>
         </section>
-
-        {/* JSON-LD for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Course",
-              name: "CompTIA Security+ Training (SY0-701)",
-              description:
-                "Hands-on Security+ course covering threats, cryptography, IAM, risk, and incident response. Aligned to SY0-701. Includes labs and exam prep.",
-              provider: {
-                "@type": "Organization",
-                name: "RivanCyber Training Institute",
-                sameAs: "https://rivanit.com",
-              },
-            }),
-          }}
-        />
       </div>
     </section>
   );

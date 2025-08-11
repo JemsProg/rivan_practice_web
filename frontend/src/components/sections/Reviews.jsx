@@ -1,3 +1,4 @@
+// src/components/Reviews.jsx
 import React, { useRef, useEffect } from "react";
 import { animate, inView } from "motion";
 import { FaStar } from "react-icons/fa";
@@ -51,6 +52,7 @@ const Reviews = () => {
       id="reviews"
       ref={sectionRef}
       className="bg-[#0B142B] text-white py-24 px-4"
+      aria-labelledby="reviews-heading"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Heading */}
@@ -59,7 +61,10 @@ const Reviews = () => {
           style={{ opacity: 0, transform: "translateY(24px)" }}
           className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+          <h2
+            id="reviews-heading"
+            className="text-3xl md:text-4xl font-extrabold tracking-tight"
+          >
             Student Reviews
           </h2>
           <p className="mt-2 text-white/80">
@@ -75,9 +80,7 @@ const Reviews = () => {
               <article
                 data-animate
                 style={{ opacity: 0, transform: "translateY(24px)" }}
-                className="group relative h-full rounded-2xl bg-white/7 ring-1 ring-white/10 p-5 md:p-6 
-                           shadow-[0_12px_40px_-12px_rgba(2,6,23,.6)] transition-transform 
-                           hover:-translate-y-1"
+                className="group relative h-full rounded-2xl bg-white/7 ring-1 ring-white/10 p-5 md:p-6 shadow-[0_12px_40px_-12px_rgba(2,6,23,.6)] transition-transform hover:-translate-y-1"
                 onMouseMove={(e) => {
                   const t = e.currentTarget.getBoundingClientRect();
                   const rx = (e.clientX - t.left) / t.width - 0.5;
@@ -98,7 +101,10 @@ const Reviews = () => {
                     alt={`${r.name} profile`}
                     className="h-12 w-12 rounded-full object-cover ring-1 ring-white/20"
                     loading="lazy"
+                    decoding="async"
                     draggable="false"
+                    width={48}
+                    height={48}
                   />
                   <div className="ml-3">
                     <p className="font-semibold">{r.name}</p>
@@ -121,36 +127,37 @@ const Reviews = () => {
                 {/* subtle glow on hover */}
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
-                             bg-gradient-to-br from-white/8 to-transparent"
+                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-white/8 to-transparent"
                 />
               </article>
             </li>
           ))}
         </ul>
 
-        {/* JSON-LD for SEO (optional) */}
+        {/* JSON-LD: reviews as an ItemList (safe for homepage) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Product", // your training as a product/service
-              name: "RivanCyber IT Training",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5.0",
-                reviewCount: String(reviewsData.length),
-              },
-              review: reviewsData.map((r) => ({
-                "@type": "Review",
-                reviewBody: r.quote,
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: r.rating,
-                  bestRating: "5",
+              "@type": "ItemList",
+              itemListElement: reviewsData.map((r, idx) => ({
+                "@type": "ListItem",
+                position: idx + 1,
+                item: {
+                  "@type": "Review",
+                  reviewBody: r.quote,
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: String(r.rating),
+                    bestRating: "5",
+                  },
+                  author: { "@type": "Person", name: r.name },
+                  itemReviewed: {
+                    "@type": "Organization",
+                    name: "RivanCyber Training Institute",
+                  },
                 },
-                author: { "@type": "Person", name: r.name },
               })),
             }),
           }}

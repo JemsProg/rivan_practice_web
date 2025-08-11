@@ -41,8 +41,77 @@ const CCNP = () => {
       )
     );
     window.scrollTo(0, 0);
-    document.title = "CCNP Enterprise (ENCOR • ENARSI) Bootcamp | RivanCyber";
   }, []);
+
+  // ---- JSON-LD ----
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "CCNP Enterprise Training Philippines (ENCOR • ENARSI)",
+    description:
+      "Advanced CCNP Enterprise training in the Philippines with hands-on labs for ENCOR (350-401) and ENARSI (300-410).",
+    url: "https://www.rivanit.com/top-it-training-courses-philippines-2025/ccnp-encor-enarsi",
+    image: "https://www.rivanit.com/og/ccnp-enterprise.jpg", // replace with a real 1200x630 image
+    provider: {
+      "@type": "Organization",
+      name: "RivanCyber Training Institute",
+      url: "https://www.rivanit.com",
+    },
+    teaches: [
+      "Enterprise core networking (ENCOR 350-401)",
+      "Advanced routing (OSPF, EIGRP, BGP)",
+      "VPN, security policies, and SD-WAN",
+      "Automation, monitoring, and operations",
+      "Troubleshooting enterprise infrastructure (ENARSI 300-410)",
+    ],
+    educationalCredentialAwarded: "CCNP Enterprise",
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "Onsite + Homelab",
+        location: {
+          "@type": "Place",
+          name: "Metro Manila, Philippines",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "PH",
+            addressRegion: "NCR",
+            addressLocality: "Manila",
+          },
+        },
+        offers: {
+          "@type": "AggregateOffer",
+          priceCurrency: "PHP",
+          availability: "https://schema.org/InStock",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.rivanit.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "IT Training Courses Philippines",
+        item: "https://www.rivanit.com/top-it-training-courses-philippines-2025",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "CCNP Enterprise (ENCOR • ENARSI)",
+        item: "https://www.rivanit.com/top-it-training-courses-philippines-2025/ccnp-encor-enarsi",
+      },
+    ],
+  };
 
   return (
     <section
@@ -50,6 +119,46 @@ const CCNP = () => {
       className="relative bg-[#0B142B] text-white py-16 px-4"
       aria-labelledby="ccnp-heading"
     >
+      {/* Head tags (React 19) */}
+      <title>CCNP Training Philippines (ENCOR • ENARSI) | RivanCyber</title>
+      <meta
+        name="description"
+        content="CCNP Enterprise training in the Philippines covering ENCOR (350-401) and ENARSI (300-410). Hands-on labs, onsite bootcamp, and guided homelabs."
+      />
+      <link
+        rel="canonical"
+        href="https://www.rivanit.com/top-it-training-courses-philippines-2025/ccnp-encor-enarsi"
+      />
+      {/* Social preview */}
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:title"
+        content="CCNP Training Philippines (ENCOR • ENARSI) | RivanCyber"
+      />
+      <meta
+        property="og:description"
+        content="Advanced CCNP Enterprise course with real lab gear and instructor feedback."
+      />
+      <meta
+        property="og:url"
+        content="https://www.rivanit.com/top-it-training-courses-philippines-2025/ccnp-encor-enarsi"
+      />
+      <meta
+        property="og:image"
+        content="https://www.rivanit.com/og/ccnp-enterprise.jpg"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* soft gradient accents */}
       <div aria-hidden="true">
         <div className="pointer-events-none absolute -top-32 -left-24 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
@@ -69,20 +178,27 @@ const CCNP = () => {
               alt="CCNP Enterprise logo"
               className="w-40 md:w-48 flex-shrink-0 rounded-xl bg-white/5 ring-1 ring-white/10 p-3"
               loading="eager"
+              width={192}
+              height={192}
             />
             <div className="flex-1 text-center md:text-left">
-              <h1 id="ccnp-heading" className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                CCNP Enterprise Bootcamp
+              <h1
+                id="ccnp-heading"
+                className="text-3xl md:text-4xl font-extrabold tracking-tight"
+              >
+                CCNP Training Philippines (ENCOR • ENARSI)
               </h1>
               <p className="text-sm md:text-base text-white/70 mt-1">
                 ENCOR • ENARSI • SD-WAN
               </p>
               <p className="mt-4 text-white/90 leading-relaxed">
-                A 5-day onsite intensive + 20 days of guided homelabs. Build advanced
-                enterprise networking skills with instructor feedback and real gear.
+                A 5-day onsite intensive + 20 days of guided homelabs. Build
+                advanced enterprise networking skills with instructor feedback
+                and real gear.
               </p>
               <p className="sr-only">
-                CCNP Enterprise training in the Philippines covering ENCOR and ENARSI with hands-on labs.
+                CCNP Enterprise training in the Philippines covering ENCOR and
+                ENARSI with hands-on labs.
               </p>
             </div>
           </div>
@@ -100,21 +216,26 @@ const CCNP = () => {
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
               <h2 className="text-2xl font-bold">About the Course</h2>
               <p className="mt-3 text-white/85 leading-relaxed">
-                CCNP Enterprise validates skills to plan, implement, verify, and troubleshoot
-                large-scale enterprise networks—plus collaborate with specialists across security,
-                wireless, voice, and automation.
+                CCNP Enterprise validates skills to plan, implement, verify, and
+                troubleshoot large-scale enterprise networks— plus collaborate
+                with specialists across security, wireless, voice, and
+                automation.
               </p>
               <p className="mt-3 text-white/85">
-                Ideal for network engineers who want to deepen expertise and step into senior roles.
+                Ideal for network engineers who want to deepen expertise and
+                step into senior roles.
               </p>
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/85">
-                {["Network Engineer", "Systems Administrator", "IT Support Specialist", "Infrastructure Technician"].map(
-                  (role) => (
-                    <li key={role} className="inline-flex items-center gap-2">
-                      <FaCheck className="text-emerald-400" /> {role}
-                    </li>
-                  )
-                )}
+                {[
+                  "Network Engineer",
+                  "Systems Administrator",
+                  "IT Support Specialist",
+                  "Infrastructure Technician",
+                ].map((role) => (
+                  <li key={role} className="inline-flex items-center gap-2">
+                    <FaCheck className="text-emerald-400" /> {role}
+                  </li>
+                ))}
               </ul>
             </section>
 
@@ -141,7 +262,9 @@ const CCNP = () => {
             {/* Hands-on */}
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
               <h3 className="text-2xl font-bold">Hands-on Experience</h3>
-              <p className="mt-3 text-white/85">Work with enterprise-grade gear and tooling:</p>
+              <p className="mt-3 text-white/85">
+                Work with enterprise-grade gear and tooling:
+              </p>
               <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/85">
                 {[
                   "Enterprise routers & Layer 3 switches",
@@ -161,16 +284,36 @@ const CCNP = () => {
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
               <h3 className="text-2xl font-bold">This training includes</h3>
               <ul className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-white/90">
-                <li className="flex items-center gap-3"><FaPenNib /> Printed training materials</li>
-                <li className="flex items-center gap-3"><FaBook /> CCNP official book (if available)</li>
-                <li className="flex items-center gap-3"><FaUtensils /> Breakfast, lunch & snacks onsite</li>
-                <li className="flex items-center gap-3"><FaDownload /> Software installers for homelab</li>
-                <li className="flex items-center gap-3"><FaFileContract /> Exam reviewers</li>
-                <li className="flex items-center gap-3"><FaHome /> Free dorm access (for far students)</li>
-                <li className="flex items-center gap-3"><FaCloud /> 6-month Meraki cloud lab access</li>
-                <li className="flex items-center gap-3"><FaFileContract /> Certificate of Completion</li>
-                <li className="flex items-center gap-3"><FaDownload /> 1-year sit-in validity</li>
-                <li className="flex items-center gap-3"><FaDesktop /> Dedicated equipment per student</li>
+                <li className="flex items-center gap-3">
+                  <FaPenNib /> Printed training materials
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaBook /> CCNP official book (if available)
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaUtensils /> Breakfast, lunch & snacks onsite
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaDownload /> Software installers for homelab
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaFileContract /> Exam reviewers
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaHome /> Free dorm access (for far students)
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaCloud /> 6-month Meraki cloud lab access
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaFileContract /> Certificate of Completion
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaDownload /> 1-year sit-in validity
+                </li>
+                <li className="flex items-center gap-3">
+                  <FaDesktop /> Dedicated equipment per student
+                </li>
               </ul>
             </section>
           </div>
@@ -178,12 +321,17 @@ const CCNP = () => {
           {/* Right: certification, schedule, outlines */}
           <aside className="flex flex-col gap-6">
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-              <p className="font-semibold text-lg mb-3">Certification Alignment</p>
+              <p className="font-semibold text-lg mb-3">
+                Certification Alignment
+              </p>
               <div className="flex items-center gap-4">
                 <img
                   src={ccnpLogo}
                   alt="CCNP Enterprise"
                   className="w-14 h-14 object-contain rounded-lg bg-white/5 ring-1 ring-white/10 p-1.5"
+                  width={56}
+                  height={56}
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-bold">CCNP Enterprise</h4>
@@ -195,11 +343,16 @@ const CCNP = () => {
             <section className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
               <h3 className="text-2xl font-bold">Schedule</h3>
               <ul className="mt-3 space-y-1 text-white/85">
-                <li><strong>Training Days:</strong> Weekends (Saturdays)</li>
-                <li><strong>Time:</strong> 9:00 AM – 5:00 PM</li>
+                <li>
+                  <strong>Training Days:</strong> Weekends (Saturdays)
+                </li>
+                <li>
+                  <strong>Time:</strong> 9:00 AM – 5:00 PM
+                </li>
               </ul>
               <p className="mt-2 text-sm text-white/70 italic">
-                5-day onsite + 20 homelab days. Submit outputs for instructor feedback.
+                5-day onsite + 20 homelab days. Submit outputs for instructor
+                feedback.
               </p>
             </section>
 
@@ -251,6 +404,8 @@ const CCNP = () => {
                   className="h-28 w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                   loading="lazy"
                   draggable="false"
+                  width={320}
+                  height={160}
                 />
                 <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-2 text-xs text-white/90 bg-gradient-to-t from-[#0B142B]/60 to-transparent">
                   CCNP enterprise labs
@@ -259,25 +414,6 @@ const CCNP = () => {
             ))}
           </div>
         </section>
-
-        {/* JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Course",
-              name: "CCNP Enterprise (ENCOR • ENARSI) Bootcamp",
-              description:
-                "Advanced CCNP Enterprise training in the Philippines with hands-on labs for ENCOR and ENARSI.",
-              provider: {
-                "@type": "Organization",
-                name: "RivanCyber Training Institute",
-                sameAs: "https://rivanit.com",
-              },
-            }),
-          }}
-        />
       </div>
     </section>
   );

@@ -11,6 +11,8 @@ import comptiaSecurityImg from "../../assets/comptia_security.png";
 import itilImg from "../../assets/itil.png";
 import fullStackImg from "../../assets/full-stack.png";
 
+const SITE = "https://www.rivanit.com";
+
 const Courses = () => {
   const sectionRef = useRef(null);
   const hoverRef = useRef(false);
@@ -28,7 +30,7 @@ const Courses = () => {
         description:
           "Networking fundamentals, routing, switching, and security—hands-on labs aligned with the CCNA exam.",
         img: ccnaImg,
-        link: "/top-it-training-courses-philippines-2025/ccna-201-301",
+        link: "/top-it-training-courses-philippines-2025/ccna-200-301",
       },
       {
         title: "CompTIA Security+",
@@ -93,7 +95,7 @@ const Courses = () => {
     const onResize = () => {
       const newSize = window.innerWidth < 768 ? 1 : 3;
       setPageSize(newSize);
-      setCurrentPage(0); // reset to avoid empty slice
+      setCurrentPage(0);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -114,11 +116,13 @@ const Courses = () => {
       className="bg-[#0B142B] text-white pt-16 pb-28 px-4"
       onMouseEnter={() => (hoverRef.current = true)}
       onMouseLeave={() => (hoverRef.current = false)}
+      aria-labelledby="courses-heading"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Heading */}
         <div className="text-center mb-8">
           <h2
+            id="courses-heading"
             data-animate
             className="text-3xl md:text-4xl font-bold mb-2"
             style={{ opacity: 0, transform: "translateY(30px)" }}
@@ -130,7 +134,13 @@ const Courses = () => {
             className="text-gray-300"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            Networking, cybersecurity, and development — all taught by experts.
+            Networking, cybersecurity, and development — all taught by experts
+            in the Philippines.
+          </p>
+          {/* sr-only keyword helper */}
+          <p className="sr-only">
+            IT training Philippines including CCNA training, CCNP training, and
+            CompTIA Security+ courses.
           </p>
         </div>
 
@@ -145,15 +155,14 @@ const Courses = () => {
             >
               <Link
                 to={course.link}
-                className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10
-                           hover:bg-white/15 transition-all duration-300 shadow-lg
-                           h-full flex flex-col"
+                className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/15 transition-all duration-300 shadow-lg h-full flex flex-col"
               >
                 <CourseCard
                   image={course.img}
                   title={course.title}
                   subtitle={course.subtitle}
                   description={course.description}
+                  alt={`${course.title} training Philippines – RivanCyber`}
                 />
               </Link>
             </div>
@@ -161,7 +170,11 @@ const Courses = () => {
         </div>
 
         {/* Dot Pagination */}
-        <div className="flex justify-center mt-8 space-x-3">
+        <div
+          className="flex justify-center mt-8 space-x-3"
+          role="tablist"
+          aria-label="Courses pagination"
+        >
           {Array.from({ length: pageCount }).map((_, page) => (
             <button
               key={page}
@@ -171,6 +184,9 @@ const Courses = () => {
                   ? "bg-white scale-125"
                   : "bg-gray-500 hover:bg-gray-400"
               }`}
+              aria-label={`Go to page ${page + 1}`}
+              aria-selected={currentPage === page}
+              role="tab"
             />
           ))}
         </div>
@@ -183,12 +199,37 @@ const Courses = () => {
         >
           <Link
             to="/top-it-training-courses-philippines-2025"
-            className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/10
-                       text-white rounded-full hover:bg-white/15 transition-colors"
+            className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/10 text-white rounded-full hover:bg-white/15 transition-colors"
           >
             Browse All Courses
           </Link>
         </div>
+
+        {/* JSON-LD: ItemList of the courses on this section */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              itemListElement: coursesData.map((c, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `${SITE}${c.link}`,
+                item: {
+                  "@type": "Course",
+                  name: c.title,
+                  description: c.description,
+                  provider: {
+                    "@type": "Organization",
+                    name: "RivanCyber Training Institute",
+                    url: SITE,
+                  },
+                },
+              })),
+            }),
+          }}
+        />
       </div>
     </section>
   );

@@ -41,8 +41,6 @@ const Hero = () => {
 
       <section className="relative mx-auto max-w-7xl px-4 pt-20 md:pt-28">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-          {/* Copy + CTAs */}
-
           {/* Visual */}
           <div
             data-animate
@@ -53,23 +51,27 @@ const Hero = () => {
               data-animate
               style={{ opacity: 0 }}
               className="
-            relative flex-shrink-0 
-            w-[250px] sm:w-[350px] md:w-[700px]
-            mx-auto md:mx-0
-            md:-ml-[200px]
-          "
+                relative flex-shrink-0 
+                w-[250px] sm:w-[350px] md:w-[700px]
+                mx-auto md:mx-0
+                md:-ml-[200px]
+              "
             >
-              {" "}
               <img
                 src={buildingImage}
                 alt="RivanCyber Training Institute Building"
                 className="w-full h-auto rounded-3xl"
                 loading="eager"
                 fetchpriority="high"
+                decoding="async"
                 draggable="false"
+                width={1400}
+                height={900}
               />
             </div>
           </div>
+
+          {/* Copy + CTAs */}
           <div
             data-animate
             style={{ opacity: 0, transform: "translateY(24px)" }}
@@ -103,7 +105,7 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Trust pills — tiny, scannable, good keywords without clutter */}
+            {/* Trust pills */}
             <ul className="mt-6 flex flex-nowrap overflow-x-auto items-center gap-2 scrollbar-hide">
               {[
                 { icon: developIcon, label: "Job-Ready Skills" },
@@ -116,7 +118,10 @@ const Hero = () => {
                       src={icon}
                       alt=""
                       loading="lazy"
+                      decoding="async"
                       className="h-4 w-4 opacity-90"
+                      width={16}
+                      height={16}
                     />
                     {label}
                   </span>
@@ -124,7 +129,7 @@ const Hero = () => {
               ))}
             </ul>
 
-            {/* SEO helper for SR only (keeps hero minimal visually) */}
+            {/* SEO helper for SR only */}
             <p className="sr-only">
               RivanCyber Training Institute in Manila offers IT training, Cisco
               training, and cybersecurity courses in the Philippines.
@@ -132,8 +137,8 @@ const Hero = () => {
           </div>
         </div>
       </section>
-      {/* --- HERO: Features strip (dark surface) --- */}
 
+      {/* --- HERO: Features strip --- */}
       <div className="relative w-full py-10 bg-white/5 ring-1 ring-white/10 supports-[backdrop-filter]:backdrop-blur-sm">
         <div className="absolute -top-px inset-x-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
 

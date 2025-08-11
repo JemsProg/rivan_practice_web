@@ -36,7 +36,6 @@ const Partners = () => {
     );
   }, []);
 
-  // two rows with different ordering
   const row1 = logos;
   const row2 = [...logos].reverse();
 
@@ -44,11 +43,13 @@ const Partners = () => {
     <section
       ref={sectionRef}
       className="relative bg-[#0B142B] py-24 px-4 text-white"
+      aria-labelledby="partners-heading"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Heading (right aligned on md+) */}
         <div className="md:text-right">
           <h2
+            id="partners-heading"
             data-animate
             style={{ opacity: 0, transform: "translateY(24px)" }}
             className="text-2xl md:text-4xl font-extrabold tracking-tight"
@@ -87,15 +88,18 @@ const Partners = () => {
               <li key={`r1-${i}`} className="min-w-[180px] md:min-w-[240px]">
                 <div
                   className="flex h-24 md:h-28 items-center justify-center 
-    rounded-2xl bg-white/15 backdrop-blur-xl ring-1 ring-white/20 
-    px-6 md:px-10 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+                  rounded-2xl bg-white/15 backdrop-blur-xl ring-1 ring-white/20 
+                  px-6 md:px-10 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   <img
                     src={logo.src}
                     alt={`${logo.name} logo`}
                     loading="lazy"
+                    decoding="async"
                     draggable="false"
-                    className="h-20 md:h-25 w-auto object-contain filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                    className="h-20 w-auto object-contain filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                    width={200}
+                    height={80}
                   />
                 </div>
               </li>
@@ -122,15 +126,18 @@ const Partners = () => {
               <li key={`r2-${i}`} className="min-w-[180px] md:min-w-[240px]">
                 <div
                   className="flex h-24 md:h-28 items-center justify-center 
-    rounded-2xl bg-white/15 backdrop-blur-xl ring-1 ring-white/20 
-    px-6 md:px-10 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+                  rounded-2xl bg-white/15 backdrop-blur-xl ring-1 ring-white/20 
+                  px-6 md:px-10 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   <img
                     src={logo.src}
                     alt={`${logo.name} logo`}
                     loading="lazy"
+                    decoding="async"
                     draggable="false"
-                    className="h-20 md:h-25 w-auto object-contain filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                    className="h-20 w-auto object-contain filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                    width={200}
+                    height={80}
                   />
                 </div>
               </li>
@@ -141,14 +148,8 @@ const Partners = () => {
 
       {/* animations + reduced motion */}
       <style>{`
-        @keyframes marqueeL {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marqueeR {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
+        @keyframes marqueeL { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marqueeR { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
         .animate-marquee-fast { animation: marqueeL 22s linear infinite; }
         .animate-marquee-slow { animation: marqueeR 32s linear infinite; }
         @media (prefers-reduced-motion: reduce) {
@@ -156,7 +157,7 @@ const Partners = () => {
         }
       `}</style>
 
-      {/* JSON-LD for a tiny SEO boost */}
+      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
