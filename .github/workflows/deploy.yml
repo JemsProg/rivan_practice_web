@@ -17,17 +17,12 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_SSH_KEY }}
         script: |
-          set -e
-    
           cd /var/www/project/rivan_practice_web
-    
-          git fetch origin
-          git reset --hard origin/main
-    
-          docker network inspect prod_network >/dev/null 2>&1 || docker network create prod_network
-    
+        
+          git pull origin main
+        
           ACTIVE=$(cat .active_color)
-    
+        
           if [ "$ACTIVE" = "blue" ]; then
             NEW="green"
             OLD="blue"
@@ -35,48 +30,50 @@ jobs:
             NEW="blue"
             OLD="green"
           fi
-    
+        
           echo "Deploying to $NEW environment..."
-    
+        
           docker compose -f docker-compose.prod.yml up -d --build backend_$NEW frontend_$NEW
-    
+        
+          echo "Waiting for backend to initialize..."
+          sleep 8
+        
           echo "Performing health check..."
-    
+        
           for i in {1..10}; do
             STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" http://backend_$NEW:8000/health/)
-    
+            
             if [ "$STATUS" = "200" ]; then
               echo "Health check passed."
               break
             fi
-    
+        
+            echo "Health check failed. Retrying..."
             sleep 3
           done
-    
+        
           if [ "$STATUS" != "200" ]; then
             echo "Deployment failed. Rolling back."
-            docker compose -f docker-compose.prod.yml stop backend_$NEW frontend_$NEW
+            docker stop backend_$NEW frontend_$NEW
             exit 1
           fi
-    
+        
           echo "Switching nginx upstream..."
-    
-          cat > nginx/upstream.conf <<EOF
-          upstream backend_upstream {
+        
+          echo "upstream backend_upstream {
               server backend_$NEW:8000;
           }
-          
+        
           upstream frontend_upstream {
               server frontend_$NEW:5173;
-          }
-          EOF
-    
-          docker exec prod_nginx nginx -t
+          }" > nginx/upstream.conf
+        
           docker exec prod_nginx nginx -s reload
-    
+        
           echo "$NEW" > .active_color
-    
-          docker compose -f docker-compose.prod.yml stop backend_$OLD frontend_$OLD
-    
+        
+          echo "Stopping old environment..."
+        
+          docker stop backend_$OLD frontend_$OLD
+        
           echo "Deployment complete."
-
