@@ -41,7 +41,7 @@ jobs:
           echo "Performing health check..."
         
           for i in {1..10}; do
-            STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" -H "Host: rivanacad.com" http://backend_$NEW:8000/api/health/)
+            STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" -H "Host: rivanacad.com" http://backend_$NEW:8000/health/)
 
             
             if [ "$STATUS" = "200" ]; then
