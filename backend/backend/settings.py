@@ -29,10 +29,7 @@ DEBUG = False
 
 # IMPORTANT: Add your domain(s) and IP(s) here
 ALLOWED_HOSTS = [
-    'rivanit.com',       # Your domain
-    'www.rivanit.com',   # If you also use the 'www.' subdomain
-    '62.72.57.245',       # Replace with your server’s real IP if you want direct IP access
-    'localhost',          # Keep if you still need local access/testing
+    '*'
 ]
 
 
@@ -131,7 +128,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://rivanit.com",
-    "https://www.rivanit.com"
+    "https://www.rivanit.com",
+    "http://rivanacad.com",
+    "https://rivanacad.com",
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
