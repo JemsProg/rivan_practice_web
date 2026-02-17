@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: Blue Green Deploy
 
 on:
   push:
@@ -18,6 +18,42 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /var/www/project/rivan_practice_web
+
             git pull origin main
-            docker compose -f docker-compose.prod.yml down
-            docker compose -f docker-compose.prod.yml up -d --build
+
+            ACTIVE=$(cat .active_color)
+
+            if [ "$ACTIVE" = "blue" ]; then
+              NEW="green"
+              OLD="blue"
+            else
+              NEW="blue"
+              OLD="green"
+            fi
+
+            echo "Deploying to $NEW environment..."
+
+            docker compose -f docker-compose.prod.yml up -d --build backend_$NEW frontend_$NEW
+
+            echo "Waiting for container to initialize..."
+            sleep 10
+
+            echo "Switching nginx upstream..."
+
+            echo "upstream backend_upstream {
+                server backend_$NEW:8000;
+            }
+
+            upstream frontend_upstream {
+                server frontend_$NEW:5173;
+            }" > nginx/upstream.conf
+
+            docker exec prod_nginx nginx -s reload
+
+            echo "$NEW" > .active_color
+
+            echo "Stopping old environment..."
+
+            docker stop backend_$OLD frontend_$OLD
+
+            echo "Deployment complete."
