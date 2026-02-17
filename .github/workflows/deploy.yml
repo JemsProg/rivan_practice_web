@@ -43,7 +43,7 @@ jobs:
           echo "Performing health check..."
     
           for i in {1..10}; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/health/)
+            STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" http://backend_$NEW:8000/health/)
     
             if [ "$STATUS" = "200" ]; then
               echo "Health check passed."
