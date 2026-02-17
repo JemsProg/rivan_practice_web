@@ -29,7 +29,14 @@ DEBUG = False
 
 # IMPORTANT: Add your domain(s) and IP(s) here
 ALLOWED_HOSTS = [
-    '*'
+    "rivanacad.com",
+    "www.rivanacad.com",
+    "api.rivanacad.com",
+    "backend_blue",
+    "backend_green",
+    "localhost",
+    "147.93.107.162",
+
 ]
 
 
