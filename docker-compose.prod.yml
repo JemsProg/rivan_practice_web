@@ -1,0 +1,31 @@
+backend_blue:
+  image: ghcr.io/jemsprog/rivan_practice_web-backend:latest
+  container_name: backend_blue
+  expose:
+    - "8000"
+  networks:
+    - prod_network
+
+backend_green:
+  image: ghcr.io/jemsprog/rivan_practice_web-backend:latest
+  container_name: backend_green
+  expose:
+    - "8000"
+  networks:
+    - prod_network
+
+frontend_blue:
+  image: ghcr.io/jemsprog/rivan_practice_web-frontend:latest
+  container_name: frontend_blue
+  expose:
+    - "80"
+  networks:
+    - prod_network
+
+frontend_green:
+  image: ghcr.io/jemsprog/rivan_practice_web-frontend:latest
+  container_name: frontend_green
+  expose:
+    - "80"
+  networks:
+    - prod_network
