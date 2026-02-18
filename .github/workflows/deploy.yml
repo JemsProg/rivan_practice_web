@@ -91,7 +91,7 @@ jobs:
           }
         
           upstream frontend_upstream {
-              server frontend_$NEW:5173;
+              server frontend_$NEW:80;
           }" > nginx/upstream.conf
         
           docker exec prod_nginx nginx -s reload
