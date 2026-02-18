@@ -35,29 +35,54 @@ jobs:
         
           docker compose -f docker-compose.prod.yml up -d --build backend_$NEW frontend_$NEW
         
-          echo "Waiting for backend to initialize..."
+          echo "Waiting for services to initialize..."
           sleep 8
-        
-          echo "Performing health check..."
-        
+          
+          echo "Checking backend health..."
+          
           for i in {1..10}; do
-            STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" -H "Host: rivanacad.com" http://backend_$NEW:8000/health/)
-
-            
-            if [ "$STATUS" = "200" ]; then
-              echo "Health check passed."
+            BACKEND_STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" \
+            -H "Host: rivanacad.com" \
+            http://backend_$NEW:8000/health/)
+          
+            if [ "$BACKEND_STATUS" = "200" ]; then
+              echo "Backend healthy."
               break
             fi
-        
-            echo "Health check failed. Retrying..."
+          
+            echo "Backend not ready. Retrying..."
             sleep 3
           done
-        
-          if [ "$STATUS" != "200" ]; then
-            echo "Deployment failed. Rolling back."
+          
+          if [ "$BACKEND_STATUS" != "200" ]; then
+            echo "Backend failed. Rolling back."
             docker stop backend_$NEW frontend_$NEW
             exit 1
           fi
+          
+          
+          echo "Checking frontend health..."
+          
+          for i in {1..10}; do
+            FRONTEND_STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" \
+            -H "Host: rivanacad.com" \
+            http://frontend_$NEW:80/)
+          
+            if [ "$FRONTEND_STATUS" = "200" ]; then
+              echo "Frontend healthy."
+              break
+            fi
+          
+            echo "Frontend not ready. Retrying..."
+            sleep 3
+          done
+          
+          if [ "$FRONTEND_STATUS" != "200" ]; then
+            echo "Frontend failed. Rolling back."
+            docker stop backend_$NEW frontend_$NEW
+            exit 1
+          fi
+
         
           echo "Switching nginx upstream..."
         
