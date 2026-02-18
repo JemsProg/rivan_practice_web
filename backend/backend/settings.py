@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
     "backend_green",
     "localhost",
     "147.93.107.162",
+    "api1.rivanacad.com",
 
 ]
 
