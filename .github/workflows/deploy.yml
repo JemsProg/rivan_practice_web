@@ -95,6 +95,27 @@ jobs:
           }" > nginx/upstream.conf
         
           docker exec prod_nginx nginx -s reload
+          echo "Verifying containers after switch..."
+          sleep 10
+          
+          RUNNING_BACKEND=$(docker inspect -f '{{.State.Running}}' backend_$NEW)
+          RUNNING_FRONTEND=$(docker inspect -f '{{.State.Running}}' frontend_$NEW)
+          
+          if [ "$RUNNING_BACKEND" != "true" ] || [ "$RUNNING_FRONTEND" != "true" ]; then
+            echo "Container crashed after switch. Rolling back."
+          
+            echo "upstream backend_upstream {
+                server backend_$OLD:8000;
+            }
+          
+            upstream frontend_upstream {
+                server frontend_$OLD:80;
+            }" > nginx/upstream.conf
+          
+            docker exec prod_nginx nginx -s reload
+            exit 1
+          fi
+
         
           echo "$NEW" > .active_color
         
