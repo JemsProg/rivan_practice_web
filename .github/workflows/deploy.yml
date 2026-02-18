@@ -1,4 +1,4 @@
-name: Blue Green Deploy
+name: Build and Deploy
 
 on:
   push:
@@ -6,121 +6,139 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Deploy via SSH
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        script: |
-          cd /var/www/project/rivan_practice_web
-        
-          git pull origin main
-        
-          ACTIVE=$(cat .active_color)
-        
-          if [ "$ACTIVE" = "blue" ]; then
-            NEW="green"
-            OLD="blue"
-          else
-            NEW="blue"
-            OLD="green"
-          fi
-        
-          echo "Deploying to $NEW environment..."
-        
-          docker compose -f docker-compose.prod.yml up -d --build backend_$NEW frontend_$NEW
-        
-          echo "Waiting for services to initialize..."
-          sleep 8
-          
-          echo "Checking backend health..."
-          
-          for i in {1..10}; do
-            BACKEND_STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" \
-            -H "Host: rivanacad.com" \
-            http://backend_$NEW:8000/health/)
-          
-            if [ "$BACKEND_STATUS" = "200" ]; then
-              echo "Backend healthy."
-              break
-            fi
-          
-            echo "Backend not ready. Retrying..."
-            sleep 3
-          done
-          
-          if [ "$BACKEND_STATUS" != "200" ]; then
-            echo "Backend failed. Rolling back."
-            docker stop backend_$NEW frontend_$NEW
-            exit 1
-          fi
-          
-          
-          echo "Checking frontend health..."
-          
-          for i in {1..10}; do
-            FRONTEND_STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" \
-            -H "Host: rivanacad.com" \
-            http://frontend_$NEW:80/)
-          
-            if [ "$FRONTEND_STATUS" = "200" ]; then
-              echo "Frontend healthy."
-              break
-            fi
-          
-            echo "Frontend not ready. Retrying..."
-            sleep 3
-          done
-          
-          if [ "$FRONTEND_STATUS" != "200" ]; then
-            echo "Frontend failed. Rolling back."
-            docker stop backend_$NEW frontend_$NEW
-            exit 1
-          fi
+      - uses: actions/checkout@v3
 
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build backend image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}-backend:latest ./backend
+          docker push ghcr.io/${{ github.repository }}-backend:latest
+
+      - name: Build frontend image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}-frontend:latest ./frontend
+          docker push ghcr.io/${{ github.repository }}-frontend:latest
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /var/www/project/rivan_practice_web
+
+            docker pull ghcr.io/${{ github.repository }}-backend:latest
+            docker pull ghcr.io/${{ github.repository }}-frontend:latest
         
-          echo "Switching nginx upstream..."
-        
-          echo "upstream backend_upstream {
-              server backend_$NEW:8000;
-          }
-        
-          upstream frontend_upstream {
-              server frontend_$NEW:80;
-          }" > nginx/upstream.conf
-        
-          docker exec prod_nginx nginx -s reload
-          echo "Verifying containers after switch..."
-          sleep 10
+            git pull origin main
           
-          RUNNING_BACKEND=$(docker inspect -f '{{.State.Running}}' backend_$NEW)
-          RUNNING_FRONTEND=$(docker inspect -f '{{.State.Running}}' frontend_$NEW)
+            ACTIVE=$(cat .active_color)
           
-          if [ "$RUNNING_BACKEND" != "true" ] || [ "$RUNNING_FRONTEND" != "true" ]; then
-            echo "Container crashed after switch. Rolling back."
+            if [ "$ACTIVE" = "blue" ]; then
+              NEW="green"
+              OLD="blue"
+            else
+              NEW="blue"
+              OLD="green"
+            fi
+          
+            echo "Deploying to $NEW environment..."
+          
+            docker compose -f docker-compose.prod.yml up -d --build backend_$NEW frontend_$NEW
+          
+            echo "Waiting for services to initialize..."
+            sleep 8
+            
+            echo "Checking backend health..."
+            
+            for i in {1..10}; do
+              BACKEND_STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" \
+              -H "Host: rivanacad.com" \
+              http://backend_$NEW:8000/health/)
+            
+              if [ "$BACKEND_STATUS" = "200" ]; then
+                echo "Backend healthy."
+                break
+              fi
+            
+              echo "Backend not ready. Retrying..."
+              sleep 3
+            done
+            
+            if [ "$BACKEND_STATUS" != "200" ]; then
+              echo "Backend failed. Rolling back."
+              docker stop backend_$NEW frontend_$NEW
+              exit 1
+            fi
+            
+            
+            echo "Checking frontend health..."
+            
+            for i in {1..10}; do
+              FRONTEND_STATUS=$(docker exec prod_nginx curl -s -o /dev/null -w "%{http_code}" \
+              -H "Host: rivanacad.com" \
+              http://frontend_$NEW:80/)
+            
+              if [ "$FRONTEND_STATUS" = "200" ]; then
+                echo "Frontend healthy."
+                break
+              fi
+            
+              echo "Frontend not ready. Retrying..."
+              sleep 3
+            done
+            
+            if [ "$FRONTEND_STATUS" != "200" ]; then
+              echo "Frontend failed. Rolling back."
+              docker stop backend_$NEW frontend_$NEW
+              exit 1
+            fi
+  
+          
+            echo "Switching nginx upstream..."
           
             echo "upstream backend_upstream {
-                server backend_$OLD:8000;
+                server backend_$NEW:8000;
             }
           
             upstream frontend_upstream {
-                server frontend_$OLD:80;
+                server frontend_$NEW:80;
             }" > nginx/upstream.conf
           
             docker exec prod_nginx nginx -s reload
-            exit 1
-          fi
-
-        
-          echo "$NEW" > .active_color
-        
-          echo "Stopping old environment..."
-        
-          docker stop backend_$OLD frontend_$OLD
-        
-          echo "Deployment complete."
+            echo "Verifying containers after switch..."
+            sleep 10
+            
+            RUNNING_BACKEND=$(docker inspect -f '{{.State.Running}}' backend_$NEW)
+            RUNNING_FRONTEND=$(docker inspect -f '{{.State.Running}}' frontend_$NEW)
+            
+            if [ "$RUNNING_BACKEND" != "true" ] || [ "$RUNNING_FRONTEND" != "true" ]; then
+              echo "Container crashed after switch. Rolling back."
+            
+              echo "upstream backend_upstream {
+                  server backend_$OLD:8000;
+              }
+            
+              upstream frontend_upstream {
+                  server frontend_$OLD:80;
+              }" > nginx/upstream.conf
+            
+              docker exec prod_nginx nginx -s reload
+              exit 1
+            fi
+  
+          
+            echo "$NEW" > .active_color
+          
+            echo "Stopping old environment..."
+          
+            docker stop backend_$OLD frontend_$OLD
+          
+            echo "Deployment complete."
